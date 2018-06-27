@@ -6,7 +6,7 @@ Configuration of my arch system running xfce4 as desktop manager and i3 as windo
 
 ## Dependencies
 
-> __Warning!__ The list ist no complete!
+> __Warning!__ The list ist not complete!
 
 - i3
 - xfce4
