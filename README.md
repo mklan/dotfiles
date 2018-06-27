@@ -1,4 +1,4 @@
-# dotfiles
+# .dotfiles
 
 Configuration of my arch system running xfce4 as desktop manager and i3 as window manager 
 
