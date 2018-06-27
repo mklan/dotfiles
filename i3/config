@@ -54,7 +54,7 @@ client.background       $bg
 
 # exec
 #
-# set BG: # export I3_BACKGROUND=$HOME/Dokumente/wallpapers/space/desktop_space.jpeg
+# set BG: # export I3_BACKGROUND=$HOME/wallpapers/desktop_space.jpeg
 # 
 # TODO: install script for compton nitrogen wal launch syncthing-gtk franz
 #
