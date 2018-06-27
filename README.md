@@ -2,9 +2,9 @@
 
 Configuration of my arch system running xfce4 as desktop manager and i3 as window manager 
 
-> __Warning!__ This repository is currently in an early pre-alpha state. The configuration is not easy to setup, due to the many dependencies which must be installed.
+> __Warning!__ This repository is currently in an early pre-alpha state. The configuration is not easy to setup, due to the many packages which must be installed.
 
-## Dependencies
+## Utilized packages / applications / tools
 
 > __Warning!__ The list ist not complete!
 
@@ -30,9 +30,9 @@ First make sure to specify the path of your wallpaper as an environment variable
 export I3_BACKGROUND=$HOME/wallpapers/desktop_space.jpeg
 ```
 
-And than run `./install.sh`
+After that run `./install.sh`.
 
-install all the missing dependencies
+Finally, install all the missing packages which are not defined in the script yet.
 
 ## Dependencies
 
