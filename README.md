@@ -2,7 +2,7 @@
 
 Configuration of my arch system running xfce4 as desktop manager and i3 as window manager 
 
-> __Warning!__ This repository is currently in an early pre-alpha state. It is not easy to install, due to the many dependencies which must be installed.
+> __Warning!__ This repository is currently in an early pre-alpha state. The configuration is not easy to setup, due to the many dependencies which must be installed.
 
 ## Install
 
