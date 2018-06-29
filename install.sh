@@ -13,11 +13,13 @@ then
 fi
 
 function installPackages {
-  pacman -S --no-confirm \
+  sudo pacman -S yaourt --no-confirm
+  yaourt -Syy \
   i3\
-  xfce4\
+  #xfce4\
   rofi\
   terminator\
   polybar\
   # ...
+  -no-confirm
 }
