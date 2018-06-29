@@ -15,6 +15,8 @@ Configuration of my arch system running xfce4 as desktop manager and i3 as windo
 - compton
 - nitrogen
 - wal
+- Arc-Dark [GTK2 Theme] 
+- Vertex-Maia [GTK2 Icons] 
 - flameshot
 - xbacklight
 - pactl
