@@ -1,13 +1,13 @@
 #!/bin/bash
 
 function installPackages {
-  sudo pacman -S yaourt --noconfirm
+  sudo pacman -S yaourt --noconfirm --needed
   yaourt -Syy \
   i3 \
   rofi \
   terminator \
   polybar \
-  --noconfirm
+  --noconfirm --needed
 }
 
 function createSymlinks {
