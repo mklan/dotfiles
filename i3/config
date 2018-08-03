@@ -8,6 +8,9 @@ set $mod Mod1
 # Windows Key as secondary Mod key
 set $modSec Mod4
 
+# lock screen
+bindsym $modSec+l exec i3lock-fancy
+
 # bind volume and brightness keys
 bindsym XF86AudioRaiseVolume exec $HOME/.config/i3/sound.sh 2 150
 bindsym XF86AudioLowerVolume exec $HOME/.config/i3/sound.sh -2 150
@@ -54,7 +57,7 @@ client.background       $bg
 
 # exec
 #
-# set BG: # export I3_BACKGROUND=$HOME/wallpapers/desktop_space.jpeg
+# set BG: # export I3_BACKGROUND=$HOME/wallpapers/space/desktop_space.jpeg
 # 
 # TODO: install script for compton nitrogen wal launch syncthing-gtk franz
 #
@@ -218,10 +221,14 @@ assign [class="^Firefox$"] $web
 assign [class="^Code$"] $code
 assign [class="^Franz$"] $chat
 assign [class="^keepassxc$"] $key
+#assign [title="KeePassXC-Browser Confirm Access"] $web
 assign [class="^Eddie$"] $key
 
 #monkey patch for assign [class="^Spotify$"] $music
 for_window [class="Spotify"] move to workspace $music
+
+#show keepassxc-browser confirmation on web workspace 
+for_window [title="KeePassXC-Browser Confirm Access"] move to workspace $web
 
 
 # Assign workspaces to output
