@@ -19,11 +19,13 @@ function createSymlinks {
 function main {
   read -p "Do you want to install the required packages (arch only) [y/N]?" -n 1 -r
   echo
+  
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
 	installPackages
-	createSymlinks
   fi
+  
+  createSymlinks
 }
 
 main
