@@ -42,7 +42,7 @@ Finally, install all the missing packages which are not defined in the script ye
 
 - [x] Open source
 - [ ] Proper install script
-    - [ ] auto install dependencies for arch
+- [ ] auto install dependencies for arch
 - [ ] add .vimrc
 - [ ] add $ZDOTDIR/.zshrc
 - [ ] (automate) screenshots of resulting setup
