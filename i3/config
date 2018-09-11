@@ -8,6 +8,8 @@ set $mod Mod1
 # Windows Key as secondary Mod key
 set $modSec Mod4
 
+set $secondaryScreen HDMI1 #Projector
+
 # lock screen
 bindsym $modSec+l exec i3lock-fancy
 
@@ -44,7 +46,7 @@ default_border pixel 2
 # NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
 # it fails to get colors from Xresources.
 set_from_resource $fg i3wm.color2 #f0f0f0
-set_from_resource $bg i3wm.color7 #f0f0f0
+set_from_resource $bg i3wm.color7 #222222
 
 # class                 border  backgr. text indicator child_border
 client.focused          $bg     $bg     $fg  $bg       $bg
@@ -57,21 +59,24 @@ client.background       $bg
 
 # exec
 #
-# set BG: # export I3_BACKGROUND=$HOME/wallpapers/space/desktop_space.jpeg
 # 
 # TODO: install script for compton nitrogen wal launch syncthing-gtk franz
 #
+
+set $background_image $HOME/wallpapers/space/desktop_space.jpeg
+
 exec_always --no-startup-id compton -f
 exec_always --no-startup-id nitrogen --restore
-exec_always --no-startup-id wal -i ${I3_BACKGROUND} -g
+exec_always --no-startup-id wal -i $background_image -g
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id syncthing-gtk -m
 exec_always --no-startup-id franz
+exec_always --no-startup-id xrandr --output HDMI1 --auto --left-of eDP1 #TODO autoranr
 
 
 # Screenshot
 # TODO: install flameshot in script
-bindsym Print exec --no-startup-id "flameshot gui -p ~/Screenshots"
+bindsym $modSec+Print exec --no-startup-id "flameshot gui -p ~/Screenshots"
 
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -177,6 +182,9 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+set $wsTMP "999"
+
+
 # switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $web
@@ -213,6 +221,17 @@ bindsym $modSec+Shift+8 move container to workspace $chat; workspace $chat
 bindsym $modSec+Shift+9 move container to workspace $key; workspace $key
 bindsym $modSec+Shift+0 move container to workspace $code; workspace $code
 
+#move workspace to active monitor
+bindSym $modSec+1 exec --no-startup-id ~/.config/i3/switch-workspace.py $ws1
+bindSym $modSec+2 exec --no-startup-id ~/.config/i3/switch-workspace.py $web
+bindSym $modSec+3 exec --no-startup-id ~/.config/i3/switch-workspace.py $ws3
+bindSym $modSec+4 exec --no-startup-id ~/.config/i3/switch-workspace.py $ws4
+bindSym $modSec+5 exec --no-startup-id ~/.config/i3/switch-workspace.py $ws5
+bindSym $modSec+6 exec --no-startup-id ~/.config/i3/switch-workspace.py $ws6
+bindSym $modSec+7 exec --no-startup-id ~/.config/i3/switch-workspace.py $music
+bindSym $modSec+8 exec --no-startup-id ~/.config/i3/switch-workspace.py $chat
+bindSym $modSec+9 exec --no-startup-id ~/.config/i3/switch-workspace.py $key
+bindSym $modSec+0 exec --no-startup-id ~/.config/i3/switch-workspace.py $code
 
 # assign programms to workspaces
 
@@ -221,7 +240,6 @@ assign [class="^Firefox$"] $web
 assign [class="^Code$"] $code
 assign [class="^Franz$"] $chat
 assign [class="^keepassxc$"] $key
-#assign [title="KeePassXC-Browser Confirm Access"] $web
 assign [class="^Eddie$"] $key
 
 #monkey patch for assign [class="^Spotify$"] $music
