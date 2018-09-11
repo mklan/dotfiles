@@ -283,7 +283,7 @@ label = %time%
 type = internal/date
 interval = 60
 enable-click = true
-date = "%d.%m"
+date = "%d.%m.%y"
 
 label = "%date%"
 
