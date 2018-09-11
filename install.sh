@@ -1,13 +1,18 @@
 #!/bin/bash
 
 function installPackages {
-  sudo pacman -S yaourt --noconfirm --needed
-  yaourt -Syy \
-  i3 \
-  rofi \
-  terminator \
-  polybar \
-  --noconfirm --needed
+  echo ' ' >> /etc/pacman.conf
+  echo '[archlinuxfr]' >> /etc/pacman.conf
+  echo 'SigLevel = Never' >> /etc/pacman.conf
+  echo 'Server = http://repo.archlinux.fr/$arch' >> /etc/pacman.conf
+
+  sudo pacman -Sy yaourt --noconfirm --needed
+  
+  # install basic dependencies
+  sudo pacman -S --noconfirm base-devel git wget yajl
+
+  # install additional packages
+  yaourt --noconfirm --needed - < package_list.txt 
 }
 
 function createSymlinks {
