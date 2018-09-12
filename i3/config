@@ -2,6 +2,9 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+# Set your wallaper
+set $wallpaper $HOME/wallpaper/futureTown.jpg
+
 # Alt Key
 set $mod Mod1
 
@@ -59,8 +62,8 @@ client.background       $bg
 
 # exec
 exec_always --no-startup-id compton -f
-exec_always --no-startup-id nitrogen --restore
-exec_always --no-startup-id wal -i ${WALLPAPER:-$HOME/wallpaper/futureTown.jpg} -g
+exec_always --no-startup-id nitrogen --set-zoom-fill $wallpaper
+exec_always --no-startup-id wal -i $wallpaper -g
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id syncthing-gtk -m
 exec_always --no-startup-id franz
