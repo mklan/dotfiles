@@ -6,3 +6,14 @@ polybar
 rofi
 redshift
 flameshot
+compton
+nitrogen
+xorg-xbacklight
+python-pywal
+xorg-xrandr
+arandr
+autorandr
+arc-gtk-theme
+zsh
+oh-my-zsh-git
+pamixer
