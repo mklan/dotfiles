@@ -2,7 +2,7 @@
 
 Configuration of my arch system running xfce4 as desktop manager and i3 as window manager 
 
-> __Warning!__ This repository is currently in an early pre-alpha state. The configuration is not easy to setup, due to the many packages which must be installed.
+> __Warning!__ This repository is currently in an early pre-alpha state. The configuration is not yet easy to setup
 
 ## Utilized packages / applications / tools
 
@@ -19,12 +19,13 @@ Configuration of my arch system running xfce4 as desktop manager and i3 as windo
 - Vertex-Maia [GTK2 Icons] 
 - flameshot
 - xbacklight
-- pactl
 - pamixer
 - terminator
 - zsh
 
 ## Install
+
+> __Warning!__ the background setting is not working right now and is hardcoded in i3
 
 First make sure to specify the path of your wallpaper as an environment variable:
 
@@ -36,15 +37,17 @@ After that run `./install.sh`.
 
 Finally, install all the missing packages which are not defined in the script yet.
 
+> ___TODO___ add instruction to somehow set the settings in xfce4 in order to be able to use i3 in coexistence
+
 ## Dependencies
 
 ## TODO
 
 - [x] Open source
-- [ ] Proper install script
-- [ ] auto install dependencies for arch
+- [x] Proper install script
+- [x] auto install dependencies for arch
 - [ ] add .vimrc
 - [ ] add $ZDOTDIR/.zshrc
 - [ ] (automate) screenshots of resulting setup
-- [ ] add description to readme
+- [ ] add proper install description to readme
 - [ ] auto generate documentation of shortcuts
