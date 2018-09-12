@@ -58,20 +58,13 @@ client.placeholder      $bg     $bg     $fg  $bg       $bg
 client.background       $bg
 
 # exec
-#
-# 
-# TODO: install script for compton nitrogen wal launch syncthing-gtk franz
-#
-
-set $background_image $HOME/wallpapers/space/desktop_space.jpeg
-
 exec_always --no-startup-id compton -f
 exec_always --no-startup-id nitrogen --restore
-exec_always --no-startup-id wal -i $background_image -g
+exec_always --no-startup-id wal -i ${WALLPAPER:-$HOME/wallpaper/futureTown.jpg} -g
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id syncthing-gtk -m
 exec_always --no-startup-id franz
-exec_always --no-startup-id xrandr --output HDMI1 --auto --left-of eDP1 #TODO autoranr
+#exec_always --no-startup-id xrandr --output HDMI1 --auto --left-of eDP1 #TODO autoranr
 
 
 # Screenshot
