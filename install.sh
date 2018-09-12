@@ -26,6 +26,9 @@ function createSymlinks {
   ln -sf $(pwd)/i3/* ~/.config/i3/
   ln -sf $(pwd)/polybar/* ~/.config/polybar/
   ln -sf $(pwd)/rofi/* ~/.config/rofi/
+
+  mkdir -p ~/wallpaper
+  ln -sf $(pwd)/wallpaper/* ~/wallpaper/
 }
 
 function installAurman {
