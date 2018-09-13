@@ -19,3 +19,4 @@ pamixer
 i3lock-fancy-git
 xbindkeys
 pango
+ttf-font-awesome
