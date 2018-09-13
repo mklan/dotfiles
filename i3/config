@@ -65,13 +65,12 @@ exec_always --no-startup-id compton -f
 exec_always --no-startup-id nitrogen --set-zoom-fill $wallpaper
 exec_always --no-startup-id wal -i $wallpaper -g
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec_always --no-startup-id syncthing-gtk -m
-exec_always --no-startup-id franz
+#exec_always --no-startup-id syncthing-gtk -m
+#exec_always --no-startup-id rambox
 #exec_always --no-startup-id xrandr --output HDMI1 --auto --left-of eDP1 #TODO autoranr
 
 
 # Screenshot
-# TODO: install flameshot in script
 bindsym $modSec+Print exec --no-startup-id "flameshot gui -p ~/Screenshots"
 
 
@@ -99,12 +98,8 @@ bindsym $mod+Return exec terminator #i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start dmenu (a program launcher)
+# start rofi (a program launcher)
 bindsym $mod+d exec rofi -show run
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+j focus left
@@ -159,7 +154,6 @@ bindsym $mod+a focus parent
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 
-
 set $web "2"
 set $term "3"
 set $music "7"
@@ -177,8 +171,6 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
-
-set $wsTMP "999"
 
 
 # switch to workspace
@@ -234,7 +226,7 @@ bindSym $modSec+0 exec --no-startup-id ~/.config/i3/switch-workspace.py $code
 assign [class="Chromium"] $web
 assign [class="^Firefox$"] $web
 assign [class="^Code$"] $code
-assign [class="^Franz$"] $chat
+assign [class="^Rambox$"] $chat
 assign [class="^keepassxc$"] $key
 assign [class="^Eddie$"] $key
 
