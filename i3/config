@@ -65,6 +65,7 @@ exec_always --no-startup-id compton -f
 exec_always --no-startup-id nitrogen --set-zoom-fill $wallpaper
 exec_always --no-startup-id wal -i $wallpaper -g
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id pasystray
 #exec_always --no-startup-id syncthing-gtk -m
 #exec_always --no-startup-id rambox
 
