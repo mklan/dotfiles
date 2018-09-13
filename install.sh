@@ -24,7 +24,11 @@ function installPackages {
 
 function createSymlinks {
   ln -sf $(pwd)/i3/* ~/.config/i3/
+  
+  mkdir -p ~/.config/polybar
   ln -sf $(pwd)/polybar/* ~/.config/polybar/
+  
+  mkdir -p ~/.config/rofi
   ln -sf $(pwd)/rofi/* ~/.config/rofi/
 
   mkdir -p ~/wallpaper
