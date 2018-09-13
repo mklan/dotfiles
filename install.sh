@@ -19,7 +19,7 @@ function installPackages {
   installAurman
 
   # install additional packages
-  aurman -S --noconfirm --needed --skip_news $(cat ./package_list.txt)
+  aurman -S --noedit --noconfirm --needed --skip_news $(cat ./package_list.txt)
 }
 
 function createSymlinks {
