@@ -221,11 +221,12 @@ bindSym $modSec+8 exec --no-startup-id ~/.config/i3/switch-workspace.py $chat
 bindSym $modSec+9 exec --no-startup-id ~/.config/i3/switch-workspace.py $key
 bindSym $modSec+0 exec --no-startup-id ~/.config/i3/switch-workspace.py $code
 
-# assign programms to workspaces
+# assign programms to workspaces [use xprop to retrieve the class]
 
 assign [class="Chromium"] $web
 assign [class="^Firefox$"] $web
 assign [class="^Code$"] $code
+assign [class="^jetbrains-webstorm$"] $code
 assign [class="^Rambox$"] $chat
 assign [class="^keepassxc$"] $key
 assign [class="^Eddie$"] $key
