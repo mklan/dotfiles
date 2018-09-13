@@ -52,8 +52,7 @@ font-5 = "Font Awesome 5 Brands:pixelsize=10;1"
 
 modules-left = i3
 modules-center = clock date calendar
-modules-right = xbacklight volume temperature memory cpu avg-battery logout
-
+modules-right = xbacklight temperature memory cpu avg-battery logout
 tray-position = right
 tray-padding = 4
 ;tray-transparent = true
@@ -298,7 +297,10 @@ click-left = exec chromium https://calendar.google.com
 content = ""
 
 [module/volume]
-type = internal/alsa
+type = internal/pulseaudio
+
+sink = alsa_output.usb-ESI_Audiotechnik_GmbH_Dr._DAC_nano-01.analog-stereo
+
 
 click-right = exec pavucontrol
 
