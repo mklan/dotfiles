@@ -36,6 +36,9 @@ function createSymlinks {
 
   mkdir -p ~/wallpaper
   ln -sf $(pwd)/wallpaper/* ~/wallpaper/
+
+  mkdir -p ~/.autorandr
+  ln -sf $(pwd)/autorandr/* ~/.autorandr/
 }
 
 function installAurman {
