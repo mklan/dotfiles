@@ -31,6 +31,9 @@ function createSymlinks {
   mkdir -p ~/.config/rofi
   ln -sf $(pwd)/rofi/* ~/.config/rofi/
 
+  mkdir -p ~/.config/terminator
+  ln -sf $(pwd)/terminator/* ~/.config/terminator/
+
   mkdir -p ~/wallpaper
   ln -sf $(pwd)/wallpaper/* ~/wallpaper/
 }
