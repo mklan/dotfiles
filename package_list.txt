@@ -17,3 +17,6 @@ arc-gtk-theme
 zsh
 oh-my-zsh-git
 pamixer
+i3lock-fancy-git
+xbindkeys
+pango
