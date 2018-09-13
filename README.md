@@ -25,19 +25,12 @@ Configuration of my arch system running xfce4 as desktop manager and i3 as windo
 
 ## Install
 
-> __Warning!__ the background setting is not working right now and is hardcoded in i3
+1. Set your wallpaper in the first line of `./i3/config` and run `./install.sh`.
 
-First make sure to specify the path of your wallpaper as an environment variable:
+2. Setup xfce and i3 using this tutorial: https://osa1.net/posts/2016-11-30-new-xfce-i3-setup.html
 
-```bash
-export I3_BACKGROUND=$HOME/wallpapers/desktop_space.jpeg
-```
+After that install all the possible missing packages which are not defined in the list yet and thus causing problems.
 
-After that run `./install.sh`.
-
-Finally, install all the missing packages which are not defined in the script yet.
-
-> ___TODO___ add instruction to somehow set the settings in xfce4 in order to be able to use i3 in coexistence
 
 ## Dependencies
 
