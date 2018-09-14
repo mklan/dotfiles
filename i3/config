@@ -187,7 +187,7 @@ bindsym $mod+0 workspace $code
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $web
-bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+3 move container to workspace $term
 bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
@@ -199,7 +199,7 @@ bindsym $mod+Shift+0 move container to workspace $code
 # move container to workspace and switch to workspace
 bindsym $modSec+Shift+1 move container to workspace $ws1; workspace $ws1 
 bindsym $modSec+Shift+2 move container to workspace $web; workspace $web 
-bindsym $modSec+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $modSec+Shift+3 move container to workspace $ws3; workspace $term
 bindsym $modSec+Shift+4 move container to workspace $ws4; workspace $ws4
 bindsym $modSec+Shift+5 move container to workspace $ws5; workspace $ws5
 bindsym $modSec+Shift+6 move container to workspace $ws6; workspace $ws6
@@ -211,7 +211,7 @@ bindsym $modSec+Shift+0 move container to workspace $code; workspace $code
 #move workspace to active monitor
 bindSym $modSec+1 exec --no-startup-id ~/.config/i3/switch-workspace.py $ws1
 bindSym $modSec+2 exec --no-startup-id ~/.config/i3/switch-workspace.py $web
-bindSym $modSec+3 exec --no-startup-id ~/.config/i3/switch-workspace.py $ws3
+bindSym $modSec+3 exec --no-startup-id ~/.config/i3/switch-workspace.py $term
 bindSym $modSec+4 exec --no-startup-id ~/.config/i3/switch-workspace.py $ws4
 bindSym $modSec+5 exec --no-startup-id ~/.config/i3/switch-workspace.py $ws5
 bindSym $modSec+6 exec --no-startup-id ~/.config/i3/switch-workspace.py $ws6
@@ -239,11 +239,14 @@ for_window [class="Spotify"] move to workspace $music
 for_window [title="KeePassXC-Browser Confirm Access"] move to workspace $web
 
 
-# Assign workspaces to output
-# workspace "$w1" output DP-1
-# workspace "$w2" output HDMI-1
-# workspace "$w3" output HDMI-1
-# workspace "$w4" output DP-1
+# Assign workspaces to output [on work only, how to do it conidionally?]
+workspace $web output DP2-1
+workspace $code output DP2-2
+workspace $music output eDP1
+workspace $chat output DP2-1
+workspace $key output DP2-1
+workspace $term output DP2-2
+
 
 for_window [class="Pamac-manager" window_type="normal"] floating enable 
 #for_window [class="Chromium" window_type="normal"] floating enable,  resize set 1920 1080 
