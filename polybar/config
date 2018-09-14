@@ -8,11 +8,10 @@
 ;=====================================================
 
 [colors]
+#background = #95000000 [does not work for tray]
 background = ${xrdb:color0:#222222}
-;background = #222
 background-alt = #444
 foreground = ${xrdb:color7:#FFF}
-#foreground = #dfdfdf
 foreground-alt = #555
 primary = #ffb52a
 secondary = #e60053
@@ -22,8 +21,6 @@ alert = #bd2c40
 monitor = ${env:MONITOR:eDP1}
 width = 100%
 height = 27
-;offset-x = 1%
-;offset-y = 1%
 radius = 0
 fixed-center = true
 
@@ -54,8 +51,9 @@ modules-center = clock date calendar
 modules-right = xbacklight temperature memory cpu avg-battery logout
 tray-position = right
 tray-padding = 4
+pseudo-transparency = true
 ;tray-transparent = true
-;tray-background = #0063ff
+tray-background = ${colors.background}
 ;tray-detached = true
 
 
