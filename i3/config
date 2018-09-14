@@ -227,8 +227,10 @@ assign [class="^Firefox$"] $web
 assign [class="^Code$"] $code
 assign [class="^jetbrains-webstorm$"] $code
 assign [class="^Rambox$"] $chat
+assign [class="^Evolution$"] $chat
 assign [class="^keepassxc$"] $key
 assign [class="^Eddie$"] $key
+
 
 #monkey patch for assign [class="^Spotify$"] $music
 for_window [class="Spotify"] move to workspace $music
