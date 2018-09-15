@@ -23,6 +23,25 @@ function installPackages {
 }
 
 function createSymlinks {
+
+	# needs testing
+	symlinks=( "$(pwd)/i3/*:~/.config/i3/"
+		"$(pwd)/polybar/*:~/.config/polybar/"
+		"$(pwd)/rofi/*:~/.config/rofi/"
+		"$(pwd)/terminator/*:~/.config/terminator/"
+		"$(pwd)/wallpaper/*:~/wallpaper/"
+		"$(pwd)/autorandr/*:~/.autorandr/"
+		)
+
+	for symlink in "${symlinks[@]}" ; do
+	    src="${symlink%%:*}"
+	    dest="${symlink##*:}"
+
+	    mkdir -p $dest
+	    ln -sf $src $dest
+	done
+
+
   ln -sf $(pwd)/i3/* ~/.config/i3/
   
   mkdir -p ~/.config/polybar
