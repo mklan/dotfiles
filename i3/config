@@ -61,14 +61,16 @@ client.placeholder      $bg     $bg     $fg  $bg       $bg
 client.background       $bg
 
 # exec
+
+exec_always --no-startup-id xrandr --output HDMI1 --auto --left-of eDP1
+exec --no-startup-id pasystray
 exec_always --no-startup-id compton -f
 exec_always --no-startup-id nitrogen --set-zoom-fill $wallpaper
 exec_always --no-startup-id wal -i $wallpaper -g
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec --no-startup-id pasystray
 #exec_always --no-startup-id syncthing-gtk -m
 #exec_always --no-startup-id rambox
-#xrandr --output HDMI1 --auto --left-of eDP1
+
 
 # Screenshot
 bindsym $modSec+Print exec --no-startup-id "flameshot gui -p ~/Pictures"
@@ -156,7 +158,7 @@ bindsym $mod+a focus parent
 
 set $web "2"
 set $term "3"
-set $music "7"
+set $media "7"
 set $chat "8"
 set $key "9"
 set $code "10"
@@ -180,7 +182,7 @@ bindsym $mod+3 workspace $term
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $music
+bindsym $mod+7 workspace $media
 bindsym $mod+8 workspace $chat
 bindsym $mod+9 workspace $key
 bindsym $mod+0 workspace $code
@@ -192,7 +194,7 @@ bindsym $mod+Shift+3 move container to workspace $term
 bindsym $mod+Shift+4 move container to workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $music
+bindsym $mod+Shift+7 move container to workspace $media
 bindsym $mod+Shift+8 move container to workspace $chat
 bindsym $mod+Shift+9 move container to workspace $key
 bindsym $mod+Shift+0 move container to workspace $code
@@ -204,7 +206,7 @@ bindsym $modSec+Shift+3 move container to workspace $ws3; workspace $term
 bindsym $modSec+Shift+4 move container to workspace $ws4; workspace $ws4
 bindsym $modSec+Shift+5 move container to workspace $ws5; workspace $ws5
 bindsym $modSec+Shift+6 move container to workspace $ws6; workspace $ws6
-bindsym $modSec+Shift+7 move container to workspace $music; workspace $music
+bindsym $modSec+Shift+7 move container to workspace $media; workspace $media
 bindsym $modSec+Shift+8 move container to workspace $chat; workspace $chat
 bindsym $modSec+Shift+9 move container to workspace $key; workspace $key
 bindsym $modSec+Shift+0 move container to workspace $code; workspace $code
@@ -216,7 +218,7 @@ bindSym $modSec+3 exec --no-startup-id ~/.config/i3/switch-workspace.py $term
 bindSym $modSec+4 exec --no-startup-id ~/.config/i3/switch-workspace.py $ws4
 bindSym $modSec+5 exec --no-startup-id ~/.config/i3/switch-workspace.py $ws5
 bindSym $modSec+6 exec --no-startup-id ~/.config/i3/switch-workspace.py $ws6
-bindSym $modSec+7 exec --no-startup-id ~/.config/i3/switch-workspace.py $music
+bindSym $modSec+7 exec --no-startup-id ~/.config/i3/switch-workspace.py $media
 bindSym $modSec+8 exec --no-startup-id ~/.config/i3/switch-workspace.py $chat
 bindSym $modSec+9 exec --no-startup-id ~/.config/i3/switch-workspace.py $key
 bindSym $modSec+0 exec --no-startup-id ~/.config/i3/switch-workspace.py $code
@@ -232,11 +234,11 @@ assign [class="^Evolution$"] $chat
 assign [class="^keepassxc$"] $key
 assign [class="^Eddie$"] $key
 
-assign [class="^Kodi$"] $music
+assign [class="^Kodi$"] $media
 for_window [class="Kodi"] fullscreen
 
-#monkey patch for assign [class="^Spotify$"] $music
-for_window [class="Spotify"] move to workspace $music
+#monkey patch for assign [class="^Spotify$"] $media
+for_window [class="Spotify"] move to workspace $media
 
 #show keepassxc-browser confirmation on web workspace 
 for_window [title="KeePassXC-Browser Confirm Access"] move to workspace $web
@@ -245,11 +247,11 @@ for_window [title="KeePassXC-Browser Confirm Access"] move to workspace $web
 # Assign workspaces to output [on work only, how to do it conidionally?]
 workspace $web output DP2-1
 workspace $code output DP2-2
-workspace $music output eDP1
+workspace $media output eDP1
 workspace $chat output DP2-1
 workspace $key output DP2-1
 workspace $term output DP2-2
-workspace $music output HDMI1
+workspace $media output HDMI1
 
 for_window [class="Pamac-manager" window_type="normal"] floating enable 
 #for_window [class="Chromium" window_type="normal"] floating enable,  resize set 1920 1080 
