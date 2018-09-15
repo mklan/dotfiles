@@ -68,6 +68,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id pasystray
 #exec_always --no-startup-id syncthing-gtk -m
 #exec_always --no-startup-id rambox
+#xrandr --output HDMI1 --auto --left-of eDP1
 
 # Screenshot
 bindsym $modSec+Print exec --no-startup-id "flameshot gui -p ~/Pictures"
@@ -231,6 +232,8 @@ assign [class="^Evolution$"] $chat
 assign [class="^keepassxc$"] $key
 assign [class="^Eddie$"] $key
 
+assign [class="^Kodi$"] $music
+for_window [class="Kodi"] fullscreen
 
 #monkey patch for assign [class="^Spotify$"] $music
 for_window [class="Spotify"] move to workspace $music
@@ -246,11 +249,12 @@ workspace $music output eDP1
 workspace $chat output DP2-1
 workspace $key output DP2-1
 workspace $term output DP2-2
-
+workspace $music output HDMI1
 
 for_window [class="Pamac-manager" window_type="normal"] floating enable 
 #for_window [class="Chromium" window_type="normal"] floating enable,  resize set 1920 1080 
 for_window [window_role="pop-up"] floating enable
+
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
