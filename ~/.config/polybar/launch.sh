@@ -1,1 +1,0 @@
-/home/matthias/Projects/dotfiles/polybar/launch.sh

@@ -1,1 +1,0 @@
-/home/matthias/Projects/dotfiles/i3/switch-workspace.py
