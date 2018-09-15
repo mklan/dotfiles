@@ -2,11 +2,11 @@
 
 Configuration of my arch system running xfce4 as desktop manager and i3 as window manager 
 
-> __Warning!__ This repository is currently in an early pre-alpha state. The configuration is not yet easy to setup
+> __Warning!__ This repository is currently in an early state.
 
 ## Utilized packages / applications / tools
 
-> __Warning!__ The list is not complete!
+> __Warning!__ The list is not complete! For a complete list look into `package_list.txt`
 
 - i3
 - xfce4
