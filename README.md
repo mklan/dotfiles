@@ -29,8 +29,7 @@ Configuration of my arch system running xfce4 as desktop manager and i3 as windo
 
 2. Setup xfce and i3 using this tutorial: https://osa1.net/posts/2016-11-30-new-xfce-i3-setup.html
 
-After that install all the possible missing packages which are not defined in the list yet and thus causing problems.
-
+3. Remove the `Super R` and `Super L` shortcut undter xfce4 keyboard settings
 
 ## Dependencies
 
@@ -42,5 +41,5 @@ After that install all the possible missing packages which are not defined in th
 - [ ] add .vimrc
 - [ ] add $ZDOTDIR/.zshrc
 - [ ] (automate) screenshots of resulting setup
-- [ ] add proper install description to readme
+- [x] add proper install description to readme
 - [ ] auto generate documentation of shortcuts
