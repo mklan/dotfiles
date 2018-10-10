@@ -3,7 +3,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 # Set your wallaper
-set $wallpaper $HOME/wallpaper/futureTown.jpg
+set $wallpaper $HOME/wallpaper/outpost.png
 
 # Alt Key
 set $mod Mod1

@@ -42,7 +42,11 @@ function createSymlinks {
 #	done
 #
 
+  mkdir -p ~/.config/i3
   ln -sf $(pwd)/i3/* ~/.config/i3/
+
+  mkdir -p ~/.config/Code/User/snippets
+  ln -sf $(pwd)/vscode/snippets/* ~/.config/Code/User/snippets/
   
   mkdir -p ~/.config/polybar
   ln -sf $(pwd)/polybar/* ~/.config/polybar/

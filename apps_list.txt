@@ -1,0 +1,7 @@
+jdownloader2
+rambox-bin
+code
+webstorm
+keepassxc
+firefox
+spotify
