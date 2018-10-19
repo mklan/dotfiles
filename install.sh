@@ -10,6 +10,9 @@ function main {
   fi
   
   createSymlinks
+  
+  # disable lightdm to use startx at startup
+  systemctl disable lightdm.service
 }
 
 function installPackages {
