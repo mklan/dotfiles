@@ -62,6 +62,8 @@ function createSymlinks {
 
   mkdir -p ~/.autorandr
   ln -sf $(pwd)/autorandr/* ~/.autorandr/
+  
+  ln -sf $(pwd)/common/* ~/
 }
 
 function installAurman {
