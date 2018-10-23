@@ -255,7 +255,8 @@ workspace $key output DP2-1
 workspace $term output DP2-2
 workspace $media output HDMI1
 
-for_window [class="Pamac-manager" window_type="normal"] floating enable 
+for_window [class="Pamac-manager" window_type="normal"] floating enable
+for_window [class="Pamac-updater" window_type="normal"] floating enable 
 #for_window [class="Chromium" window_type="normal"] floating enable,  resize set 1920 1080 
 for_window [window_role="pop-up"] floating enable
 
