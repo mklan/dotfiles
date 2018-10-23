@@ -14,11 +14,11 @@ xorg-xrandr
 arandr
 autorandr
 zsh
-oh-my-zsh-git
 pamixer
 i3lock-fancy-git
 xbindkeys
 pango
 ttf-font-awesome
+powerline-fonts
 pasystray
 dunst
