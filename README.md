@@ -39,7 +39,7 @@ Configuration of my arch system running xfce4 as desktop manager and i3 as windo
 - [x] Proper install script
 - [x] auto install dependencies for arch
 - [ ] add .vimrc
-- [ ] add $ZDOTDIR/.zshrc
+- [x] add $ZDOTDIR/.zshrc
 - [ ] (automate) screenshots of resulting setup
 - [x] add proper install description to readme
 - [ ] auto generate documentation of shortcuts
