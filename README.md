@@ -20,7 +20,7 @@ Configuration of my arch system running xfce4 as desktop manager and i3 as windo
 - flameshot
 - xbacklight
 - pamixer
-- terminator
+- urxvt
 - zsh
 
 ## Install

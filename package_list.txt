@@ -1,7 +1,7 @@
 i3-gaps
 xfce4
 rofi
-terminator
+rxvt-unicode
 polybar
 rofi
 redshift

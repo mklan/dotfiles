@@ -1,4 +1,3 @@
-jdownloader2
 rambox-bin
 code
 webstorm
