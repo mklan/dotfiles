@@ -1,0 +1,5 @@
+URxvt*scrollBar: false
+URxvt*font: xft:Monospace:pixelsize=18:antialias=true:hinting=true
+URxvt*depth: 32
+URxvt*internalBorder: 10
+
