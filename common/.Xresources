@@ -1,7 +1,5 @@
 !-*- Perl extensions -*-
 URxvt.perl-ext-common: font-size
-...
-
 
 URxvt*scrollBar: false
 URxvt*font: xft:Monospace:pixelsize=18:antialias=true:hinting=true
@@ -14,4 +12,11 @@ URxvt.keysym.C-S-Up:   font-size:incglobal
 URxvt.keysym.C-S-Down: font-size:decglobal
 URxvt.keysym.C-equal:  font-size:reset
 
+Xft.dpi: 120
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
 

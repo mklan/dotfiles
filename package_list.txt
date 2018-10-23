@@ -23,3 +23,5 @@ ttf-font-awesome
 powerline-fonts
 pasystray
 dunst
+tlp
+acpi_call
