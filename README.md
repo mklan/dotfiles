@@ -31,6 +31,10 @@ Configuration of my arch system running xfce4 as desktop manager and i3 as windo
 
 3. Remove the `Super R` and `Super L` shortcut undter xfce4 keyboard settings
 
+## Additions
+
+pywal theme for vscode: https://github.com/Bluedrack28/vscode-wal
+
 ## Dependencies
 
 ## TODO

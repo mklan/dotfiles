@@ -2,6 +2,7 @@ i3-gaps
 xfce4
 rofi
 rxvt-unicode
+urxvt-font-size-git
 polybar
 rofi
 redshift
