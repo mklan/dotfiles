@@ -21,3 +21,4 @@ xbindkeys
 pango
 ttf-font-awesome
 pasystray
+dunst
