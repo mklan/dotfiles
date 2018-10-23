@@ -229,7 +229,7 @@ bindSym $modSec+0 exec --no-startup-id ~/.config/i3/switch-workspace.py $code
 
 assign [class="Chromium"] $web
 assign [class="^Firefox$"] $web
-assign [class="^Code$"] $code
+assign [class="^code$"] $code
 assign [class="^jetbrains-webstorm$"] $code
 assign [class="^Rambox$"] $chat
 assign [class="^Evolution$"] $chat
