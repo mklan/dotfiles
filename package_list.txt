@@ -7,7 +7,7 @@ rofi
 redshift
 flameshot
 compton
-nitrogen
+feh
 xorg-xbacklight
 python-pywal
 xorg-xrandr
