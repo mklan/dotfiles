@@ -202,10 +202,10 @@ bar-width = 10
 bar-indicator = |
 bar-indicator-foreground = #ff
 bar-indicator-font = 2
-bar-fill = ─────
+bar-fill = _
 bar-fill-font = 2
 bar-fill-foreground = ${colors.foreground}
-bar-empty = ─────
+bar-empty = _
 bar-empty-font = 2
 bar-empty-foreground = ${colors.foreground-alt}
 
