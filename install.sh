@@ -13,6 +13,12 @@ function main {
   
   # disable lightdm to use startx at startup
   systemctl disable lightdm.service
+
+  # install oh my zsh
+  wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+
+  # switch to zsh
+  chsh -s /usr/bin/zsh $USER
 }
 
 function installPackages {
