@@ -2,7 +2,7 @@
 URxvt.perl-ext-common: font-size
 
 URxvt*scrollBar: false
-URxvt*font: xft:Monospace:size=12:antialias=true:hinting=true
+URxvt*font: xft:Monospace:size=12:antialias=true:hinting=true, xft:Source\ Code\ Pro\ Medium:size=12:antialias=true:hinting=true
 URxvt*depth: 32
 URxvt*internalBorder: 10
 
