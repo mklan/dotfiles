@@ -21,9 +21,11 @@ xbindkeys
 pango
 ttf-font-awesome
 powerline-fonts
+adobe-source-code-pro-fonts
 pasystray
 dunst
 tlp
 acpi_call
 transset-df
 devilspie
+
