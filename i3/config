@@ -50,13 +50,14 @@ default_border pixel 2
 # it fails to get colors from Xresources.
 set_from_resource $fg i3wm.color2 #f0f0f0
 set_from_resource $bg i3wm.color7 #222222
+set_from_resource $dark i3wm.background
 
 # class                 border  backgr. text indicator child_border
-client.focused          $bg     $bg     $fg  $bg       $bg
-client.focused_inactive $fg     $bg     $fg  $bg       $fg
-client.unfocused        $fg     $bg     $fg  $bg       $fg
-client.urgent           $bg     $bg     $fg  $bg       $bg
-client.placeholder      $bg     $bg     $fg  $bg       $bg
+client.focused          $bg     $fg     $dark  $bg       $bg
+client.focused_inactive $fg     $bg     $dark  $bg       $fg
+client.unfocused        $fg     $bg     $dark  $bg       $fg
+client.urgent           $bg     $bg     $dark  $bg       $bg
+client.placeholder      $bg     $bg     $dark  $bg       $bg
 
 client.background       $bg
 
