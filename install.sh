@@ -19,6 +19,9 @@ function main {
 
   # switch to zsh
   chsh -s /usr/bin/zsh $USER
+
+  # install vscode pywal theme
+  git clone https://github.com/Bluedrack28/vscode-wal.git ~/.vscode/extensions/
 }
 
 function installPackages {
@@ -72,6 +75,9 @@ function createSymlinks {
   mkdir -p ~/.autorandr
   ln -sf $(pwd)/autorandr/* ~/.autorandr/
   
+  mkdir -p ~/.vim
+  ln -sf $(pwd)/vim/* ~/.vim/
+
   ln -sf $(pwd)/common/.* ~/
 }
 
