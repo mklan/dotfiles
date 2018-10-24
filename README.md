@@ -42,7 +42,7 @@ pywal theme for vscode: https://github.com/Bluedrack28/vscode-wal
 - [x] Open source
 - [x] Proper install script
 - [x] auto install dependencies for arch
-- [ ] add .vimrc
+- [x] add vim config
 - [x] add $ZDOTDIR/.zshrc
 - [ ] (automate) screenshots of resulting setup
 - [x] add proper install description to readme
