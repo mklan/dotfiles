@@ -3,7 +3,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 # Set your wallaper
-set $wallpaper $HOME/wallpaper/outpost.png
+set $wallpaper $HOME/wallpaper/future-living.jpg
 
 # Alt Key
 set $mod Mod1
@@ -69,7 +69,7 @@ exec_always --no-startup-id dunst -lb "$fg" -nb "$fg" -cb "$fg" -lf "$bg" -bf "$
 exec_always --no-startup-id compton -f
 
 exec_always --no-startup-id $HOME/.vscode/extensions/vscode-wal/script.sh
-exec_always --no-startup-id feh --bg-scale $wallpaper
+exec_always --no-startup-id feh --bg-max $wallpaper
 exec_always --no-startup-id wal -a 90 -i $wallpaper -g
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
