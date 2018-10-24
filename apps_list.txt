@@ -1,6 +1,8 @@
 rambox-bin
 code
-webstorm
 keepassxc
 firefox
 spotify
+syncthing
+syncthing-gtk
+sublime-text-dev

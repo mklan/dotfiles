@@ -21,7 +21,7 @@ function main {
   chsh -s /usr/bin/zsh $USER
 
   # install vscode pywal theme
-  git clone https://github.com/Bluedrack28/vscode-wal.git ~/.vscode/extensions/
+  git clone https://github.com/Bluedrack28/vscode-wal.git ~/.vscode/extensions/vscode-wal
 }
 
 function installPackages {
