@@ -78,6 +78,9 @@ function createSymlinks {
   mkdir -p ~/.vim
   ln -sf $(pwd)/vim/* ~/.vim/
 
+  mkdir -p ~/.devilspie
+  ln -sf $(pwd)/devilspie/* ~/.devilspie/
+
   ln -sf $(pwd)/common/.* ~/
 }
 
