@@ -46,7 +46,7 @@ font-3 = "Font Awesome 5 Free:style=Regular:pixelsize=10;1"
 font-4 = "Font Awesome 5 Free:style=Solid:pixelsize=10;1"
 font-5 = "Font Awesome 5 Brands:pixelsize=10;1"
 
-modules-left = i3
+modules-left = i3 media
 modules-center = clock date calendar
 modules-right = pulseaudio xbacklight temperature memory cpu battery logout
 tray-position = right
@@ -70,6 +70,14 @@ tray-background = ${colors.background}
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+[module/media]
+type = custom/script
+exec = $HOME/.config/polybar/player.sh
+interval = 3
+click-left = playerctl previous
+click-right = playerctl next
+click-middle = playerctl play-pause
 
 [module/logout]
 type = custom/text
