@@ -297,7 +297,7 @@ content = ""
 type = internal/pulseaudio
 
 #sink = alsa_output.usb-ESI_Audiotechnik_GmbH_Dr._DAC_nano-01.analog-stereo
-
+sink = alsa_output.usb-SMSL_Inc._SMSL_iDol_DAC-00.analog-stereo
 
 format-volume = <label-volume> <bar-volume>
 label-volume = ""
