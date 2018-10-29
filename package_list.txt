@@ -29,3 +29,4 @@ acpi_call
 transset-df
 devilspie
 playerctl
+maia-icon-theme
