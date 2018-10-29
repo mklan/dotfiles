@@ -6,9 +6,9 @@ function main {
   
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
-	installPackages
+	installList './package_list.txt'
   fi
-  
+
   createSymlinks
   
   # disable lightdm to use startx at startup
@@ -20,18 +20,33 @@ function main {
   # switch to zsh
   chsh -s /usr/bin/zsh $USER
 
-  # install vscode pywal theme
+  # get vscode pywal theme
   git clone https://github.com/Bluedrack28/vscode-wal.git ~/.vscode-oss/extensions/vscode-wal
+
+
+  # install additionall apps
+
+  read -p "Do you want to install additional apps (arch only) [y/N]?" -n 1 -r
+  echo
+
+  if [[ $REPLY =~ ^[Yy]$ ]]
+  then
+        installList './apps_list.txt'
+  fi
+
+
+
+
 }
 
-function installPackages {
+function installList {
   # install basic dependencies
   sudo pacman -S --noconfirm --needed base-devel git wget yajl
   
   installAurman
 
   # install additional packages
-  aurman -S --noedit --noconfirm --needed --skip_news $(cat ./package_list.txt)
+  aurman -S --noedit --noconfirm --needed --skip_news $(cat $1)
 }
 
 function createSymlinks {
