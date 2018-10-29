@@ -98,10 +98,10 @@ function createSymlinks {
 
   ln -sf $(pwd)/common/.* ~/
 
-  profileFolder = $(ls ~/.mozilla/firefox/ | grep .default)
-  ln -sf $(pwd)/firefox/* ~/.mozilla/firefox/$(profileFolder)/
+  profileFolder=$(ls $HOME/.mozilla/firefox/ | grep .default)
+  ln -sf $(pwd)/firefox/* ~/.mozilla/firefox/$profileFolder/
 
-  mkir -p ~/.themes
+  mkdir -p ~/.themes
   ln -sf $(pwd)/theme/* ~/.themes/
 }
 
