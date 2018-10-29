@@ -82,6 +82,9 @@ function createSymlinks {
   ln -sf $(pwd)/devilspie/* ~/.devilspie/
 
   ln -sf $(pwd)/common/.* ~/
+
+  profileFolder = $(ls ~/.mozilla/firefox/ | grep .default)
+  ln -sf $(pwd)/firefox/* ~/.mozilla/firefox/$(profileFolder)/
 }
 
 function installAurman {
