@@ -82,6 +82,9 @@ function createSymlinks {
   ln -sf $(pwd)/devilspie/* ~/.devilspie/
 
   ln -sf $(pwd)/common/.* ~/
+
+  mkir -p ~/.themes
+  ln -sf $(pwd)/theme/* ~/.themes/
 }
 
 function installAurman {
