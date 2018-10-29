@@ -76,6 +76,7 @@ exec_always --no-startup-id devilspie -a &
 exec_always --no-startup-id $HOME/.vscode-oss/extensions/vscode-wal/script.sh
 exec_always --no-startup-id feh --bg-max $wallpaper
 exec_always --no-startup-id wal -a 90 -i $wallpaper -g
+exec_always --no-startup-id $HOME/.themes/generateGTKrc.sh
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id syncthing-gtk -m
