@@ -28,4 +28,4 @@ tlp
 acpi_call
 transset-df
 devilspie
-
+playerctl
