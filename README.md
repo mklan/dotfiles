@@ -13,10 +13,8 @@ Configuration of my arch system running xfce4 as desktop manager and i3 as windo
 - polybar
 - rofi
 - compton
-- nitrogen
+- feh
 - wal
-- Arc-Dark [GTK2 Theme] 
-- Vertex-Maia [GTK2 Icons] 
 - flameshot
 - xbacklight
 - pamixer
