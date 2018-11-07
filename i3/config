@@ -200,7 +200,7 @@ bindsym $mod+6 workspace $ws6
 bindsym $mod+7 workspace $media
 bindsym $mod+8 workspace $chat
 bindsym $mod+9 workspace $key
-bindsym $mod+0 workspace $code
+bindsym $mod+0 workspace $code; layout tabbed
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -224,7 +224,7 @@ bindsym $modSec+Shift+6 move container to workspace $ws6; workspace $ws6
 bindsym $modSec+Shift+7 move container to workspace $media; workspace $media
 bindsym $modSec+Shift+8 move container to workspace $chat; workspace $chat
 bindsym $modSec+Shift+9 move container to workspace $key; workspace $key
-bindsym $modSec+Shift+0 move container to workspace $code; workspace $code
+bindsym $modSec+Shift+0 move container to workspace $code; workspace $code; layout tabbed
 
 #move workspace to active monitor
 bindSym $modSec+1 exec --no-startup-id ~/.config/i3/switch-workspace.py $ws1
@@ -236,7 +236,7 @@ bindSym $modSec+6 exec --no-startup-id ~/.config/i3/switch-workspace.py $ws6
 bindSym $modSec+7 exec --no-startup-id ~/.config/i3/switch-workspace.py $media
 bindSym $modSec+8 exec --no-startup-id ~/.config/i3/switch-workspace.py $chat
 bindSym $modSec+9 exec --no-startup-id ~/.config/i3/switch-workspace.py $key
-bindSym $modSec+0 exec --no-startup-id ~/.config/i3/switch-workspace.py $code
+bindSym $modSec+0 exec --no-startup-id ~/.config/i3/switch-workspace.py $code; layout tabbed
 
 # assign programms to workspaces [use xprop to retrieve the class]
 
