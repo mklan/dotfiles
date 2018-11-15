@@ -225,7 +225,7 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "─ "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
 format-underline = #f90000
 label = %percentage:2%%
@@ -313,7 +313,7 @@ label-volume-foreground = ${root.foreground}
 
 format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground-alt}
-label-muted = |──________
+label-muted = _________
 
 bar-volume-width = 10
 bar-volume-foreground-0 = ${colors.foreground}
