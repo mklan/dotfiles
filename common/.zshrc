@@ -69,7 +69,11 @@ plugins=(
   yarn
 )
 
+
+alias t=todo.sh
+
 source $ZSH/oh-my-zsh.sh
+source $HOME/.nvm/nvm.sh
 
 # User configuration
 
