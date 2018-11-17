@@ -103,6 +103,17 @@ function createSymlinks {
 
   mkdir -p ~/.themes
   ln -sf $(pwd)/theme/* ~/.themes/
+
+  mkdir -p $HOME/.config/wal/templates
+  ln -sf $(pwd)/dunst/dunstrc $HOME/.config/wal/templates/dunstrc
+
+  touch $HOME/.cache/wal/dunstrc
+  mkdir -p $HOME/.config/dunst/
+  ln -sf $HOME/.cache/wal/dunstrc $HOME/.config/dunst/dunstrc
+
+  mkdir -p $HOME/.todo
+  ln -sf $(pwd)/todo/* $HOME/.todo/
+
 }
 
 function installAurman {

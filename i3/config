@@ -42,10 +42,24 @@ for_window [urgent=latest] focus
 
 
 gaps outer 0
-gaps inner 20
-smart_borders on
+gaps inner 15
 new_window none
-default_border pixel 2
+for_window [class="^.*"] border pixel 2
+
+ #---Dropdown Windows---# #
+
+set $screenWidth 2560
+set $screenHeight 1440
+set $dropdownHeight 400
+
+for_window [instance="dropdown"] floating enable
+for_window [instance="dropdown"] resize set 2560 400
+for_window [instance="dropdown"] move scratchpad
+for_window [instance="dropdown"] border pixel 3
+for_window [instance="dropdown"] sticky enable
+for_window [instance="dropdown"] move position 0 1040
+exec --no-startup-id urxvt -name dropdown
+bindsym $mod+n [instance="dropdown"] scratchpad show
 
 
 # Set colors from Xresources
@@ -81,6 +95,7 @@ exec_always --no-startup-id $HOME/.vscode-oss/extensions/vscode-wal/script.sh
 exec_always --no-startup-id feh --bg-max $wallpaper
 exec_always --no-startup-id wal -a 90 -i $wallpaper -g
 exec_always --no-startup-id $HOME/.themes/generateGTKrc.sh
+exec_always --no-startup-id $HOME/dotfiles/dunst/start.sh #todo: link script to dunst config
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id syncthing-gtk -m
