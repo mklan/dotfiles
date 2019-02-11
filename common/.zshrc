@@ -71,6 +71,7 @@ plugins=(
 
 
 alias t=todo.sh
+alias df=dfc
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/.nvm/nvm.sh

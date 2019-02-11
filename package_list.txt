@@ -9,6 +9,7 @@ redshift
 flameshot
 compton
 feh
+dfc
 xorg-xbacklight
 python-pywal
 xorg-xrandr
@@ -19,6 +20,7 @@ pamixer
 i3lock-fancy-rapid-git
 xbindkeys
 pango
+ttf-ubuntu-font-family
 ttf-font-awesome
 powerline-fonts
 adobe-source-code-pro-fonts
