@@ -14,7 +14,7 @@ set $modSec Mod4
 set $secondaryScreen HDMI1 #Projector
 
 # lock screen
-bindsym $modSec+l exec i3lock-fancy
+bindsym $modSec+l exec i3lock-fancy-rapid 5 3
 
 # bind volume and brightness keys
 bindsym XF86AudioRaiseVolume exec $HOME/.config/i3/sound.sh 2 150
