@@ -16,7 +16,7 @@ arandr
 autorandr
 zsh
 pamixer
-i3lock-fancy-git
+i3lock-fancy-rapid-git
 xbindkeys
 pango
 ttf-font-awesome
