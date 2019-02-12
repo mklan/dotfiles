@@ -3,7 +3,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 # Set your wallaper
-set $wallpaper $HOME/wallpaper/woods.jpg
+set $wallpaper $HOME/wallpaper/tunnel.jpg
 
 # Alt Key
 set $mod Mod1
@@ -14,7 +14,7 @@ set $modSec Mod4
 set $secondaryScreen HDMI1 #Projector
 
 # lock screen
-bindsym $modSec+l exec i3lock-fancy
+bindsym $modSec+l exec i3lock-fancy-rapid 5 3
 
 # bind volume and brightness keys
 bindsym XF86AudioRaiseVolume exec $HOME/.config/i3/sound.sh 2 150
@@ -93,8 +93,8 @@ exec --no-startup-id xfce4-power-manager
 exec_always --no-startup-id compton -f
 exec_always --no-startup-id devilspie -a &
 exec_always --no-startup-id $HOME/.vscode-oss/extensions/vscode-wal/script.sh
-exec_always --no-startup-id feh --bg-max $wallpaper
-exec_always --no-startup-id wal -a 90 -i $wallpaper -g
+exec_always --no-startup-id feh --bg-fill $wallpaper
+exec_always --no-startup-id wal -a 90 -i $wallpaper
 exec_always --no-startup-id $HOME/.themes/generateGTKrc.sh
 exec_always --no-startup-id $HOME/dotfiles/dunst/start.sh #todo: link script to dunst config
 
