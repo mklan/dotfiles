@@ -116,6 +116,9 @@ function createSymlinks {
   mkdir -p $HOME/.todo
   ln -sf $(pwd)/todo/* $HOME/.todo/
 
+  mkdir -p /etc/systemd/system
+  ln -sf $(pwd)/i3/i3lock.service /etc/systemd/system/i3lock.service
+
 }
 
 function installAurman {
