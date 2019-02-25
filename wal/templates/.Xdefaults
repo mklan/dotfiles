@@ -2,7 +2,7 @@
 URxvt.perl-ext-common: font-size
 
 URxvt*scrollBar: false
-URxvt*font: xft:Ubuntu\ Mono:size=12:antialias=true:hinting=true, xft:Source\ Code\ Pro\ Medium:size=19:antialias=true:hinting=true
+URxvt*font: xft:Source\ Code\ Pro\ Medium:size=12:antialias=true:hinting=true,xft:Source\ Code\ Pro\ Medium:size=12:antialias=true:hinting=true
 URxvt*depth: 32
 URxvt*internalBorder: 10
 URxvt.cursorBlink: 1
@@ -25,4 +25,3 @@ Xft.hintstyle:  hintfull
 Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
-
