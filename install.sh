@@ -53,24 +53,6 @@ function installList {
 
 function createSymlinks {
 
-	# needs testing, creates local config somehow 
-#	symlinks=( "$(pwd)/i3/*:~/.config/i3/"
-#		"$(pwd)/polybar/*:~/.config/polybar/"
-#		"$(pwd)/rofi/*:~/.config/rofi/"
-#		"$(pwd)/terminator/*:~/.config/terminator/"
-#		"$(pwd)/wallpaper/*:~/wallpaper/"
-#		"$(pwd)/autorandr/*:~/.autorandr/"
-##		)
-#
-#	for symlink in "${symlinks[@]}" ; do
-#	    src="${symlink%%:*}"
-#	    dest="${symlink##*:}"
-#
-#	    mkdir -p $dest
-#	    ln -sf $src $dest
-#	done
-#
-
   mkdir -p ~/.config/i3
   ln -sf $(pwd)/i3/* ~/.config/i3/
 
@@ -80,9 +62,6 @@ function createSymlinks {
   mkdir -p ~/.config/polybar
   ln -sf $(pwd)/polybar/* ~/.config/polybar/
   
-  mkdir -p ~/.config/rofi
-  ln -sf $(pwd)/rofi/* ~/.config/rofi/
-
   mkdir -p ~/.config/terminator
   ln -sf $(pwd)/terminator/* ~/.config/terminator/
 
@@ -107,11 +86,25 @@ function createSymlinks {
   ln -sf $(pwd)/theme/* ~/.themes/
 
   mkdir -p $HOME/.config/wal/templates
-  ln -sf $(pwd)/dunst/dunstrc $HOME/.config/wal/templates/dunstrc
+  ln -sf $(pwd)/wal/templates/* $HOME/.config/wal/templates/
+  
+  ln -sf $(pwd)/wal/templates/.Xdefaults $HOME/.config/wal/templates/.Xdefaults
+  ln -sf $HOME/.cache/wal/.Xdefaults ~/
+
+  ln -sf $(pwd)/wal/templates/.Xdefaults $HOME/.config/wal/templates/.Xresources
+  ln -sf $HOME/.cache/wal/.Xresources ~/
 
   touch $HOME/.cache/wal/dunstrc
   mkdir -p $HOME/.config/dunst/
   ln -sf $HOME/.cache/wal/dunstrc $HOME/.config/dunst/dunstrc
+
+ 
+  mkdir -p ~/.config/rofi
+  ln -sf $HOME/.cache/wal/rofi/* ~/.config/rofi/
+
+  mkdir -p ~/.config/fusuma/
+  ln -sf $(pwd)/fusuma/* $HOME/.config/fusuma/
+  sudo gpasswd -a $USER input
 
   mkdir -p $HOME/.todo
   ln -sf $(pwd)/todo/* $HOME/.todo/
