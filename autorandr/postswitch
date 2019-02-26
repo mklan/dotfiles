@@ -1,2 +1,4 @@
+#!/bin/bash
+
 # restart i3 on dock change
-#i3-msg restart
+i3-msg restart
