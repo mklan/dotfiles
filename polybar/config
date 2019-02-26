@@ -8,8 +8,7 @@
 ;=====================================================
 
 [colors]
-#background = #95000000 [does not work for tray]
-background = ${xrdb:color0:#222222}
+background = ${colors.color7:#AA000000}
 background-alt = #444
 foreground = ${xrdb:color7:#FFF}
 foreground-alt = #555
@@ -39,6 +38,7 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
+
 font-0 = fixed:pixelsize=10;1
 font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = "Wuncon Siji:pixelsize=10;1"
@@ -51,11 +51,8 @@ modules-center = clock date calendar
 modules-right = pulseaudio xbacklight temperature memory cpu battery logout
 tray-position = right
 tray-padding = 4
-pseudo-transparency = true
-;tray-transparent = true
-tray-background = ${colors.background}
-;tray-detached = true
 
+tray-background = ${colors.background}
 
 ;wm-restack = bspwm
 ;wm-restack = i3
@@ -415,6 +412,7 @@ menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
 [settings]
+pseudo-transparency = true
 screenchange-reload = true
 ;compositing-background = xor
 ;compositing-background = screen
