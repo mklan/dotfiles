@@ -1,6 +1,9 @@
 # .dotfiles
 
-Configuration of my arch system running xfce4 as desktop manager and i3 as window manager 
+arch system configuration running xfce4 as desktop manager and i3 as window manager
+
+![Desktop Screenshot](https://github.com/mklan/dotfiles/blob/master/screenshots/desktop.jpg)
+
 
 ## Utilized packages / applications / tools
 
@@ -26,8 +29,6 @@ Configuration of my arch system running xfce4 as desktop manager and i3 as windo
 2. Setup xfce and i3 using this tutorial: https://osa1.net/posts/2016-11-30-new-xfce-i3-setup.html
 
 3. Remove the `Super R` and `Super L` shortcut undter xfce4 keyboard settings
-
-## Dependencies
 
 ## TODO
 
