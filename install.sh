@@ -91,8 +91,8 @@ function createSymlinks {
   ln -sf $(pwd)/wal/templates/.Xdefaults $HOME/.config/wal/templates/.Xdefaults
   ln -sf $HOME/.cache/wal/.Xdefaults ~/
 
-  ln -sf $(pwd)/wal/templates/.Xdefaults $HOME/.config/wal/templates/.Xresources
-  ln -sf $HOME/.cache/wal/.Xresources ~/
+ # ln -sf $(pwd)/wal/templates/.Xdefaults $HOME/.config/wal/templates/.Xresources
+ # ln -sf $HOME/.cache/wal/.Xresources ~/
 
   touch $HOME/.cache/wal/dunstrc
   mkdir -p $HOME/.config/dunst/
