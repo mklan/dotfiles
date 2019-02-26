@@ -69,11 +69,11 @@ plugins=(
   yarn
 )
 
-
-alias t=todo.sh
-
 source $ZSH/oh-my-zsh.sh
 source $HOME/.nvm/nvm.sh
+
+xrdb ~/.Xresources
+
 
 # User configuration
 
@@ -103,3 +103,12 @@ source $HOME/.nvm/nvm.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+alias t=todo.sh
+alias df=dfc
+alias youtube=mpsyt
+alias y2mp3="youtube-dl --extract-audio --audio-format mp3"
+alias y2mp4="youtube-dl -i -f mp4"
+
+
+eval $(thefuck --alias)
