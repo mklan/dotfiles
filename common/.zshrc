@@ -110,5 +110,25 @@ alias youtube=mpsyt
 alias y2mp3="youtube-dl --extract-audio --audio-format mp3"
 alias y2mp4="youtube-dl -i -f mp4"
 
+#external ip
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+
+alias week='date +%V'
+
+
+# Easier navigation: .., ..., ...., ....., ~ and -
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~" # `cd` is probably faster to type though
+alias -- -="cd -"
+
+# Shortcuts
+alias dl="cd ~/Downloads"
+alias p="cd ~/projects"
+alias g="git"
+
+
 
 eval $(thefuck --alias)
