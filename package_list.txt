@@ -18,6 +18,7 @@ autorandr
 zsh
 pamixer
 i3lock-fancy-rapid-git
+i3lock-color
 xbindkeys
 pango
 ttf-ubuntu-font-family
