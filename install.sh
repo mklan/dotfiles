@@ -112,6 +112,9 @@ function createSymlinks {
   mkdir -p /etc/systemd/system
   ln -sf $(pwd)/i3/i3lock.service /etc/systemd/system/i3lock.service
 
+  mkdir -p /etc/xdg
+  ln -sf $(pwd)/compton/compton.conf /etc/xdg/compton.conf
+
 }
 
 function installAurman {
