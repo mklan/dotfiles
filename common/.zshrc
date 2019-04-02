@@ -128,7 +128,3 @@ alias -- -="cd -"
 alias dl="cd ~/Downloads"
 alias p="cd ~/projects"
 alias g="git"
-
-
-
-eval $(thefuck --alias)
