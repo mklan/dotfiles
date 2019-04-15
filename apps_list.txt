@@ -1,5 +1,5 @@
 rambox-bin
-code
+vscodium
 keepassxc
 firefox
 mpv
