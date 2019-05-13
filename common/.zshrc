@@ -67,6 +67,12 @@ plugins=(
   docker
   npm
   yarn
+  node
+  extract
+  httpie
+  kubectl
+  history
+  z
 )
 
 source $ZSH/oh-my-zsh.sh
