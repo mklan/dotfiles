@@ -261,6 +261,7 @@ assign [class="Chromium"] $web
 assign [class="^Firefox$"] $web
 assign [class="^code-oss$"] $code
 assign [class="^code$"] $code
+assign [class="VSCodium"] $code
 assign [class="^jetbrains-webstorm$"] $code
 assign [class="^Rambox$"] $chat
 assign [class="^Evolution$"] $chat
