@@ -40,3 +40,7 @@ arch system configuration running xfce4 as desktop manager and i3 as window mana
 - [ ] (automate) screenshots of resulting setup
 - [x] add proper install description to readme
 - [ ] auto generate documentation of shortcuts
+
+05.2019
+
+- [ ] document via gif
