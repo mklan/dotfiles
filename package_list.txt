@@ -7,7 +7,7 @@ polybar
 rofi
 redshift
 flameshot
-compton
+compton-tryone-git
 feh
 dfc
 xorg-xbacklight
