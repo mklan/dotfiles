@@ -7,7 +7,7 @@ killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # get primary monitor
-export MONITOR=$(xrandr -q | grep " connected primary" | cut -d ' ' -f1)
+export MONITOR=$(xrandr -q | grep " connected" | cut -d ' ' -f1)
 
 # Launch bar
 polybar bar &
