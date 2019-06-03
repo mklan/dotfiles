@@ -68,8 +68,8 @@ function createSymlinks {
   mkdir -p ~/wallpaper
   ln -sf $(pwd)/wallpaper/* ~/wallpaper/
 
-  mkdir -p ~/.autorandr
-  ln -sf $(pwd)/autorandr/* ~/.autorandr/
+  mkdir -p ~/.config/autorandr
+  ln -sf $(pwd)/autorandr/* ~/.config/autorandr/
   
   mkdir -p ~/.vim
   ln -sf $(pwd)/vim/* ~/.vim/
@@ -111,6 +111,9 @@ function createSymlinks {
 
   mkdir -p /etc/systemd/system
   ln -sf $(pwd)/i3/i3lock.service /etc/systemd/system/i3lock.service
+
+  mkdir -p ~/.config
+  ln -sf $(pwd)/compton/compton.conf ~/.config/compton.conf
 
 }
 
