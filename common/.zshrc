@@ -76,7 +76,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-source $HOME/.nvm/nvm.sh
+# source $HOME/.nvm/nvm.sh
 
 xrdb ~/.Xdefaults
 
@@ -134,3 +134,14 @@ alias -- -="cd -"
 alias dl="cd ~/Downloads"
 alias p="cd ~/projects"
 alias g="git"
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /home/matze/projects/anyline-cdb-dataflow/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/matze/projects/anyline-cdb-dataflow/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /home/matze/projects/anyline-cdb-dataflow/node_modules/tabtab/.completions/sls.zsh ]] && . /home/matze/projects/anyline-cdb-dataflow/node_modules/tabtab/.completions/sls.zsh
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /home/matze/projects/anyline-cdb-dataflow/node_modules/tabtab/.completions/slss.zsh ]] && . /home/matze/projects/anyline-cdb-dataflow/node_modules/tabtab/.completions/slss.zsh
+export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
