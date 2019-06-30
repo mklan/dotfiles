@@ -10,3 +10,4 @@ syncthing
 syncthing-gtk
 sublime-text-dev
 httpie
+gestures
