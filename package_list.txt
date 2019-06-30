@@ -10,7 +10,7 @@ flameshot
 compton-tryone-git
 feh
 dfc
-xorg-xbacklight
+light
 python-pywal
 xorg-xrandr
 arandr
