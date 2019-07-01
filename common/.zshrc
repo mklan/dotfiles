@@ -137,6 +137,8 @@ alias dl="cd ~/Downloads"
 alias p="cd ~/projects"
 alias g="git"
 
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
+
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
 [[ -f /home/matze/projects/anyline-cdb-dataflow/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/matze/projects/anyline-cdb-dataflow/node_modules/tabtab/.completions/serverless.zsh
