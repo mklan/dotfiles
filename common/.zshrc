@@ -76,7 +76,6 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-# source $HOME/.nvm/nvm.sh
 
 xrdb ~/.Xdefaults
 

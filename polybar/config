@@ -48,7 +48,7 @@ font-5 = "Font Awesome 5 Brands:pixelsize=10;1"
 
 modules-left = i3 media
 modules-center = clock date calendar
-modules-right = pulseaudio xbacklight temperature memory cpu battery logout
+modules-right = pulseaudio backlight temperature memory cpu battery logout
 tray-position = right
 tray-padding = 4
 
@@ -197,8 +197,12 @@ icon-next = 
 label-song-maxlen = 25
 label-song-ellipsis = true
 
-[module/xbacklight]
-type = internal/xbacklight
+[module/backlight]
+type = internal/backlight
+
+; Use the following command to list available cards:
+; $ ls -1 /sys/class/backlight/
+card = intel_backlight
 
 format = <label> <bar>
 label = 
@@ -214,10 +218,7 @@ bar-empty = _
 bar-empty-font = 2
 bar-empty-foreground = ${colors.foreground-alt}
 
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
+
 
 [module/cpu]
 type = internal/cpu
