@@ -39,8 +39,6 @@ bindsym --whole-window $modSec+Left workspace prev
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
 
-
-
 gaps outer 0
 gaps inner 15
 new_window none
@@ -51,9 +49,10 @@ for_window [class="^.*"] border pixel 2
 set $screenWidth 2560
 set $screenHeight 1440
 set $dropdownHeight 400
+set $bottomPosition $screenHeight - $dropdownHeight
 
 for_window [instance="dropdown"] floating enable
-for_window [instance="dropdown"] resize set 2560 400
+for_window [instance="dropdown"] resize set $screenWidth $dropdownHeight
 for_window [instance="dropdown"] move scratchpad
 for_window [instance="dropdown"] border pixel 3
 for_window [instance="dropdown"] sticky enable
@@ -90,7 +89,7 @@ exec killall -q xfce4-notifyd
 exec_always --no-startup-id dunst -lb "$fg" -nb "$fg" -cb "$fg" -lf "$bg" -bf "$bg" -cf "$bg" -nf "$bg" -fn "ypn envypn 12" -s -geometry "400x60-10+40" -format "<b>%s</b>\n%b" -shrink  -lto 3 -nto 5 -cto 0 -align "left" -transparency 0 -padding 5 -horizontal_padding 5
 
 exec --no-startup-id xfce4-power-manager
-exec_always --no-startup-id compton -f
+exec_always --no-startup-id compton -f --unredir-if-possible --glx-no-stencil --glx-use-copysubbuffermesa 
 exec_always --no-startup-id devilspie -a &
 exec_always --no-startup-id $HOME/.vscode-oss/extensions/vscode-wal/script.sh
 exec_always --no-startup-id feh --bg-fill $wallpaper
