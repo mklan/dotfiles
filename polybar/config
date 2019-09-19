@@ -54,10 +54,11 @@ tray-padding = 4
 
 tray-background = ${colors.background}
 
-;wm-restack = bspwm
-;wm-restack = i3
+tray-detached = false
 
-;override-redirect = true
+wm-restack = i3
+override-redirect = false
+
 
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
