@@ -89,7 +89,7 @@ exec killall -q xfce4-notifyd
 exec_always --no-startup-id dunst -lb "$fg" -nb "$fg" -cb "$fg" -lf "$bg" -bf "$bg" -cf "$bg" -nf "$bg" -fn "ypn envypn 12" -s -geometry "400x60-10+40" -format "<b>%s</b>\n%b" -shrink  -lto 3 -nto 5 -cto 0 -align "left" -transparency 0 -padding 5 -horizontal_padding 5
 
 exec --no-startup-id xfce4-power-manager
-exec_always --no-startup-id compton -f
+exec_always --no-startup-id compton -f --conf ~/.config/compton.conf
 exec_always --no-startup-id devilspie -a &
 exec_always --no-startup-id $HOME/.vscode-oss/extensions/vscode-wal/script.sh
 exec_always --no-startup-id feh --bg-fill $wallpaper
