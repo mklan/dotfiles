@@ -37,7 +37,8 @@ function main {
   fi
 
 
-
+  # add user to video group (for light control)
+  usermod -aG video $USER
 
 }
 
