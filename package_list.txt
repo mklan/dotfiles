@@ -17,8 +17,6 @@ arandr
 autorandr
 zsh
 pamixer
-i3lock-fancy-rapid-git
-i3lock-color
 xbindkeys
 pango
 ttf-ubuntu-font-family
@@ -33,4 +31,7 @@ transset-df
 devilspie
 playerctl
 maia-icon-theme
-viper4linux-git
+lxsession
+i3lock-color-git
+i3lock-fancy-rapid
+throttled
