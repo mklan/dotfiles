@@ -101,7 +101,7 @@ function createSymlinks {
 
  
   mkdir -p ~/.config/rofi
-  ln -sf $HOME/.cache/wal/rofi/* ~/.config/rofi/
+  ln -sf $(pwd)/rofi/* ~/.config/rofi/
 
   mkdir -p ~/.config/fusuma/
   ln -sf $(pwd)/fusuma/* $HOME/.config/fusuma/
