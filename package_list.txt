@@ -33,4 +33,4 @@ transset-df
 devilspie
 playerctl
 maia-icon-theme
-viper4linux-git
+lxappearance
