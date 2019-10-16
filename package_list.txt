@@ -35,3 +35,4 @@ lxsession
 i3lock-color-git
 i3lock-fancy-rapid
 throttled
+x11-ssh-askpass
