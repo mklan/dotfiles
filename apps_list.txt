@@ -1,5 +1,4 @@
 rambox-bin
-vscodium
 keepassxc
 firefox
 mpv
@@ -11,3 +10,4 @@ syncthing-gtk
 sublime-text-dev
 httpie
 gestures
+code
