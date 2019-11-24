@@ -44,6 +44,9 @@ function main {
   # add user to video group (for light control)
   usermod -aG video $USER
 
+
+  sudo pip install i3-py
+
 }
 
 function installList {
