@@ -14,6 +14,7 @@ set $modSec Mod4
 set $secondaryScreen HDMI1 #Projector
 
 # exec
+exec --no-startup-id $HOME/.config/i3/alternating_layouts.py
 
 exec --no-startup-id setxkbmap -layout de
 exec --no-startup-id lxsession
