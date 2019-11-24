@@ -11,9 +11,8 @@ set $mod Mod1
 # Windows Key as secondary Mod key
 set $modSec Mod4
 
-set $secondaryScreen HDMI1 #Projector
-
 # exec
+exec --no-startip-id xinput --set-prop "12" "libinput Accel Speed" 0.5 #set trackpoint speed
 exec --no-startup-id $HOME/.config/i3/alternating_layouts.py
 
 exec --no-startup-id setxkbmap -layout de
@@ -77,11 +76,11 @@ set $dropdownHeight 400
 set $bottomPosition $screenHeight - $dropdownHeight
 
 for_window [instance="dropdown"] floating enable
-for_window [instance="dropdown"] resize set $screenWidth $dropdownHeight
+#for_window [instance="dropdown"] resize set $screenWidth $dropdownHeight
 for_window [instance="dropdown"] move scratchpad
 for_window [instance="dropdown"] border pixel 3
 for_window [instance="dropdown"] sticky enable
-for_window [instance="dropdown"] move position 0 1040
+# for_window [instance="dropdown"] move position 0 1040
 exec --no-startup-id urxvt -name dropdown
 bindsym $mod+n [instance="dropdown"] scratchpad show
 
