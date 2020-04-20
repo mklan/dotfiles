@@ -33,8 +33,7 @@ exec_always --no-startup-id $HOME/.themes/generateGTKrc.sh
 exec_always --no-startup-id $HOME/dotfiles/dunst/start.sh #todo: link script to dunst config
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
-exec --no-startup-id syncthing-gtk -m
-exec --no-startup-id rambox
+# exec --no-startup-id syncthing-gtk -m
 exec --no-startup-id pamac-manager
 
 # lock screen
