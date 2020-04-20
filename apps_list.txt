@@ -1,4 +1,3 @@
-rambox-bin
 keepassxc
 firefox
 mpv
@@ -11,3 +10,4 @@ sublime-text-dev
 httpie
 gestures
 code
+station
