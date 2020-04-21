@@ -25,10 +25,11 @@ function main {
   chsh -s /usr/bin/zsh $USER
 
   # get vscode pywal theme
-  git clone https://github.com/Bluedrack28/vscode-wal.git ~/.vscode-oss/extensions/vscode-wal
+  
+  # git clone https://github.com/Bluedrack28/vscode-wal.git ~/.vscode-oss/extensions/vscode-wal
 
   # install node version manager
-  curl -L https://git.io/n-install | bash
+  # curl -L https://git.io/n-install | bash
 
   # install additionall apps
 
@@ -42,9 +43,7 @@ function main {
 
 
   # add user to video group (for light control)
-  usermod -aG video $USER
-
-
+  sudo usermod -aG video $USER
   sudo pip install i3-py
 
 }
