@@ -115,6 +115,8 @@ alias youtube=mpsyt
 alias y2mp3="youtube-dl --extract-audio --audio-format mp3"
 alias y2mp4="youtube-dl -i -f mp4"
 
+alias a-vpn=/opt/Perimeter81/perimeter81
+
 alias mntnas="mount 192.168.1.118:/ /mnt/nas"
 
 #external ip
