@@ -34,7 +34,7 @@ maia-icon-theme
 lxsession
 i3lock-color-git
 i3lock-fancy-rapid-git
-
+xorg-xbacklight
 throttled
 x11-ssh-askpass
 lxappearance-gtk3
