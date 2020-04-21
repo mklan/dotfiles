@@ -33,9 +33,11 @@ playerctl
 maia-icon-theme
 lxsession
 i3lock-color-git
-i3lock-fancy-rapid
+i3lock-fancy-rapid-git
+
 throttled
 x11-ssh-askpass
-lxappearance
+lxappearance-gtk3
 xorg-util-macros
 python-pip
+pamac-aur
