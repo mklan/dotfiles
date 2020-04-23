@@ -82,11 +82,6 @@ type = custom/text
 click-left = xfce4-session-logout
 content = 
 
-[module/avg-battery]
-type = custom/script
-exec = $HOME/.config/polybar/avg-battery.sh
-interval = 5
-
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:30:...%
