@@ -1,5 +1,5 @@
 !-*- Perl extensions -*-
-URxvt.perl-ext-common: font-size
+URxvt.perl-ext-common: default,font-size
 
 URxvt*scrollBar: false
 URxvt*font: xft:Source\ Code\ Pro\ Medium:size=12:antialias=true:hinting=true,xft:Source\ Code\ Pro\ Medium:size=12:antialias=true:hinting=true
@@ -17,6 +17,14 @@ URxvt.keysym.Control-Up:     \033[1;5A
 URxvt.keysym.Control-Down:   \033[1;5B
 URxvt.keysym.Control-Left:   \033[1;5D
 URxvt.keysym.Control-Right:  \033[1;5C
+
+! remap copy / paste shortcuts
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.keysym.Control-Meta-c: builtin-string:
+URxvt.keysym.Control-Meta-v: builtin-string:
+! disable ugly yellow box
+URxvt.iso14755 : false
 
 Xft.dpi: 120
 Xft.autohint: 0
