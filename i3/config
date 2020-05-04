@@ -262,6 +262,7 @@ assign [class="^Google-chrome"] $web
 assign [class="Chromium"] $web
 assign [class="^Firefox$"] $web
 assign [class="^firefox$"] $web
+assign [class="^Navigator$"] $web
 assign [class="^code-oss$"] $code
 assign [class="^code$"] $code
 assign [class="VSCodium"] $code
