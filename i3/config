@@ -13,7 +13,7 @@ set $modSec Mod4
 
 # exec
 exec --no-startip-id xinput --set-prop "12" "libinput Accel Speed" 0.5 #set trackpoint speed
-exec --no-startup-id $HOME/.config/i3/alternating_layouts.py
+# exec --no-startup-id $HOME/.config/i3/alternating_layouts.py # disable for now since tab mode is fuzzy
 
 exec --no-startup-id setxkbmap -layout de
 exec --no-startup-id lxsession
