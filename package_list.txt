@@ -41,3 +41,8 @@ lxappearance-gtk3
 xorg-util-macros
 python-pip
 pamac-aur
+sxhkd
+bspwm
+xorg-xsetroot
+# dependency of sxhkd move script (JSON parser)
+jq
