@@ -10,5 +10,7 @@ sublime-text-dev
 httpie
 gestures
 code
+# multi social
 station
+# building packages from deb files
 debtap
