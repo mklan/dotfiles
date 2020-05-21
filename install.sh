@@ -6,7 +6,10 @@ function main {
   
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
-	installList './package_list.txt'
+	  installList './package_list.txt'
+    # install theme
+    wpg-install.sh -g -b -d -i
+    wpg -s ${1}
   fi
 
   createSymlinks
