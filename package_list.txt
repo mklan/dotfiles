@@ -30,11 +30,14 @@ acpi_call
 transset-df
 devilspie
 playerctl
-maia-icon-theme
+wpgtk-git
+# live GTK+ reload
+xsettingsd
 lxsession
 i3lock-color-git
 i3lock-fancy-rapid-git
 xorg-xbacklight
+# thinkpad patch
 throttled
 x11-ssh-askpass
 lxappearance-gtk3
