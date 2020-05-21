@@ -63,6 +63,12 @@ function createSymlinks {
   mkdir -p ~/.config/i3
   ln -sf $(pwd)/i3/* ~/.config/i3/
 
+  mkdir -p ~/.config/bspwm
+  ln -sf $(pwd)/bspwm/* ~/.config/bspwm/
+
+  mkdir -p ~/.config/sxhkd
+  ln -sf $(pwd)/sxhkd/* ~/.config/sxhkd/
+
   mkdir -p ~/.config/Code/User/snippets
   ln -sf $(pwd)/vscode/snippets/* ~/.config/Code/User/snippets/
   
