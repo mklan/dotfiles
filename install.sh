@@ -44,6 +44,7 @@ function main {
 
   # add user to video group (for light control)
   sudo usermod -aG video $USER
+  sudo usermod -aG wheel $USER
   sudo pip install i3-py
 
 }
