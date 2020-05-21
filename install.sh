@@ -56,7 +56,7 @@ function installList {
   installAurman
 
   # install additional packages
-  aurman -S --noedit --noconfirm --needed --skip_news $(cat $1)
+  aurman -S --noedit --noconfirm --needed --skip_news $(sed -e '/^#/d' $1)
 }
 
 function createSymlinks {
