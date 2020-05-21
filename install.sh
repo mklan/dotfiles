@@ -125,6 +125,8 @@ function createSymlinks {
   mkdir -p ~/.config
   ln -sf $(pwd)/compton/compton.conf ~/.config/compton.conf
 
+  ln -sf $(pwd)/bluetooth/51-blueman.rules  /usr/share/polkit-1/rules.d/51-blueman.rules
+
 }
 
 function installAurman {
