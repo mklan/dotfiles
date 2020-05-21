@@ -46,12 +46,13 @@ bindsym XF86AudioRaiseVolume exec $HOME/.config/i3/sound.sh 2 150
 bindsym XF86AudioLowerVolume exec $HOME/.config/i3/sound.sh -2 150
 bindsym XF86AudioMute exec exec $HOME/.config/i3/toggleMute.sh
 
-bindsym XF86MonBrightnessUp exec xbacklight -inc 3
-bindsym XF86MonBrightnessDown exec xbacklight -dec  3
+# TODO
+bindsym XF86MonBrightnessUp exec xbacklight -inc 3 && light -A 3
+bindsym XF86MonBrightnessDown exec xbacklight -dec 3 && light -U 3
 
 # finegrain brightness with win key
-bindsym --whole-window $modSec+Up exec xbacklight -inc 1
-bindsym --whole-window $modSec+Down exec xbacklight -dec 1
+bindsym --whole-window $modSec+XF86MonBrightnessUp exec xbacklight -inc 1 && light -A 1
+bindsym --whole-window $modSec+XF86MonBrightnessDown exec xbacklight -dec 1 && light -U 1
 
 # go to last workspace
 bindsym --whole-window $mod+Tab workspace back_and_forth
