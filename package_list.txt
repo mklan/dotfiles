@@ -50,3 +50,12 @@ pamac-aur
 xorg-xsetroot
 # dependency of sxhkd move script (JSON parser)
 jq
+# audiomixer visualizer
+cava
+pipes.sh
+cmatrix
+asciiquarium
+sl
+tty-clock
+#
+ranger
