@@ -58,6 +58,10 @@ super + space
 super + e
     bspc node @parent -R 90
 
+# Rotate the tree from the current nodes parent
+super + control + {Right, Left}
+  bspc node @parent -C {forward, backward}
+
 # set the window state
 super + {t,shift + t,s,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
@@ -97,8 +101,23 @@ super + {o,i}
 	bspc wm -h on
 
 # focus or send to the given desktop
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+# super + {_,shift + }{1-9,0}
+# 	bspc {desktop -f,node -d} focused:^{1-9,10}
+# 	#bspc {desktop -f,node -d} ^{1-9,10}
+
+
+# move desktop to focused monitor
+alt + {1-9,0}
+	bspc desktop {1-9,10} -f --to-monitor focused
+
+# move node to desktop and focus
+super + shift + {1-9,0}
+    bspc node -d {1-9,10} -f
+
+# focus desktop
+super + {1-9,0}
+	bspc desktop -f {1-9,10}
+
 
 #
 # gaps
@@ -136,31 +155,35 @@ super + ctrl + shift + space
 #
 
 super + alt + {Left,Down,Up,Right}
-    ~/.config/sxhkd/resize {west,south,north,east} 40
+    ~/.config/bspwm/resize {west,south,north,east} 40
 
 super + shift + {Left,Down,Up,Right}
-    ~/.config/sxhkd/move {west,south,north,east}
+    ~/.config/bspwm/move {west,south,north,east}
 
-###### custom #######
 
-#XF86AudioRaiseVolume
-#	$HOME/.config/i3/sound.sh 2 150
-#XF86AudioLowerVolume
-#	$HOME/.config/i3/sound.sh -2 150
-#XF86AudioMute
-#	$HOME/.config/i3/toggleMute.sh
+# FN-keys
 
-#XF86MonBrightnessDown
-super + Down
-	xbacklight -dec 15
+XF86AudioMute
+	amixer sset Master toggle; pkill -RTMIN+10 blocks
 
-# XF86MonBrightnessUp
-super + Up
-	xbacklight -inc 15
+XF86Audio{Raise,Lower}Volume
+	amixer sset Master 5%{+,-}; pkill -RTMIN+10 blocks
+
+XF86AudioMicMute
+	amixer set Capture toggle
+
+XF86MonBrightness{Down,Up}
+	light -{U,A} 15
+
+super + XF86MonBrightness{Down,Up}
+	light -{U,A} 3
+
+# Lock
 
 super + l 
 	$HOME/.config/i3/lock.sh
 
+# Screenshot
 
 super + Print
 	mkdir -p $HOME/Screenshots && flameshot gui -p $HOME/Screenshots

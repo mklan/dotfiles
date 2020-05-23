@@ -1,10 +1,14 @@
 i3-gaps
+sxhkd
+bspwm
 xfce4
 rofi
 rxvt-unicode
 urxvt-font-size-git
 polybar
 rofi
+# symlink dotfiles
+stow
 redshift
 flameshot
 compton-tryone-git
@@ -28,7 +32,6 @@ dunst
 tlp
 acpi_call
 transset-df
-devilspie
 playerctl
 wpgtk-git
 # live GTK+ reload
@@ -44,8 +47,6 @@ lxappearance-gtk3
 xorg-util-macros
 python-pip
 pamac-aur
-sxhkd
-bspwm
 xorg-xsetroot
 # dependency of sxhkd move script (JSON parser)
 jq

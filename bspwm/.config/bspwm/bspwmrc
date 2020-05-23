@@ -1,6 +1,6 @@
 #! /bin/sh
 
-sxhkd &
+pgrep sxhkd || sxhkd >> $HOME/.logs/sxhkd 2>&1 &
 
 $HOME/.config/wpg/wp_init.sh &
 
@@ -27,8 +27,7 @@ flameshot &
 
 # BSPWM CONFIG
 
-bspc monitor eDP1 -d 1 2 3 4 5 6 7 8 9 10
-bspc monitor DP1 -d 1 2 3 4 5 6 7 8 9 10
+${HOME}/.config/bspwm/workspaces_multimonitor &
 
 bspc config focus_follows_pointer true
 bspc config pointer_action1 move
@@ -50,8 +49,8 @@ bspc rule -a Station desktop='^8'
 bspc rule -a Spotify desktop='^7'
 bspc rule -a keepassxc desktop='^9'
 
-bspc rule -a Pamac-manager state=floating
-bspc rule -a Pamac-updater state=floating
+bspc rule -a Pamac-manager state=floating center=on
+bspc rule -a Pamac-updater state=floating center=on
 # bspc rule -a Kupfer.py focus=on
 # bspc rule -a Screenkey manage=off
 bash /home/matze/.config/bspwm/bspwm_colors.sh &bash /home/matze/.config/bspwm/bspwm_colors.sh &

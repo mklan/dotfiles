@@ -64,43 +64,18 @@ function installList {
 
 function createSymlinks {
 
-  mkdir -p ~/.config/i3
-  ln -sf $(pwd)/i3/* ~/.config/i3/
-
-  mkdir -p ~/.config/bspwm
-  ln -sf $(pwd)/bspwm/* ~/.config/bspwm/
-
-  mkdir -p ~/.config/sxhkd
-  ln -sf $(pwd)/sxhkd/* ~/.config/sxhkd/
-
-  mkdir -p ~/.config/Code/User/snippets
-  ln -sf $(pwd)/vscode/snippets/* ~/.config/Code/User/snippets/
+  stow bspwm sxhkd polybar autorandr i3 vim rofi compton
   
-  mkdir -p ~/.config/polybar
-  ln -sf $(pwd)/polybar/* ~/.config/polybar/
-  
-  mkdir -p ~/.config/terminator
-  ln -sf $(pwd)/terminator/* ~/.config/terminator/
-
   mkdir -p ~/wallpaper
   ln -sf $(pwd)/wallpaper/* ~/wallpaper/
-
-  mkdir -p ~/.config/autorandr
-  ln -sf $(pwd)/autorandr/* ~/.config/autorandr/
-  
-  mkdir -p ~/.vim
-  ln -sf $(pwd)/vim/* ~/.vim/
-
-  mkdir -p ~/.devilspie
-  ln -sf $(pwd)/devilspie/* ~/.devilspie/
 
   ln -sf $(pwd)/common/.* ~/
 
   mkdir -p /etc/X11/xorg.conf.d
   ln -sf $(pwd)/X11/xorg.conf.d/* /etc/X11/xorg.conf.d/
 
-  profileFolder=$(ls $HOME/.mozilla/firefox/ | grep .default)
-  ln -sf $(pwd)/firefox/* ~/.mozilla/firefox/$profileFolder/
+#  profileFolder=$(ls $HOME/.mozilla/firefox/ | grep .default)
+#  ln -sf $(pwd)/firefox/* ~/.mozilla/firefox/$profileFolder/
 
   mkdir -p ~/.themes
   ln -sf $(pwd)/theme/* ~/.themes/
@@ -114,13 +89,9 @@ function createSymlinks {
  # ln -sf $(pwd)/wal/templates/.Xdefaults $HOME/.config/wal/templates/.Xresources
  # ln -sf $HOME/.cache/wal/.Xresources ~/
 
-  touch $HOME/.cache/wal/dunstrc
-  mkdir -p $HOME/.config/dunst/
-  ln -sf $HOME/.cache/wal/dunstrc $HOME/.config/dunst/dunstrc
-
- 
-  mkdir -p ~/.config/rofi
-  ln -sf $(pwd)/rofi/* ~/.config/rofi/
+  # touch $HOME/.cache/wal/dunstrc
+  # mkdir -p $HOME/.config/dunst/
+  # ln -sf $HOME/.cache/wal/dunstrc $HOME/.config/dunst/dunstrc
 
   mkdir -p ~/.config/fusuma/
   ln -sf $(pwd)/fusuma/* $HOME/.config/fusuma/
@@ -131,9 +102,6 @@ function createSymlinks {
 
   mkdir -p /etc/systemd/system
   ln -sf $(pwd)/i3/i3lock.service /etc/systemd/system/i3lock.service
-
-  mkdir -p ~/.config
-  ln -sf $(pwd)/compton/compton.conf ~/.config/compton.conf
 
   ln -sf $(pwd)/bluetooth/51-blueman.rules  /usr/share/polkit-1/rules.d/51-blueman.rules
 
