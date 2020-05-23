@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# restart bspwm on dock change
+#bspc wm -r
