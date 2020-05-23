@@ -111,13 +111,16 @@ alt + {1-9,0}
 	bspc desktop {1-9,10} -f --to-monitor focused
 
 # move node to desktop and focus
-super + shift + {1-9,0}
-    bspc node -d {1-9,10} -f
+alt + shift + {1-9,0}
+    bspc node -d {1-9,10}
 
 # focus desktop
 super + {1-9,0}
 	bspc desktop -f {1-9,10}
 
+# move node to desktop and focus
+super + shift + {1-9,0}
+    bspc node -d {1-9,10} -f
 
 #
 # gaps
