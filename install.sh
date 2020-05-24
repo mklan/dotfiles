@@ -100,10 +100,10 @@ function createSymlinks {
   mkdir -p $HOME/.todo
   ln -sf $(pwd)/todo/* $HOME/.todo/
 
-  mkdir -p /etc/systemd/system
-  ln -sf $(pwd)/i3/i3lock.service /etc/systemd/system/i3lock.service
+  sudo mkdir -p /etc/systemd/system
+  sudo ln -sf $(pwd)/i3/i3lock.service /etc/systemd/system/i3lock.service
 
-  ln -sf $(pwd)/bluetooth/51-blueman.rules  /usr/share/polkit-1/rules.d/51-blueman.rules
+  sudo ln -sf $(pwd)/bluetooth/51-blueman.rules  /usr/share/polkit-1/rules.d/51-blueman.rules
 
 }
 
