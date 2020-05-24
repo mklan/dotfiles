@@ -71,8 +71,8 @@ function createSymlinks {
 
   ln -sf $(pwd)/common/.* ~/
 
-  mkdir -p /etc/X11/xorg.conf.d
-  ln -sf $(pwd)/X11/xorg.conf.d/* /etc/X11/xorg.conf.d/
+  sudo mkdir -p /etc/X11/xorg.conf.d
+  sudo ln -sf $(pwd)/X11/xorg.conf.d/* /etc/X11/xorg.conf.d/
 
 #  profileFolder=$(ls $HOME/.mozilla/firefox/ | grep .default)
 #  ln -sf $(pwd)/firefox/* ~/.mozilla/firefox/$profileFolder/
