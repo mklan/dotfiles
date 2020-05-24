@@ -11,7 +11,7 @@ rofi
 stow
 redshift
 flameshot
-compton-tryone-git
+picom-tryone-git
 feh
 dfc
 light
