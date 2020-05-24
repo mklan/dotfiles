@@ -11,7 +11,7 @@ arch system configuration using bspwm as window manager
 - bspwm
 - polybar
 - rofi
-- compton
+- picom-tryone-git
 - wpg (theming)
 - flameshot
 - xbacklight
