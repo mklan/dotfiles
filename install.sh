@@ -64,7 +64,7 @@ function installList {
 
 function createSymlinks {
 
-  stow bspwm sxhkd polybar autorandr i3 vim rofi picom ranger
+  stow bspwm sxhkd polybar autorandr i3 vim rofi picom ranger wpg
   
   mkdir -p ~/wallpaper
   ln -sf $(pwd)/wallpaper/* ~/wallpaper/
