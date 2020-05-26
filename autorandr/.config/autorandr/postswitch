@@ -1,4 +1,4 @@
 #!/bin/bash
 
-# restart bspwm on dock change
-#bspc wm -r
+# restart bspwm on monitor setup change
+bspc wm -r
