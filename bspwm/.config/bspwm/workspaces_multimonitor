@@ -19,7 +19,7 @@
 
 ##Then, create workspaces on all monitors
   I=1
-  M=$(xrandr -q| grep " connected" | wc -l)
+  M=$(bspc query -M | wc -l)
   if [[ "$M" == 1 ]]; then
     bspc monitor -d 1 2 3 4 5 6 7 9 8 10
   elif [[ "$M" == 2 ]]; then
