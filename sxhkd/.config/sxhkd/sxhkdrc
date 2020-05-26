@@ -30,8 +30,9 @@ shift + alt + {r}
 #super + {_,shift + }q
 #	bspc node -{c,k}
 
+# close
 alt + shift + q
-	bspc node -k
+	bspc node -c
 
 # alternate between the tiled and monocle layoutforeground
 super + m
