@@ -111,7 +111,7 @@ super + {o,i}
 alt + {1-9,0}
 	bspc desktop {1-9,10} -f --to-monitor focused
 
-# move node to desktop and focus
+# move node to desktop
 alt + shift + {1-9,0}
     bspc node -d {1-9,10}
 
@@ -191,4 +191,9 @@ super + l
 
 super + Print
 	mkdir -p $HOME/Screenshots && flameshot gui -p $HOME/Screenshots
+	
+
+# Messenger
+super + alt + m
+	firefox -P Social
 	
