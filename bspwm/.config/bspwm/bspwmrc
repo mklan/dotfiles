@@ -49,7 +49,6 @@ bspc rule -a Chromium desktop='^2'
 bspc rule -a Firefox desktop='^2'
 bspc rule -a code desktop='^10'
 bspc rule -a code-oss desktop='^10'
-bspc rule -a Station desktop='^8'
 bspc rule -a Spotify desktop='^7'
 bspc rule -a keepassxc desktop='^9'
 
