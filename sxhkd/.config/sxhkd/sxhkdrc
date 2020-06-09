@@ -109,7 +109,7 @@ super + {o,i}
 
 # move desktop to focused monitor
 alt + {1-9,0}
-	bspc desktop {1-9,10} -f --to-monitor focused
+	bspc desktop {1-9,10} --to-monitor focused -f
 
 # move node to desktop
 alt + shift + {1-9,0}
@@ -122,6 +122,9 @@ super + {1-9,0}
 # move node to desktop and focus
 super + shift + {1-9,0}
     bspc node -d {1-9,10} -f
+
+super + {odiaeresis,adiaeresis}
+    bspc monitor ^{1-2} -f
 
 #
 # gaps
