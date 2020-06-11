@@ -1,16 +1,14 @@
 keepassxc
+rclone
+rclonesync-git
 firefox
 mpv
 mps-youtube
 chromium
 spotify
-syncthing
-syncthing-gtk
 sublime-text-dev
 httpie
 gestures
 code
-# multi social
-station
 # building packages from deb files
 debtap
