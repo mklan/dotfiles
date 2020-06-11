@@ -1,4 +1,7 @@
 #!/bin/bash
 
 # restart bspwm on monitor setup change
-bspc wm -r
+# bspc wm -r
+~/.config/bspwm/workspaces_multimonitor
+~/.config/polybar/launch.sh
+~/.config/wpg/wp_init.sh
