@@ -7,3 +7,7 @@
 #main-window:not([tabsintitlebar="true"]) #TabsToolbar {
   visibility: collapse !important;
 }
+
+#contentAreaContextMenu {
+  margin: 5px 0 0 5px;
+}
