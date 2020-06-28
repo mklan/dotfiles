@@ -59,3 +59,5 @@ sl
 tty-clock
 #
 ranger
+# fix for blank java apps (wmname compiz to fix)
+wmname

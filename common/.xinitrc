@@ -1,1 +1,2 @@
+wmname compiz
 exec bspwm
