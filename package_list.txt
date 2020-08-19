@@ -61,3 +61,5 @@ tty-clock
 ranger
 # fix for blank java apps (wmname compiz to fix)
 wmname
+# for event handeling extra keys ( external mic mute button on lenovo keyboard)
+acpid
