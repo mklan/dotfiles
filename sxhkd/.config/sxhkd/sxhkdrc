@@ -198,6 +198,11 @@ super + XF86MonBrightness{Down,Up}
 super + l 
 	$HOME/.config/i3/lock.sh
 
+super + alt + l
+	sleep 0.5; \
+	xset dpms force off; \
+	$HOME/.config/i3/lock.sh
+
 # Screenshot
 
 super + Print
