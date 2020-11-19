@@ -2,6 +2,7 @@
 
 # restart bspwm on monitor setup change
 # bspc wm -r
+notify-send "docking changed"
 ~/.config/bspwm/workspaces_multimonitor
 ~/.config/polybar/launch.sh
 ~/.config/wpg/wp_init.sh
