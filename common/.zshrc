@@ -73,6 +73,7 @@ plugins=(
   kubectl
   history
   z
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -122,6 +123,7 @@ setwallpaper(){
 }
 
 alias a-vpn=/opt/Perimeter81/perimeter81
+alias datagrip=wmname LG3D && /usr/bin/datagrip
 
 alias mntnas="mount 192.168.1.118:/ /mnt/nas"
 
