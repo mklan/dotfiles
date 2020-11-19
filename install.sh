@@ -27,6 +27,9 @@ function main {
 
   # switch to zsh
   chsh -s /usr/bin/zsh $USER
+  # install zsh plugins
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
 
   # get vscode pywal theme
   
