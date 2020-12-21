@@ -65,6 +65,9 @@ function installList {
 
 function createSymlinks {
 
+  mv ~/.config/neofetch/config.conf ~/.config/neofetch/config.conf.bak
+  stow neofetch
+
   stow bspwm sxhkd polybar autorandr i3 vim rofi picom ranger wpg
   
   mkdir -p ~/wallpaper
@@ -112,11 +115,11 @@ function installAurman {
   if ! command -v "aurman" &> /dev/null
   then
     echo "aurman not found"
-  git clone https://aur.archlinux.org/aurman.git
-  cd aurman
-  makepkg -si --skipinteg --noconfirm --needed
-  cd ..
-  rm -rf aurman
+    git clone https://aur.archlinux.org/aurman.git
+    cd aurman
+    makepkg -si --skipinteg --noconfirm --needed
+    cd ..
+    rm -rf aurman
   fi
 
 }
