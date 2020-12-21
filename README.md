@@ -4,28 +4,30 @@ arch system configuration using bspwm as window manager
 
 ![Desktop Screenshot](https://github.com/mklan/dotfiles/blob/master/screenshots/desktop.jpg)
 
-## Utilized packages / applications / tools
-
-> **Warning!** The list is not complete! For a complete list look into `package_list.txt`
+## Core system dependencies
 
 - bspwm
+- sxhkd
 - polybar
 - rofi
-- picom-tryone-git
-- wpg (theming)
-- flameshot
-- xbacklight
-- pamixer
+- dunst
 - urxvt
 - zsh
+- vim
+- i3-lock
+- autorandr
+- picom-tryone-git
+- wpg
+
+For a complete list look into `dependencies.txt`
 
 ## Install
 
-> **Warning!** This is a highly customized install for my system (t480s). The install script is very basic and hacked together. Use at your own risk! Preferably just pick the config files one by one.
+> **Warning!** This is a highly customized install for my system (ThinkPad t480s). The install script is very basic and hacked together. Use at your own risk! Preferably just pick the config files one by one.
 
 `./install.sh /path/to/your/wallpaper.jpg`.
 
-## Switch Wallpaper
+## Apply new Theme
 
 `setwallpaper /path/to/some-other/wallpaper.jpg`
 

@@ -1,6 +1,4 @@
 #! /bin/sh
-urxvt &
-
 pgrep sxhkd || mkdir -p $HOME/.logs && sxhkd >> $HOME/.logs/sxhkd 2>&1 &
 
 $HOME/.config/wpg/wp_init.sh &
@@ -8,21 +6,7 @@ $HOME/.config/wpg/wp_init.sh &
 # mouse cursor
 xsetroot -cursor_name left_ptr &
 
-# AUTOSTART
-xinput --set-prop "12" "libinput Accel Speed" 0.5 #set trackpoint speed
 
-$HOME/.config/polybar/launch.sh
-pgrep dunst || dunst &
-
-pgrep picom || picom --experimental-backends &
-
-pgrep redshift-gtk || redshift-gtk -l 48.20849:16.37208 & # vienna hardcoded for now
-pgrep lxsession || lxsession &
-pgrep pasystray || pasystray &
-pgrep xfce4-power-manager || xfce4-power-manager &
-pgrep firefox || firefox -P Social
-
-flameshot &
 
 
 # BSPWM CONFIG
@@ -34,10 +18,11 @@ bspc config remove_unplugged_monitors true
 
 bspc config focus_follows_pointer true
 bspc config pointer_follows_focus true
+bspc config pointer_motion_interval 5
 bspc config pointer_action1 move
 bspc config pointer_action2 resize_side
 
-bspc config border_width         2
+bspc config border_width         4
 bspc config window_gap          10
 
 bspc config split_ratio          0.52
@@ -60,3 +45,25 @@ bspc rule -a Lua5.1 state=floating # gifine
 #TODO investigate what those apps are and if I need them (remainings from someone's config)
 # bspc rule -a Kupfer.py focus=on
 # bspc rule -a Screenkey manage=off
+
+
+
+
+
+# AUTOSTART
+xinput --set-prop "12" "libinput Accel Speed" 0.5 #set trackpoint speed
+
+$HOME/.config/polybar/launch.sh
+pgrep dunst || dunst &
+pgrep xss-lock || xss-lock -- $HOME/.config/i3/lock.sh &
+
+pgrep picom || picom --experimental-backends &
+
+pgrep redshift-gtk || redshift-gtk -l 48.20849:16.37208 & # vienna hardcoded for now
+pgrep lxsession || lxsession &
+# pgrep pasystray || pasystray & # why are there two instances
+pgrep xfce4-power-manager || xfce4-power-manager &
+pgrep firefox || firefox -P Social
+
+flameshot &
+bash /home/matze/.config/bspwm/bspwm_colors.sh &
