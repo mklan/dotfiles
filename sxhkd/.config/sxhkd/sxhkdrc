@@ -16,7 +16,13 @@ super + c
 
 # make sxhkd reload its configuration files:
 super + Escape
+	notify-send "sxhkd restarted"; \
 	pkill -USR1 -x sxhkd
+
+
+# shutdown menus
+super + alt + q
+	~/.config/rofi/menus/power-menu.sh "bspc quit"
 
 #
 # bspwm hotkeys
@@ -28,6 +34,7 @@ super + Escape
 
 # quit/restart bspwm
 shift + alt + {r}
+	notify-send "restarting bspwm"; \
 	bspc {wm -r}
 
 # close and kill
@@ -74,6 +81,12 @@ super + {t,shift + t,s,f}
 # set the node flags
 super + ctrl + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
+
+
+# set pip mode
+
+super + alt + z
+  ~/.config/bspwm/pip
 
 #
 # focus/swap
@@ -166,10 +179,10 @@ super + ctrl + shift + space
 #
 
 super + alt + {Left,Down,Up,Right}
-    ~/.config/bspwm/resize {west,south,north,east} 40
+  ~/.config/bspwm/resize.transition.sh {west,south,north,east} 30
 
 super + shift + {Left,Down,Up,Right}
-    ~/.config/bspwm/move {west,south,north,east}
+  ~/.config/bspwm/move {west,south,north,east}
 
 
 # FN-keys
@@ -188,6 +201,9 @@ XF86MonBrightness{Down,Up}
 
 super + XF86MonBrightness{Down,Up}
 	light -{U,A} 3
+
+super + alt + XF86MonBrightness{Down,Up}
+	light -{U,A} 1
 
 # Lock
 

@@ -55,5 +55,8 @@ bspc rule -a keepassxc desktop='^9'
 
 bspc rule -a Pamac-manager state=floating center=on
 bspc rule -a Pamac-updater state=floating center=on
+bspc rule -a Lua5.1 state=floating # gifine
+
+#TODO investigate what those apps are and if I need them (remainings from someone's config)
 # bspc rule -a Kupfer.py focus=on
 # bspc rule -a Screenkey manage=off
