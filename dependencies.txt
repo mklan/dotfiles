@@ -70,3 +70,10 @@ tty-clock
 ranger
 # fix for blank java apps (wmname compiz to fix)
 wmname
+neofetch
+# display images in terminal
+w3m-imgcat
+# for demo when shwoing keystrokes
+screenkey
+# moving winows around / resizgin
+xdo-git
