@@ -6,7 +6,9 @@ arch system configuration using bspwm as the window manager
 
 ![Desktop Screenshot 2](https://github.com/mklan/dotfiles/blob/master/screenshots/rofi.jpg)
 
-![Theme Change](https://github.com/mklan/dotfiles/blob/master/screenshots/demo.gif)
+`setwallpaper ~/path/to/some/wallpaper.jpg`
+
+![Theme switching](https://github.com/mklan/dotfiles/blob/master/screenshots/demo.gif)
 
 ## Core system dependencies
 
@@ -31,29 +33,8 @@ For a complete list look into `dependencies.txt`
 
 `./install.sh /path/to/your/wallpaper.jpg`.
 
-## Apply new Theme
-
-`setwallpaper /path/to/some-other/wallpaper.jpg`
-
-![Theme Apply](https://github.com/mklan/dotfiles/blob/master/screenshots/demo.gif)
-
-## Fixes
+## Possible Fixes
 
 ### Firefox tearing / preformance
 
 set `layers.acceleration.force-enabled` to true in `about:config`
-
-## TODO
-
-- [x] Open source
-- [x] Proper install script
-- [x] auto install dependencies for arch
-- [x] add vim config
-- [x] add \$ZDOTDIR/.zshrc
-- [ ] (automate) screenshots of resulting setup
-- [x] add proper install description to readme
-- [ ] auto generate documentation of shortcuts
-
-  05.2019
-
-- [ ] document via gif
