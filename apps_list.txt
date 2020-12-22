@@ -12,3 +12,8 @@ gestures
 code
 # building packages from deb files
 debtap
+# record edit gifs
+lua51-gifine-git
+simplescreenrecorder
+#screenshots
+flameshot

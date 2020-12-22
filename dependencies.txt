@@ -1,20 +1,25 @@
+# todo: remove soon
 i3-gaps
+# shortcut bindings
 sxhkd
 bspwm
+# todo: remove soon
 xfce4
-rofi
 rxvt-unicode
 urxvt-font-size-git
+# bar
 polybar
+# app launcher
 rofi
 # symlink dotfiles
 stow
 redshift
-flameshot
+# compositor (blurr, opacity)
 picom-tryone-git
 feh
 dfc
 light
+# generate theme from image
 python-pywal
 xorg-xrandr
 arandr
@@ -23,16 +28,20 @@ zsh
 pamixer
 xbindkeys
 pango
+# fonts
 ttf-ubuntu-font-family
 ttf-font-awesome
 powerline-fonts
 adobe-source-code-pro-fonts
+# pulseaudio controls
 pasystray
+# notifications
 dunst
 tlp
 acpi_call
 transset-df
 playerctl
+# themeing
 wpgtk-git
 # live GTK+ reload
 xsettingsd
@@ -61,5 +70,12 @@ tty-clock
 ranger
 # fix for blank java apps (wmname compiz to fix)
 wmname
+neofetch
+# display images in terminal
+w3m-imgcat
+# for demo when shwoing keystrokes
+screenkey
+# moving winows around / resizgin
+xdo-git
 # for event handeling extra keys ( external mic mute button on lenovo keyboard)
 acpid

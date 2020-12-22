@@ -72,7 +72,7 @@ click-middle = playerctl play-pause
 
 [module/logout]
 type = custom/text
-click-left = xfce4-session-logout
+click-left = 	$HOME/.config/rofi/menus/power-menu.sh "bspc quit"
 content = 
 
 [module/xwindow]

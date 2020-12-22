@@ -148,6 +148,18 @@ alias g="git"
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 
+alias jdownloader="wmname compiz && jdownloader &"
+
+
+
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+export JAVA_HOME=/usr/lib/jvm/default
+
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
 [[ -f /home/matze/projects/anyline-cdb-dataflow/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/matze/projects/anyline-cdb-dataflow/node_modules/tabtab/.completions/serverless.zsh
@@ -158,3 +170,7 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [[ -f /home/matze/projects/anyline-cdb-dataflow/node_modules/tabtab/.completions/slss.zsh ]] && . /home/matze/projects/anyline-cdb-dataflow/node_modules/tabtab/.completions/slss.zsh
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
