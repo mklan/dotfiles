@@ -8,7 +8,7 @@ xsetroot -cursor_name left_ptr &
 
 
 
-${HOME}/.config/bspwm/kill_empty_nodes.sh &
+#${HOME}/.config/bspwm/kill_empty_nodes.sh &
 
 # BSPWM CONFIG
 
