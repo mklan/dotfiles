@@ -1,2 +1,2 @@
-wmname LG3D
 exec bspwm
+wmname LG3D
