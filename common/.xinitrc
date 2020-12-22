@@ -1,2 +1,2 @@
-wmname compiz
+wmname LG3D
 exec bspwm

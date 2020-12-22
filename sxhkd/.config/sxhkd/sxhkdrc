@@ -112,6 +112,10 @@ super + bracket{left,right}
 alt + {grave,Tab}
 	bspc {node,desktop} -f last
 
+# cicle trough desktops
+super + {grave,Tab}
+	bspc {node,desktop} -f next.occupied.local
+
 # focus the older or newer node in the focus history
 super + {o,i}
 	bspc wm -h off; \
@@ -208,6 +212,11 @@ super + alt + XF86MonBrightness{Down,Up}
 # Lock
 
 super + l 
+	$HOME/.config/i3/lock.sh
+
+super + alt + l
+	sleep 0.5; \
+	xset dpms force off; \
 	$HOME/.config/i3/lock.sh
 
 # Screenshot
