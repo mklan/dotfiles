@@ -1,8 +1,12 @@
 # .dotfiles
 
-arch system configuration using bspwm as window manager
+arch system configuration using bspwm as the window manager
 
 ![Desktop Screenshot](https://github.com/mklan/dotfiles/blob/master/screenshots/desktop.jpg)
+
+![Desktop Screenshot 2](https://github.com/mklan/dotfiles/blob/master/screenshots/rofi.jpg)
+
+![Theme Change](https://github.com/mklan/dotfiles/blob/master/screenshots/demo.gif)
 
 ## Core system dependencies
 
@@ -30,6 +34,8 @@ For a complete list look into `dependencies.txt`
 ## Apply new Theme
 
 `setwallpaper /path/to/some-other/wallpaper.jpg`
+
+![Theme Apply](https://github.com/mklan/dotfiles/blob/master/screenshots/demo.gif)
 
 ## Fixes
 
