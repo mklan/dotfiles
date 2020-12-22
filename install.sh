@@ -6,7 +6,7 @@ function main {
   
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
-	  installList './package_list.txt'
+	  installList './dependencies.txt'
     # install theme
     wpg-install.sh -g -b -d -i
     wpg -s ${1}
@@ -52,21 +52,25 @@ function main {
   # add user to video group (for light control)
   sudo usermod -aG video $USER
   sudo usermod -aG wheel $USER
-  sudo pip install i3-py
 
 }
 
 function installList {
   # install basic dependencies
-  sudo pacman -S --noconfirm --needed base-devel git wget yajl
+  sudo pacman -S --noconfirm --needed base-devel git wget yajl dialog
   
+  # todo figure out optional
   installAurman
 
-  # install additional packages
-  aurman -S --noedit --noconfirm --needed --skip_news $(sed -e '/^#/d' $1)
+  # install packages from passed list
+  selection=sudo ./install/list-select.sh $1 "Select to install"
+  aurman -S --noedit --noconfirm --needed --skip_news $selection
 }
 
 function createSymlinks {
+
+  mv ~/.config/neofetch/config.conf ~/.config/neofetch/config.conf.bak
+  stow neofetch
 
   stow bspwm sxhkd polybar autorandr i3 vim rofi picom ranger wpg
   
@@ -114,11 +118,16 @@ function createSymlinks {
 }
 
 function installAurman {
-  git clone https://aur.archlinux.org/aurman.git
-  cd aurman
-  makepkg -si --skipinteg --noconfirm --needed
-  cd ..
-  rm -rf aurman
+  if ! command -v "aurman" &> /dev/null
+  then
+    echo "aurman not found"
+    git clone https://aur.archlinux.org/aurman.git
+    cd aurman
+    makepkg -si --skipinteg --noconfirm --needed
+    cd ..
+    rm -rf aurman
+  fi
+
 }
 
 main
