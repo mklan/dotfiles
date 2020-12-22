@@ -8,6 +8,7 @@ xsetroot -cursor_name left_ptr &
 
 
 
+${HOME}/.config/bspwm/kill_empty_nodes.sh &
 
 # BSPWM CONFIG
 
@@ -47,14 +48,13 @@ bspc rule -a Lua5.1 state=floating # gifine
 # bspc rule -a Screenkey manage=off
 
 
-
-
-
 # AUTOSTART
 xinput --set-prop "12" "libinput Accel Speed" 0.5 #set trackpoint speed
 
 $HOME/.config/polybar/launch.sh
 pgrep dunst || dunst &
+
+#todo investigate if and how this works
 pgrep xss-lock || xss-lock -- $HOME/.config/i3/lock.sh &
 
 pgrep picom || picom --experimental-backends &

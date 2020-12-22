@@ -77,3 +77,5 @@ w3m-imgcat
 screenkey
 # moving winows around / resizgin
 xdo-git
+# for event handeling extra keys ( external mic mute button on lenovo keyboard)
+acpid

@@ -16,7 +16,8 @@ function main {
   
   # disable lightdm to use startx at startup
   systemctl disable lightdm.service
-
+  
+  sudo systemctl enable --now acpid.service
   # apply throttle fix (throttle pacman package)
   sudo systemctl enable --now lenovo_fix.service
 
@@ -26,6 +27,9 @@ function main {
 
   # switch to zsh
   chsh -s /usr/bin/zsh $USER
+  # install zsh plugins
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+
 
   # get vscode pywal theme
   
@@ -70,6 +74,8 @@ function createSymlinks {
 
   stow bspwm sxhkd polybar autorandr i3 vim rofi picom ranger wpg
   
+  ln -sf $(pwd)/_patches/mic_mute_external/lenovo-mutemic /etc/acpi/events/lenovo-mutemic
+
   mkdir -p ~/wallpaper
   ln -sf $(pwd)/wallpaper/* ~/wallpaper/
 
