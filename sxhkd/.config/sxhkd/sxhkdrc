@@ -12,7 +12,7 @@ super + d
 
 # vscode project launcher
 super + c
-	~/.config/rofi/menus/vscode_projects.sh
+	vscode-projects
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -22,7 +22,7 @@ super + Escape
 
 # shutdown menus
 super + alt + q
-	~/.config/rofi/menus/power-menu.sh "bspc quit"
+	power-menu "bspc quit"
 
 #
 # bspwm hotkeys
@@ -183,7 +183,8 @@ super + ctrl + shift + space
 #
 
 super + alt + {Left,Down,Up,Right}
-  ~/.config/bspwm/resize.transition.sh {west,south,north,east} 30
+  ~/.config/bspwm/bspwm_resize.sh {west,south,north,east} 30
+#  ~/.config/bspwm/resize.transition.sh {west,south,north,east} 30
 
 super + shift + {Left,Down,Up,Right}
   ~/.config/bspwm/move {west,south,north,east}
@@ -212,12 +213,12 @@ super + alt + XF86MonBrightness{Down,Up}
 # Lock
 
 super + l 
-	$HOME/.config/i3/lock.sh
+	lock
 
 super + alt + l
 	sleep 0.5; \
 	xset dpms force off; \
-	$HOME/.config/i3/lock.sh
+	lock
 
 # Screenshot
 
