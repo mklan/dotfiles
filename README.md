@@ -25,7 +25,7 @@ arch system configuration using bspwm as the window manager
 - picom-tryone-git
 - wpg
 
-For a complete list look into `dependencies.txt`
+For a complete list look into `arch-pkglist`
 
 ## Install
 

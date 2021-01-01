@@ -1,7 +1,13 @@
 #! /bin/sh
+
+
+# java UI fix
+wmname LG3D
+
 pgrep sxhkd || mkdir -p $HOME/.logs && sxhkd >> $HOME/.logs/sxhkd 2>&1 &
 
 $HOME/.config/wpg/wp_init.sh &
+xrdb ~/.Xresources
 
 # mouse cursor
 xsetroot -cursor_name left_ptr &

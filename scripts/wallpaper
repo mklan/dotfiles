@@ -1,0 +1,6 @@
+#! /bin/sh
+
+# sets wallpaper and generates theme
+
+wpg -a ${1}
+wpg -s ${1}
