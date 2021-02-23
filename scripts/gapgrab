@@ -1,0 +1,36 @@
+#!/bin/bash
+#intented to allow resizing bspwm windows by dragging them from window gap. Requires rootmenu
+
+
+focused="$(bspc query -N -n focused)"; [ "$focused" ] || exit
+IFS=" " read -a window <<< $(wattr whxy $focused)
+eval $(xdotool getmouselocation --shell)
+# location of each side of focused window
+miny=$(expr "${window[3]}" + 20)
+maxy=$(expr "${window[3]}" + "${window[1]}" - 20)
+minx=$(expr "${window[2]}" + 20)
+maxx=$(expr "${window[2]}" + "${window[0]}" - 20)
+
+# set final position to current or at most within window
+XP=$X
+[[ $XP -gt $maxx ]] && XP=$maxx
+[[ $XP -lt $minx ]] && XP=$minx
+YP=$Y
+[[ $YP -lt $miny ]] && YP=$miny
+[[ $YP -gt $maxy ]] && YP=$maxy
+
+buttonrelease() {
+	PAD_ID=$(xinput --list | grep -i -m 1 'touchpad' | grep -o 'id=[0-9]\+' | grep -o '[0-9]\+')
+	MOUSE_ID=$(xinput --list | grep -i -m 1 'mouse' | grep -o 'id=[0-9]\+' | grep -o '[0-9]\+')
+	
+	STATE1=$(xinput --query-state $PAD_ID | grep 'button\[' | sort)
+	while true; do
+	    sleep 0.1
+	    [[ "$PAD_ID" ]] && xinput --query-state $PAD_ID | grep -q 'button\[1\]=down' && continue
+	    [[ "$MOUSE_ID" ]] && xinput --query-state $MOUSE_ID | grep -q 'button\[1\]=down' && continue
+	    xdotool keyup super mouseup 3 && exit
+	done
+}
+xdotool mousemove --sync $XP $YP keydown super mousedown 3
+
+buttonrelease

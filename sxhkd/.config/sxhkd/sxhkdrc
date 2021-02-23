@@ -33,9 +33,9 @@ super + alt + q
 #	bspc {quit,wm -r}
 
 # quit/restart bspwm
-shift + alt + {r}
-	notify-send "restarting bspwm"; \
-	bspc {wm -r}
+shift + alt + r
+	bspc wm -r; \
+	notify-send "bspwm restart";
 
 # close and kill
 #super + {_,shift + }q
@@ -64,7 +64,7 @@ super + g
 
 # Toggle floating
 super + space
-    bspc node -t tiled || bspc node -t floating
+    bspc node -t tiled -g sticky=off || bspc node -t floating
 
 # Toggle horizontal/vertical
 super + e
@@ -188,6 +188,16 @@ super + alt + {Left,Down,Up,Right}
 
 super + shift + {Left,Down,Up,Right}
   ~/.config/bspwm/move {west,south,north,east}
+
+#
+# mouse bindings
+# __________________
+
+~button1
+	DidIClickDesktop.sh && gapgrab
+
+~button2
+	DidIClickDesktop.sh && mygtkmenui -- ~/.config/GTKmenu/BspwmDesktopMenui
 
 
 # FN-keys
