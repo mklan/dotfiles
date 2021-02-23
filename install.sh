@@ -13,7 +13,7 @@ function main {
   fi
 
  
-  cp scripts/* /usr/bin
+  cp scripts/* /usr/local/bin
 
   createSymlinks
   installZsh
@@ -68,6 +68,8 @@ function installZsh {
   # install zsh plugins
   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
+  # themes
+  aurman -S --noedit --noconfirm --needed --skip_news zsh-theme-powerlevel10k-git
 }
 
 function createSymlinks {

@@ -1,8 +1,23 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+
+# load theme
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+
+# load private zsh stuff
+if [[ -r ~/.zshrc_private ]]; then
+  source ~/.zshrc_private
+fi
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -36,7 +51,7 @@ ZSH_THEME="minimal"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -112,10 +127,13 @@ alias df=dfc
 alias youtube=mpsyt
 alias y2mp3="youtube-dl --extract-audio --audio-format mp3"
 alias y2mp4="youtube-dl -i -f mp4"
+alias photo="sxiv"
+alias foto="sxiv"
+alias video="mpv"
 
 alias a-vpn=/opt/Perimeter81/perimeter81
 
-alias mntnas="mount 192.168.1.118:/ /mnt/nas"
+alias mntnas="mount $NAS:/ /mnt/nas"
 
 #external ip
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -138,10 +156,6 @@ alias g="git"
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 
-alias jdownloader="wmname compiz && jdownloader &"
-
-
-
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
@@ -150,17 +164,8 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export JAVA_HOME=/usr/lib/jvm/default
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /home/matze/projects/anyline-cdb-dataflow/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/matze/projects/anyline-cdb-dataflow/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /home/matze/projects/anyline-cdb-dataflow/node_modules/tabtab/.completions/sls.zsh ]] && . /home/matze/projects/anyline-cdb-dataflow/node_modules/tabtab/.completions/sls.zsh
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /home/matze/projects/anyline-cdb-dataflow/node_modules/tabtab/.completions/slss.zsh ]] && . /home/matze/projects/anyline-cdb-dataflow/node_modules/tabtab/.completions/slss.zsh
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+export USERCONFIG="/home/matze/.sys-admin/"
+export USERSCRIPT="/home/matze/.sys-admin/scripts"
 
-# tabtab source for packages
-# uninstall by removing these lines
-[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
