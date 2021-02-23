@@ -6,7 +6,7 @@ arch system configuration using bspwm as the window manager
 
 ![Desktop Screenshot 2](https://github.com/mklan/dotfiles/blob/master/screenshots/rofi.jpg)
 
-`setwallpaper ~/path/to/some/wallpaper.jpg`
+`wallpaper ~/path/to/some/wallpaper.jpg`
 
 ![Theme switching](https://github.com/mklan/dotfiles/blob/master/screenshots/demo.gif)
 
