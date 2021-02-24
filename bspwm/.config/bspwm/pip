@@ -4,7 +4,7 @@ PIP_WIDTH=$((320*2))
 PIP_HEIGHT=$((180*2))
 MARGIN=50
 
-bspc node -t floating --flag sticky
+bspc node -t floating -g sticky=on
 
 
 DIMENSIONS=$(xdpyinfo | grep dimensions: | awk '{print $2}')
