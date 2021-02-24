@@ -1,0 +1,2 @@
+#! /bin/sh
+light -S 0.07
