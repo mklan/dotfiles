@@ -135,11 +135,11 @@ alias a-vpn=/opt/Perimeter81/perimeter81
 
 alias mntnas="mount $NAS:/ /mnt/nas"
 
-#external ip
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-
 alias week='date +%V'
 
+alias aur="aurman -S --noedit --noconfirm --needed --skip_news"
+
+alias entpacke='unar -d'
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
