@@ -1,0 +1,4 @@
+#! /bin/sh
+
+#external ip
+curl 'https://api.ipify.org'
