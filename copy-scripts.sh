@@ -1,1 +1,1 @@
-❯ sudo   cp scripts/* /usr/local/bin
+sudo cp scripts/* /usr/local/bin
