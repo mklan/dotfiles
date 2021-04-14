@@ -196,6 +196,7 @@ super + shift + {Left,Down,Up,Right}
 ~button1
 	DidIClickDesktop.sh && gapgrab
 
+# Middle
 ~button2
 	DidIClickDesktop.sh && mygtkmenui -- ~/.config/GTKmenu/BspwmDesktopMenui
 
