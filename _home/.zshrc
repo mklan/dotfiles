@@ -93,6 +93,8 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -156,6 +158,10 @@ alias g="git"
 
 export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 
+alias jdownloader="wmname compiz && jdownloader &"
+
+
+
 export ANDROID_HOME=$HOME/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
@@ -164,8 +170,9 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export JAVA_HOME=/usr/lib/jvm/default
 
-export USERCONFIG="/home/matze/.sys-admin/"
-export USERSCRIPT="/home/matze/.sys-admin/scripts"
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

@@ -26,9 +26,9 @@
      bspc monitor $(bspc query -M | awk NR==1) -d 1 2 3 5 6 7 8 9 10
      bspc monitor $(bspc query -M | awk NR==2) -d 4
   elif [[ "$M" == 3 ]]; then
-     bspc monitor $(bspc query -M | awk NR==1) -d 1 2 3 4
-     bspc monitor $(bspc query -M | awk NR==2) -d 5 6 7
-     bspc monitor $(bspc query -M | awk NR==3) -d 8 9 10
+     bspc monitor $(bspc query -M | awk NR==1) -d 1 2 3 6 7 8 9 10
+     bspc monitor $(bspc query -M | awk NR==2) -d 4
+     bspc monitor $(bspc query -M | awk NR==3) -d 5
   else
     for monitor in $(bspc query -M); do
     bspc monitor $monitor \
