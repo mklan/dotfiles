@@ -212,13 +212,11 @@ XF86AudioMicMute
 	amixer set Capture toggle
 
 XF86MonBrightness{Down,Up}
-	light -{U,A} 15
+		brightness {-3,3}
+
 
 super + XF86MonBrightness{Down,Up}
-	light -{U,A} 3
-
-super + alt + XF86MonBrightness{Down,Up}
-	light -{U,A} 1
+	brightness {-1,1}
 
 # Lock
 

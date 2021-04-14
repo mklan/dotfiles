@@ -13,6 +13,9 @@ xrdb ~/.Xresources
 xsetroot -cursor_name left_ptr &
 
 
+# lock on suspend
+xss-lock --transfer-sleep-lock -- lock --nofork &
+
 
 #${HOME}/.config/bspwm/kill_empty_nodes.sh &
 
