@@ -7,11 +7,11 @@
 
 # sleep 5
 
-# zsh -ic "setwallpaper ~/wallpaper/tunnel.jpg"
+# zsh -ic "wallpaper ~/wallpaper/tunnel.jpg"
 
 # sleep 5
 
-# zsh -ic "setwallpaper ~/wallpaper/trees.jpg"
+# zsh -ic "wallpaper ~/wallpaper/trees.jpg"
 
 
 function toggleScreenKey {
@@ -52,13 +52,13 @@ bspc desktop -f 3
 sleep 1
 
 
-# execInTerm 'setwallpaper ~/wallpaper/tunnel.jpg'
+# execInTerm 'wallpaper ~/wallpaper/tunnel.jpg'
 
 # pkill screenkey
 # exit 1
 
 
-execInTerm 'htop'
+execInTerm 'gotop'
 sleep 0.4
 execInTerm 'cmatrix'
 sleep 0.4
@@ -67,6 +67,10 @@ sleep 0.4
 execInTerm 'pipes.sh'
 sleep 0.4
 execInTerm 'cal'
+#sleep 0.4
+#execInTerm 'cava' # music viz
+#sleep 0.4
+#execInTerm 'figlet DEMO DEMO' # write asci
 
 sleep 1
 xdotool key Super_L+Alt_L+minus
@@ -111,11 +115,11 @@ closeNode
 
 sleep 0.7
 
-execInTerm 'setwallpaper ~/wallpaper/tunnel.jpg'
+execInTerm 'wallpaper ~/wallpaper/tunnel.jpg'
 
 sleep 5
 
-execInTerm 'setwallpaper ~/wallpaper/trees.jpg'
+execInTerm 'wallpaper ~/wallpaper/trees.jpg'
 
 
 

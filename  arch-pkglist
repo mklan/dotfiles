@@ -3,8 +3,6 @@ i3-gaps
 # shortcut bindings
 sxhkd
 bspwm
-# todo: remove soon
-xfce4
 rxvt-unicode
 urxvt-font-size-git
 # bar
@@ -80,6 +78,8 @@ screenkey
 xdo-git
 # for event handeling extra keys ( external mic mute button on lenovo keyboard)
 acpid
+# cron
+cronie
 unarchiver
 # lock on lid close
 xss-lock
