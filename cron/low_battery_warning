@@ -1,0 +1,19 @@
+LIMIT=7
+HYBERNATE_LIMIT=4
+export DISPLAY=":0.0"
+
+capacity=$(cat /sys/class/power_supply/BAT0/capacity)
+state=$(cat /sys/class/power_supply/BAT0/status)
+
+echo $capacity
+echo $state
+
+if (( $capacity < $LIMIT )) && [[ $state == "Discharging" ]]; then
+    notify-send "low battery!" # notify send does not work currently
+    /usr/local/bin/power-menu
+fi
+
+
+if (( $capacity < $HYBERNATE_LIMIT )) && [[ $state == "Discharging" ]]; then
+    systemctl suspend # TODO suspend needs some more rights
+fi
