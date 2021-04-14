@@ -15,6 +15,9 @@ function main {
  
   cp scripts/* /usr/local/bin
 
+  mkdir -p ~/.cron
+  ln -sf $(pwd)/cron/* ~/.cron/
+
   createSymlinks
   installZsh
 
