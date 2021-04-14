@@ -33,8 +33,14 @@ For a complete list look into `arch-pkglist`
 
 `./install.sh /path/to/your/wallpaper.jpg`.
 
-## Possible Fixes
+## Misc
 
 ### Firefox tearing / preformance
 
 set `layers.acceleration.force-enabled` to true in `about:config`
+
+###
+
+Thunar -> Edit -> Configure custom actions...
+
+Open in new Terminal: `sh -c 'cd %f;urxvt'`

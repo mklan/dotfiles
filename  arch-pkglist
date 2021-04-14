@@ -31,6 +31,7 @@ ttf-ubuntu-font-family
 ttf-font-awesome
 powerline-fonts
 adobe-source-code-pro-fonts
+# nerd-fonts-complete  (this is too big)
 # pulseaudio controls
 pasystray
 # notifications
@@ -79,3 +80,6 @@ xdo-git
 acpid
 # cron
 cronie
+unarchiver
+# lock on lid close
+xss-lock
