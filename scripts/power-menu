@@ -5,7 +5,7 @@
 
 # 2016 Oliver Kraitschy - http://okraits.de
 
-OPTIONS="Reboot system\nPower-off system\nSuspend system\nHibernate system"
+OPTIONS="Exit window manager\nReboot system\nPower-off system\nSuspend system\nHibernate system (broken)"
 
 #!/usr/bin/bash
 
@@ -17,17 +17,12 @@ OPTIONS="Reboot system\nPower-off system\nSuspend system\nHibernate system"
 
 LAUNCHER="rofi -width 20 -height 2 -dmenu -i -p rofi-power"
 
-# Show exit wm option if exit command is provided as an argument
-if [ ${#1} -gt 0 ]; then
-  OPTIONS="Exit window manager\n$OPTIONS"
-fi
-
 option=`echo -e $OPTIONS | $LAUNCHER | awk '{print $1}' | tr -d '\r\n'`
 if [ ${#option} -gt 0 ]
 then
     case $option in
       Exit)
-        eval $1
+        bspc quit
         ;;
       Reboot)
         systemctl reboot
@@ -38,7 +33,7 @@ then
       Suspend)
         systemctl suspend
         ;;
-      Hibernate (Broken))
+      Hibernate)
         systemctl hibernate
         ;;
       *)
