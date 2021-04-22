@@ -11,9 +11,9 @@ if does not work after suspend:
 
 ## setup
 
-`printd-enroll` and scan your right index finger 10x
+`fprintd-enroll` and scan your right index finger 8x
 
-`printd-verify` to verify
+`fprintd-verify` to verify
 
 
 Add pam_fprintd.so as sufficient to the top of the auth section of `/etc/pam.d/{login,su,sudo,gdm,lightdm,i3Lock}`
@@ -26,6 +26,7 @@ auth		sufficient  	pam_fprintd.so
 
 or to do first password and then fp:
 
-```auth		sufficient  	pam_unix.so try_first_pass likeauth nullok
+```
+auth		sufficient  	pam_unix.so try_first_pass likeauth nullok
 auth		sufficient  	pam_fprintd.so
 ```
