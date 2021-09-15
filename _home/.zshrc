@@ -133,7 +133,7 @@ alias photo="sxiv"
 alias foto="sxiv"
 alias video="mpv"
 
-alias a-vpn=/opt/Perimeter81/perimeter81
+alias perimeter81=/opt/Perimeter81/perimeter81
 
 alias mntnas="mount $NAS:/ /mnt/nas"
 
