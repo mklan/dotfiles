@@ -1,9 +1,9 @@
-# todo: remove soon
-i3-gaps
 # shortcut bindings
 sxhkd
+#window manager
 bspwm
-rxvt-unicode
+#terminal
+rxvt-unicode-pixbuf
 urxvt-font-size-git
 # bar
 polybar
@@ -11,17 +11,21 @@ polybar
 rofi
 # symlink dotfiles
 stow
+# 
 redshift
 # compositor (blurr, opacity)
 picom-tryone-git
+# background manager
 feh
 dfc
+# backlight controls
 light
 # generate theme from image
 python-pywal
 xorg-xrandr
 arandr
 autorandr
+# bash
 zsh
 pamixer
 xbindkeys
@@ -45,6 +49,7 @@ wpgtk-git
 # live GTK+ reload
 xsettingsd
 lxsession
+# lock screen
 i3lock-color-git
 i3lock-fancy-rapid-git
 xorg-xbacklight

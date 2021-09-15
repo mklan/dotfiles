@@ -32,7 +32,7 @@ line-color = #f00
 border-size = 0
 border-color = #00000000
 
-padding-left = 0
+padding-left = 2
 padding-right = 2
 
 module-margin-left = 1
@@ -46,7 +46,7 @@ font-3 = "Font Awesome 5 Free:style=Regular:pixelsize=10;1"
 font-4 = "Font Awesome 5 Free:style=Solid:pixelsize=10;1"
 font-5 = "Font Awesome 5 Brands:pixelsize=10;1"
 
-modules-left = bspwm media
+modules-left = apps bspwm media
 modules-center = clock date calendar
 modules-right = pulseaudio backlight temperature memory cpu battery logout
 tray-position = right
@@ -296,6 +296,12 @@ label = "%date%"
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
+
+
+[module/apps]
+type = custom/text
+click-left = exec rofi -show run
+content = "Apps"
 
 
 [module/calendar]
