@@ -1,6 +1,6 @@
 # .dotfiles
 
-arch system configuration using bspwm as the window manager
+GNU/Linux system configuration using bspwm as window manager
 
 ![Desktop Screenshot](https://github.com/mklan/dotfiles/blob/master/screenshots/desktop.jpg)
 
@@ -10,7 +10,7 @@ arch system configuration using bspwm as the window manager
 
 ![Theme switching](https://github.com/mklan/dotfiles/blob/master/screenshots/demo.gif)
 
-## Core system dependencies
+## Core system components
 
 - bspwm
 - sxhkd
@@ -19,10 +19,8 @@ arch system configuration using bspwm as the window manager
 - dunst
 - urxvt
 - zsh
-- vim
 - i3-lock
-- autorandr
-- picom-tryone-git
+- picom
 - wpg
 
 For a complete list look into `arch-pkglist`
