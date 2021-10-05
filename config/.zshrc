@@ -133,6 +133,8 @@ alias photo="sxiv"
 alias foto="sxiv"
 alias video="mpv"
 
+alias file2cb="xclip -sel c <"
+
 alias perimeter81=/opt/Perimeter81/perimeter81
 
 alias mntnas="mount $NAS:/ /mnt/nas"
@@ -169,6 +171,12 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export JAVA_HOME=/usr/lib/jvm/default
+
+DEVKITPRO=/opt/devkitpro
+DEVKITARM=/opt/devkitpro/devkitARM
+DEVKITPPC=/opt/devkitpro/devkitPPC
+
+
 
 # tabtab source for packages
 # uninstall by removing these lines
