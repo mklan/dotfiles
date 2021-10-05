@@ -7,16 +7,14 @@ function main {
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
 	  installList './arch-pkglist'
-    # install theme
-    wpg-install.sh -g -b -d -i
-    wpg -s ${1}
   fi
 
+  # install theme
+  wpg-install.sh -g -b -d -i
+  wpg -s ${1}
  
   cp scripts/* /usr/local/bin
 
-  mkdir -p ~/.cron
-  ln -sf $(pwd)/cron/* ~/.cron/
 
   createSymlinks
   installZsh
@@ -83,11 +81,8 @@ function createSymlinks {
   # create symlinks
   stow config
   
+  # patch
   ln -sf $(pwd)/_patches/mic_mute_external/lenovo-mutemic /etc/acpi/events/lenovo-mutemic
-
- # todo: better wallpaper management
-  mkdir -p ~/wallpaper
-  ln -sf $(pwd)/wallpaper/* ~/wallpaper/
 
   sudo mkdir -p /etc/X11/xorg.conf.d
   sudo ln -sf $(pwd)/X11/xorg.conf.d/* /etc/X11/xorg.conf.d/
@@ -95,13 +90,8 @@ function createSymlinks {
 #  profileFolder=$(ls $HOME/.mozilla/firefox/ | grep .default)
 #  ln -sf $(pwd)/firefox/* ~/.mozilla/firefox/$profileFolder/
 
-  mkdir -p ~/.config/fusuma/
-  ln -sf $(pwd)/fusuma/* $HOME/.config/fusuma/
+  # fusuma needs this 
   sudo gpasswd -a $USER input
-
-  mkdir -p $HOME/.todo
-  ln -sf $(pwd)/todo/* $HOME/.todo/
-
 
 
   sudo ln -sf $(pwd)/bluetooth/51-blueman.rules  /usr/share/polkit-1/rules.d/51-blueman.rules
