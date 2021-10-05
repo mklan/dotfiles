@@ -36,7 +36,7 @@ super + Escape
 # shift + alt + {q,r}
 #	bspc {quit,wm -r}
 
-# quit/restart bspwm
+# description: restart bspwm
 shift + alt + r
 	bspc wm -r; \
 	notify-send "bspwm restart";
@@ -45,7 +45,7 @@ shift + alt + r
 #super + {_,shift + }q
 #	bspc node -{c,k}
 
-# close
+# description: close window
 alt + shift + q
 	bspc node -c
 
@@ -66,11 +66,11 @@ super + g
 #
 
 
-# Toggle floating
+# description: Toggle floating
 super + space
     bspc node -t tiled -g sticky=off || bspc node -t floating
 
-# Toggle horizontal/vertical
+# description: Rotate windows
 super + e
     bspc node @parent -R 90
 
