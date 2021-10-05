@@ -25,7 +25,7 @@ GNU/Linux system configuration using bspwm as window manager
 
 For a complete list look into `arch-pkglist`
 
-## Install
+## Install ( arch-linux )
 
 > **Warning!** This is a highly customized install for my system (ThinkPad t480s). The install script is very basic and hacked together. Use at your own risk! Preferably just pick the config files one by one.
 
@@ -33,12 +33,20 @@ For a complete list look into `arch-pkglist`
 
 ## Misc
 
-### Firefox tearing / preformance
-
-set `layers.acceleration.force-enabled` to true in `about:config`
-
-###
+### Add open in new terminal to Thunar
 
 Thunar -> Edit -> Configure custom actions...
 
 Open in new Terminal: `sh -c 'cd %f;urxvt'`
+
+## Troubleshooting
+
+### Firefox tearing / preformance
+
+set `layers.acceleration.force-enabled` to true in `about:config`
+
+### Blueman does not open Devices
+
+to fix run:
+
+`dbus-update-activation-environment DISPLAY`
