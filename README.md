@@ -37,7 +37,7 @@ press `super + return` to open terminal
 
 press `super + d` to open app launcher
 
-press `super + alt + q` to close window
+press `alt + shift + q` to close window
 
 press `super + [0-9]` to switch desktops
 
