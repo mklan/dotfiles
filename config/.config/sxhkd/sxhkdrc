@@ -65,10 +65,10 @@ super + g
 # state/flags
 #
 
-
 # description: Toggle floating
 super + space
-    bspc node -t tiled -g sticky=off || bspc node -t floating
+    bspc node focused -t tiled -g sticky=off || bspc node focused -t floating; \
+		bspc node -f
 
 # description: Rotate windows
 super + e
@@ -189,6 +189,10 @@ super + ctrl + shift + space
 super + alt + {Left,Down,Up,Right}
   ~/.config/bspwm/bspwm_resize.sh {west,south,north,east} 30
 #  ~/.config/bspwm/resize.transition.sh {west,south,north,east} 30
+
+super + alt + shift + {Left,Down,Up,Right}
+  # TODO: resize on top + left edges
+  # ~/.config/bspwm/bspwm_resize.sh {west,south,north,east} 30
 
 super + shift + {Left,Down,Up,Right}
   ~/.config/bspwm/move {west,south,north,east}
