@@ -38,7 +38,7 @@ function main {
   # get vscode pywal theme
   # git clone https://github.com/Bluedrack28/vscode-wal.git ~/.vscode-oss/extensions/vscode-wal
 
-  # install additionall apps
+  # install additional apps
 
   read -p "Do you want to install additional apps (arch only) [y/N]?" -n 1 -r
   echo
@@ -80,7 +80,8 @@ function createSymlinks {
   # just in case
   mv ~/.config/neofetch/config.conf ~/.config/neofetch/config.conf.bak
 
-  stow neofetch bspwm sxhkd polybar autorandr i3 vim rofi picom ranger wpg
+  # create symlinks
+  stow config
   
   ln -sf $(pwd)/_patches/mic_mute_external/lenovo-mutemic /etc/acpi/events/lenovo-mutemic
 
