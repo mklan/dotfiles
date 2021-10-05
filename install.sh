@@ -89,8 +89,6 @@ function createSymlinks {
   mkdir -p ~/wallpaper
   ln -sf $(pwd)/wallpaper/* ~/wallpaper/
 
-  ln -sf $(pwd)/_home/.* ~/
-
   sudo mkdir -p /etc/X11/xorg.conf.d
   sudo ln -sf $(pwd)/X11/xorg.conf.d/* /etc/X11/xorg.conf.d/
 
