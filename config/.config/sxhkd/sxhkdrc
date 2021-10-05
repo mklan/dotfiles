@@ -2,27 +2,31 @@
 # wm independent hotkeys
 #
 
-# terminal emulator
+# description: display shortcuts
+super + h
+	sxkhkd-bindings d
+
+# description: open terminal emulator
 super + Return
 	urxvt
 
-# program launcher
+# description: app launcher
 super + d
 	rofi -show run
 
-# vscode project launcher
+# description: vscode project launcher
 super + c
 	vscode-projects
 
-# make sxhkd reload its configuration files:
+# description: shutdown menu
+super + alt + q
+	power-menu "bspc quit"
+
+# description: reload sxhkd
 super + Escape
 	notify-send "sxhkd restarted"; \
 	pkill -USR1 -x sxhkd
 
-
-# shutdown menus
-super + alt + q
-	power-menu "bspc quit"
 
 #
 # bspwm hotkeys
