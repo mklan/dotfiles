@@ -31,6 +31,18 @@ For a complete list look into `arch-pkglist`
 
 `./install.sh /path/to/your/wallpaper.jpg`.
 
+## Usage
+
+press `super + return` to open terminal
+
+press `super + d` to open app launcher
+
+press `super + alt + q` to close window
+
+press `super + [0-9]` to switch desktops
+
+press `super + h` to display rest of the key-bindings
+
 ## Misc
 
 ### Add open in new terminal to Thunar
