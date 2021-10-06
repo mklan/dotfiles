@@ -30,13 +30,9 @@ function simulateRofiExec {
   xdotool key Escape
 }
 
-function execInTerm {
-  xdotool key Super_L+Return
-  xdotool click 1
-
+function enterText {
   toggleScreenKey
 
-  sleep 0.1
   xdotool type "${1}"
   sleep 0.3
   xdotool key Return
@@ -44,10 +40,17 @@ function execInTerm {
   toggleScreenKey
 }
 
+function execInTerm {
+  xdotool key Super_L+Return
+  xdotool click 1
+
+  enterText "${1}"
+}
+
 
 screenkey &
 
-bspc desktop -f 3
+bspc desktop -f 3 # make it where run
 
 sleep 1
 
@@ -120,6 +123,8 @@ execInTerm 'wallpaper ~/wallpaper/tunnel.jpg'
 sleep 5
 
 execInTerm 'wallpaper ~/wallpaper/trees.jpg'
+
+enterText "ls -la"
 
 
 
