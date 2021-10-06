@@ -90,7 +90,7 @@ super + ctrl + {m,x,y,z}
 # set pip mode
 
 super + alt + z
-  ~/.config/bspwm/pip
+  ~/.config/bspwm/corner-float-node
 
 #
 # focus/swap
