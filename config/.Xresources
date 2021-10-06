@@ -9,7 +9,7 @@ URxvt*scrollBar: false
 URxvt*font: xft:Source\ Code\ Pro\ Medium:size=12:antialias=true:hinting=true
 
 URxvt*depth: 32
-URxvt*internalBorder: 10
+URxvt*internalBorder: 20
 URxvt.cursorBlink: 1
 
 URxvt.keysym.C-Up:     font-size:increase
