@@ -1,0 +1,18 @@
+#!/bin/bash
+
+NODE_WIDTH=$((320*2))
+NODE_HEIGHT=$((180*2))
+MARGIN=50
+
+bspc node focused -t floating -g sticky=on
+bspc node -f
+
+DIMENSIONS=$(xdpyinfo | grep dimensions: | awk '{print $2}')
+SCREEN_WIDTH=$(echo $DIMENSIONS | sed -r 's/x.*//')
+SCREEN_HEIGHT=$(echo $DIMENSIONS | sed -r 's/.*x//')
+
+NODE_X=$(($SCREEN_WIDTH - $NODE_WIDTH - $MARGIN))
+NODE_Y=$(($SCREEN_HEIGHT - $NODE_HEIGHT - $MARGIN))
+
+xdo resize -w $NODE_WIDTH -h $NODE_HEIGHT
+xdo move -x $NODE_X -y $NODE_Y
