@@ -19,7 +19,9 @@ xinput --set-prop "12" "libinput Accel Speed" 0.5
 pgrep xss-lock || xss-lock --transfer-sleep-lock -- lock --nofork &
 
 # key-bindings
-pgrep sxhkd || mkdir -p $HOME/.logs && sxhkd -m -1 >> $HOME/.logs/sxhkd 2>&1 &
+pgrep sxhkd || sxhkd -m -1 &
+# FOR Debug: Not Prod!
+# pgrep sxhkd || mkdir -p $HOME/.logs && sxhkd -m -1 >> $HOME/.logs/sxhkd 2>&1 &
 
 # compositor
 pgrep picom || picom --experimental-backends &
@@ -27,7 +29,7 @@ pgrep picom || picom --experimental-backends &
 
 # BSPWM CONFIG
 
-# fix from broken occupied empty tiles 
+# fix for broken occupied empty tiles [not working]
 # ${HOME}/.config/bspwm/kill_empty_nodes.sh &
 
 ${HOME}/.config/bspwm/workspaces_multimonitor &
@@ -41,7 +43,7 @@ bspc config pointer_motion_interval 5
 bspc config pointer_action1 move
 bspc config pointer_action2 resize_side
 
-bspc config border_width         10
+bspc config border_width         2
 bspc config window_gap          10
 
 bspc config split_ratio          0.52
