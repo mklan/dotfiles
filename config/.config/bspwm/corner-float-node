@@ -14,5 +14,4 @@ SCREEN_HEIGHT=$(echo $DIMENSIONS | sed -r 's/.*x//')
 NODE_X=$(($SCREEN_WIDTH - $NODE_WIDTH - $MARGIN))
 NODE_Y=$(($SCREEN_HEIGHT - $NODE_HEIGHT - $MARGIN))
 
-xdo resize -w $NODE_WIDTH -h $NODE_HEIGHT
-xdo move -x $NODE_X -y $NODE_Y
+xdotool getactivewindow windowsize $NODE_WIDTH $NODE_HEIGHT windowmove $NODE_X $NODE_Y
