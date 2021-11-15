@@ -88,3 +88,7 @@ cronie
 unarchiver
 # lock on lid close
 xss-lock
+# polybar helper
+pulseaudio-control
+# drawing rectangles (could be helpful for spawning new windows or screenshots)
+slop
