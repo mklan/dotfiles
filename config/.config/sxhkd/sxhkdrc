@@ -87,8 +87,7 @@ super + ctrl + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
 
 
-# set pip mode
-
+# description: corner float mode
 super + alt + z
   ~/.config/bspwm/corner-float-node
 
@@ -212,10 +211,10 @@ super + shift + {Left,Down,Up,Right}
 # FN-keys
 
 XF86AudioMute
-	amixer sset Master toggle; pkill -RTMIN+10 blocks
+	pulseaudio-control togmute
 
 XF86Audio{Raise,Lower}Volume
-	amixer sset Master 5%{+,-}; pkill -RTMIN+10 blocks
+	pulseaudio-control --volume-max 130 {up,down}
 
 XF86AudioMicMute
 	amixer set Capture toggle
