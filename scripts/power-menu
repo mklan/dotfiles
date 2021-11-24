@@ -5,7 +5,7 @@
 
 # 2016 Oliver Kraitschy - http://okraits.de
 
-OPTIONS="Exit window manager\nReboot system\nPower-off system\nSuspend system\nHibernate system (broken)"
+OPTIONS="Abort\nExit window manager\nReboot system\nPower-off system\nSuspend system\nHibernate system (broken)"
 
 #!/usr/bin/bash
 
@@ -21,6 +21,9 @@ option=`echo -e $OPTIONS | $LAUNCHER | awk '{print $1}' | tr -d '\r\n'`
 if [ ${#option} -gt 0 ]
 then
     case $option in
+      Abort)
+        xdotool key Escape
+        ;;
       Exit)
         bspc quit
         ;;
