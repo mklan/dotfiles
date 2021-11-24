@@ -125,6 +125,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias t=todo.sh
+alias todo=todo.sh
 alias df=dfc
 alias youtube=mpsyt
 alias y2mp3="youtube-dl --extract-audio --audio-format mp3"
@@ -136,8 +137,6 @@ alias video="mpv"
 alias file2cb="xclip -sel c <"
 
 alias perimeter81=/opt/Perimeter81/perimeter81
-
-alias mntnas="mount $NAS:/ /mnt/nas"
 
 alias week='date +%V'
 
