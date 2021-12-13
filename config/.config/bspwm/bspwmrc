@@ -73,8 +73,6 @@ pgrep dunst || dunst &
 pgrep redshift-gtk || redshift-gtk -l 48.20849:16.37208 & # vienna hardcoded for now
 # pgrep pasystray || pasystray & # why are there two instances (maybe lxsession)
 
-pgrep firefox || firefox -P Social &
-
 pgrep flameshot || flameshot &
 bash /home/matze/.config/bspwm/bspwm_colors.sh &
 
