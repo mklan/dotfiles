@@ -4,6 +4,9 @@
 # java UI fix
 wmname LG3D
 
+# fix for blueman-applet devices section not opening
+dbus-update-activation-environment DISPLAY
+
 
 $HOME/.config/wpg/wp_init.sh &
 xrdb ~/.Xresources
