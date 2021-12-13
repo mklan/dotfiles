@@ -25,9 +25,9 @@ GNU/Linux system configuration using bspwm as window manager
 
 For a complete list look into `arch-pkglist`
 
-## Install ( arch-linux )
+## Install (arch-linux)
 
-> **Warning!** This is a highly customized install for my system (ThinkPad t480s). The install script is very basic and hacked together. Use at your own risk! Preferably just pick the config files one by one.
+> **Warning!** This is a highly customized install script for my machine (ThinkPad t480s). It will propably break something on your system! Preferably just cherrypick the config files.
 
 `./install.sh /path/to/your/wallpaper.jpg`.
 
