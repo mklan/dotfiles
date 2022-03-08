@@ -48,7 +48,7 @@ font-5 = "Font Awesome 6 Brands:pixelsize=10;1"
 
 modules-left = apps bspwm media
 modules-center = clock date calendar
-modules-right = pulseaudio-control backlight temperature memory cpu battery logout
+modules-right = bluez-profile-toggle pulseaudio-control backlight temperature memory cpu battery logout
 tray-position = right
 tray-padding = 4
 
@@ -180,6 +180,14 @@ content = "Apps"
 type = custom/text
 click-left = exec firefox https://calendar.google.com
 content = ""
+
+[module/bluez-profile-toggle]
+type = custom/script
+exec = get-bluez-profile.sh
+label = "%output%"
+interval = 5
+content = "bt-mode"
+click-left = bluez-profile-switch.sh
 
 [module/pulseaudio-control]
 type = custom/script
