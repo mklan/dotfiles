@@ -6,7 +6,8 @@
 pkill -u "$USER" -USR1 dunst
 
 # lock the screen
-i3lock-fancy-rapid 5 3 -n --ringcolor=${color1}50 --insidecolor='#00000000' --veriftext="" --wrongtext=""
+#--ringcolor=${color1}50 --insidecolor='#00000000' --veriftext="" --wrongtext=""
+i3lock-fancy-rapid 5 3 -n 
 
 # TODO: create wal template
 # i3lock-fancy-rapid 5 3 -n --ringcolor=ffffffff --ringwrongcolor=ffffffff --keyhlcolor=d23c3dff --insidevercolor=fecf4dff --insidewrongcolor=d23c3dff --veriftext="" --wrongtext=""
