@@ -10,6 +10,9 @@ super + h
 super + Return
 	urxvt
 
+super + alt + Return
+	~/.config/bspwm/spawn_float.sh urxvt 1550 400 500 -1
+
 # description: app launcher
 super + d
 	rofi -show run
@@ -72,7 +75,8 @@ super + space
 
 # description: Rotate windows
 super + e
-    bspc node @parent -R 90
+    bspc node @parent -R 90; \
+#		bspc node -f last
 
 # Rotate the tree from the current nodes parent
 super + control + {Right, Left}
