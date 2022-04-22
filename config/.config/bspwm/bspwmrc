@@ -1,5 +1,7 @@
 #! /bin/sh
 
+. ~/.cache/wal/colors.sh 
+
 
 # java UI fix
 wmname LG3D
@@ -53,6 +55,10 @@ bspc config split_ratio          0.52
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
+bspc config focused_border_color "$color1"
+bspc config normal_border_color "$color4"
+
+
 bspc config directional_focus_tightness low
 
 bspc rule -a Chromium desktop='^2'
@@ -64,6 +70,7 @@ bspc rule -a keepassxc desktop='^9'
 
 bspc rule -a Pamac-manager state=floating center=on
 bspc rule -a Pamac-updater state=floating center=on
+bspc rule -a teamviewer state=floating center=on
 bspc rule -a Lua5.1 state=floating # gifine
 
 # AUTOSTART
@@ -77,6 +84,5 @@ pgrep redshift-gtk || redshift-gtk -l 48.20849:16.37208 & # vienna hardcoded for
 # pgrep pasystray || pasystray & # why are there two instances (maybe lxsession)
 
 pgrep flameshot || flameshot &
-bash /home/matze/.config/bspwm/bspwm_colors.sh &
 
 

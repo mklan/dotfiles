@@ -2,6 +2,16 @@
 
 # A WIP. To be made better in the future.
 
+function execute_binding {
+	# ignore comments
+	[[ $1 = \#* ]] && return
+
+	withoutSpace=${1//[[:blank:]]/}
+	sanitized=${withoutSpace//super/Super_L}
+	xdotool key "${sanitized}"
+}
+ 
+
 cmd="\grep -A 1 description ""$HOME""/.config/sxhkd/sxhkdrc | sed -e s/--/\ /g"
 case $1 in
 	d) cmd="$cmd -e s/description:\ //gI" && echo -e "$(eval "$cmd")" | rofi -dmenu -p "sxhkd keybindings";; # If "d" arg is passed, show descriptions without "description: ".
@@ -19,5 +29,6 @@ h: Display this help message
 Anything not the above args, or nothing at all: Display keybindings and descriptions like normal
 "
 		;;
-	*) echo -e "$(eval "$cmd")" | rofi -dmenu -p "sxhkd keybindings";; # If anything (or nothing) is passed, display keybindings like normal.
+	*) binding="$(echo -e "$(eval "$cmd")" | rofi -dmenu -p "sxhkd keybindings")"
+	   execute_binding "$binding";; # If anything (or nothing) is passed, display keybindings like normal.
 esac

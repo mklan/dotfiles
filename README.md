@@ -25,6 +25,11 @@ GNU/Linux system configuration using bspwm as window manager
 
 For a complete list look into `arch-pkglist`
 
+## Features
+
+`super + c` vscode projects launcher
+
+
 ## Install (arch-linux)
 
 > **Warning!** This is a highly customized install script for my machine (ThinkPad t480s). It will propably break something on your system! Preferably just cherrypick the config files.

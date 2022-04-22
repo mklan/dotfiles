@@ -3,7 +3,7 @@
 # src: https://github.com/knadh/rofi-vscode-projects
 
 # Path to the projects.json file (vscode alefragnani project manager)
-SRC=~/.config/Code/User/globalStorage/alefragnani.project-manager/projects.json
+SRC=~/.config/Code\ -\ OSS/User/globalStorage/alefragnani.project-manager/projects.json
 
 prj=$(jq -r "sort_by(.name) | .[].name" < "$SRC" | rofi -dmenu -p "vscode project" $@)
 
