@@ -178,6 +178,7 @@ DEVKITPRO=/opt/devkitpro
 DEVKITARM=/opt/devkitpro/devkitARM
 DEVKITPPC=/opt/devkitpro/devkitPPC
 
+export PATH=~/.local/bin:$PATH
 
 
 # tabtab source for packages

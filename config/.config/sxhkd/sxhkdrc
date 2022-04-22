@@ -243,7 +243,7 @@ super + alt + l
 # Screenshot
 
 super + Print
-	mkdir -p $HOME/Screenshots && flameshot gui -p $HOME/Screenshots
+	flameshot gui
 	
 
 # Messenger

@@ -1,7 +1,3 @@
-[colors]
-	background = "{color0}"
-	foreground = "{color15}"
-
 [global]
     ### Display ###
 
@@ -76,17 +72,17 @@
     context = ctrl+shift+period
 
 [urgency_low]
-    background = colors.background
-    foreground = colors.foreground
+    background = "{color0}"
+    foreground = "{color15}"
     timeout = 10
 
 [urgency_normal]
-    background = colors.background
-    foreground = colors.foreground
+    background = "{color0}"
+    foreground = "{color15}"
     timeout = 10
 
 [urgency_critical]
-    background = colors.background
-    foreground = colors.foreground
-    frame_color = "{color9}"
+    background = "{color0}"
+    foreground = "{color15}"
+    frame_color = "{color15}"
     timeout = 0
