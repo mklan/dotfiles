@@ -93,6 +93,7 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+source ~/.cache/wal/colors.sh
 
 
 # User configuration
@@ -123,6 +124,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+alias ts-node='ts-node --compiler-options "{ \"experimentalDecorators\": true }"'
 
 alias t=todo.sh
 alias todo=todo.sh
