@@ -32,7 +32,7 @@ xbindkeys
 pango
 # fonts
 ttf-ubuntu-font-family
-ttf-font-awesome
+ttf-font-awesome-5
 powerline-fonts
 adobe-source-code-pro-fonts
 # nerd-fonts-complete  (this is too big)
