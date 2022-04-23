@@ -80,6 +80,9 @@ function createSymlinks {
 
   # create symlinks
   stow config
+
+  # dunst pywal theming
+  ln -sf "${HOME}/.cache/wal/dunstrc" "${HOME}/.config/dunst/dunstrc"
   
   # patch
   ln -sf $(pwd)/_patches/mic_mute_external/lenovo-mutemic /etc/acpi/events/lenovo-mutemic
