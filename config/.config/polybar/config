@@ -8,9 +8,9 @@
 ;=====================================================
 
 [colors]
-background = ${colors.color7:#AA000000}
+background = ${xrdb.background:#AA000000}
 background-alt = #444
-foreground = ${xrdb:color7:#FFF}
+foreground = ${xrdb:foreground:#FFF}
 foreground-alt = #555
 primary = #ffb52a
 secondary = #e60053
