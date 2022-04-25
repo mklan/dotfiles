@@ -1,5 +1,4 @@
 #!/bin/bash
-# https://faq.i3wm.org/question/5654/how-can-i-disable-notifications-when-the-screen-locks-and-enable-them-again-when-unlocking/
 . "${HOME}/.cache/wal/colors.sh"
 
 BLANK='#00000000'
@@ -11,6 +10,7 @@ WRONG="${color1}ee"
 
 
 # suspend message display
+# source: https://faq.i3wm.org/question/5654/how-can-i-disable-notifications-when-the-screen-locks-and-enable-them-again-when-unlocking/
 pkill -u "$USER" -USR1 dunst
 
 
