@@ -2,10 +2,17 @@
 
 # src: https://github.com/knadh/rofi-vscode-projects
 
-# Path to the projects.json file (vscode alefragnani project manager)
-SRC=~/.config/Code\ -\ OSS/User/globalStorage/alefragnani.project-manager/projects.json
+TITLE='vscode-project'
 
-prj=$(jq -r "sort_by(.name) | .[].name" < "$SRC" | rofi -dmenu -p "vscode project" $@)
+LAUNCHER='rofi -dmenu -p'
+#LAUNCHER='dmenu -p'
+
+# Path to the projects.json file (vscode alefragnani project manager)
+# SRC=~/.config/Code\ -\ OSS/User/globalStorage/alefragnani.project-manager/projects.json
+SRC=~/.config/Code/User/globalStorage/alefragnani.project-manager/projects.json
+
+prj=$(jq -r "sort_by(.name) | .[].name" < "$SRC" | $LAUNCHER $TITLE $@)
+
 
 # If there was a selection, find its path from the src file and launch vscode.
 if [ -n "$prj" ]; then
