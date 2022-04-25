@@ -6,7 +6,6 @@ mpv
 mps-youtube
 chromium
 spotify
-sublime-text-dev
 httpie
 gestures
 code
@@ -22,3 +21,4 @@ sxiv
 #asci art font inside terminal
 figlet
 python-pywalfox
+kitty
