@@ -10,7 +10,7 @@ function main {
   fi
 
   # install theme
-  wpg-install.sh -g -b -d -i
+  wpg-install.sh -g -i
   wpg -s ${1}
  
   cp scripts/* /usr/local/bin
@@ -53,11 +53,12 @@ function installList {
   sudo pacman -S --noconfirm --needed base-devel git wget yajl dialog
   
   # todo figure out optional
-  installAurman
+  installYay
 
   # install packages from passed list
-  selection=sudo ./install/list-select.sh $1 "Select to install"
-  aurman -S --noedit --noconfirm --needed --skip_news $selection
+  selection=$(sudo ./install/list-select.sh $1 "Select to install")
+
+  yay -S --noeditmenu --nodiffmenu --nocleanmenu --noconfirm ${selection}
 }
 
 function installZsh {
@@ -70,7 +71,7 @@ function installZsh {
   git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
   # themes
-  aurman -S --noedit --noconfirm --needed --skip_news zsh-theme-powerlevel10k-git
+  yay -S --noeditmenu --nodiffmenu --nocleanmenu --noconfirm zsh-theme-powerlevel10k-git
 }
 
 function createSymlinks {
@@ -101,17 +102,16 @@ function createSymlinks {
 
 }
 
-function installAurman {
-  if ! command -v "aurman" &> /dev/null
+function installYay {
+  if ! command -v "yay" &> /dev/null
   then
-    echo "aurman not found"
-    git clone https://aur.archlinux.org/aurman.git
-    cd aurman
+    echo "yay not found! will install ..."
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
     makepkg -si --skipinteg --noconfirm --needed
     cd ..
-    rm -rf aurman
+    rm -rf yay
   fi
-
 }
 
 main
