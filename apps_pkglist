@@ -6,7 +6,6 @@ mpv
 mps-youtube
 chromium
 spotify
-sublime-text-dev
 httpie
 gestures
 code
@@ -21,3 +20,4 @@ flameshot
 sxiv
 #asci art font inside terminal
 figlet
+kitty
