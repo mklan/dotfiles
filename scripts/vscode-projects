@@ -6,6 +6,8 @@ TITLE='vscode-project'
 
 LAUNCHER='rofi -dmenu -p'
 #LAUNCHER='dmenu -p'
+#LAUNCHER='dmenu-mac -p'
+#LAUNCHER='choose'
 
 # Path to the projects.json file (vscode alefragnani project manager)
 # SRC=~/.config/Code\ -\ OSS/User/globalStorage/alefragnani.project-manager/projects.json
