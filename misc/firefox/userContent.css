@@ -1,0 +1,10 @@
+/* dark error page */
+
+.neterror{
+    background: #2F383E;
+    color: #D8CAAC; 
+}
+
+.neterror > #text-container > .title > h1 {
+    color: #D8CAAC; 
+}
