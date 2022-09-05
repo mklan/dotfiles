@@ -7,7 +7,7 @@ super + h
 	sxkhkd-bindings d
 
 # description: open terminal emulator
-super + Return
+ctrl + alt + super + Return
 	urxvt
 
 super + alt + Return
@@ -18,17 +18,18 @@ super + d
 	rofi -show run
 
 # description: vscode project launcher
-super + c
+super + alt + ctrl + c
 	vscode-projects
 
 # description: shutdown menu
-super + alt + q
+ctrl + alt + Delete
 	power-menu "bspc quit"
 
 # description: reload sxhkd
 super + Escape
 	notify-send "sxhkd restarted"; \
-	pkill -USR1 -x sxhkd
+	pkill -USR1 -x sxhkd; \
+	wpg -s $(wpg -c);
 
 
 #
@@ -49,7 +50,7 @@ shift + alt + r
 #	bspc node -{c,k}
 
 # description: close window
-alt + shift + q
+super + q
 	bspc node -c
 
 # alternate between the tiled and monocle layoutforeground
@@ -69,7 +70,7 @@ super + g
 #
 
 # description: Toggle floating
-super + space
+super + f
     bspc node focused -t tiled -g sticky=off || bspc node focused -t floating; \
 		bspc node -f
 
@@ -83,8 +84,8 @@ super + control + {Right, Left}
   bspc node @parent -C {forward, backward}
 
 # set the window state
-super + {t,shift + t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+# super + {t,shift + t,s,f}
+# 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
 
 # set the node flags
 super + ctrl + {m,x,y,z}
@@ -100,20 +101,20 @@ super + alt + z
 #
 
 # focus the node in the given direction
-super + shift + {h,j,k,l}
+super + alt + ctrl + {Left,Down,Up,Right}
 	bspc node -f {west,south,north,east}
 
 # focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
+#super + {p,b,comma,period}
+#	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous node in the current desktop
 super + {_,shift + }c
 	bspc node -f {next,prev}.local
 
 # focus the next/previous desktop in the current monitor
-super + bracket{left,right}
-	bspc desktop -f {prev,next}.local
+#super + bracket{left,right}
+#	bspc desktop -f {prev,next}.local
 
 # focus the last node/desktop
 alt + {grave,Tab}
@@ -136,20 +137,20 @@ super + {o,i}
 
 
 # move desktop to focused monitor
-alt + {1-9,0}
+super + ctrl + {1-9,0}
 	bspc desktop {1-9,10} --to-monitor focused -f
 
-# move node to desktop
-alt + shift + {1-9,0}
-    bspc node -d {1-9,10}
+# move node to desktop and focus
+super + ctrl + alt + {1-9,0}
+    bspc node -d {1-9,10} -f
 
 # focus desktop
-super + {1-9,0}
+ctrl + {1-9,0}
 	bspc desktop -f {1-9,10}
 
-# move node to desktop and focus
-super + shift + {1-9,0}
-    bspc node -d {1-9,10} -f
+# move node to desktop
+super + ctrl + alt + shift + {1-9,0}
+    bspc node -d {1-9,10}
 
 super + {odiaeresis,adiaeresis}
     bspc monitor ^{1-2} -f
@@ -226,9 +227,11 @@ XF86AudioMicMute
 XF86MonBrightness{Down,Up}
 		brightness {-3,3}
 
-
 super + XF86MonBrightness{Down,Up}
 	brightness {-1,1}
+
+ctrl + super + alt + XF86MonBrightness{Down,Up}
+	light -S {0.07, 100}
 
 # Lock
 
@@ -249,4 +252,3 @@ super + Print
 # Messenger
 super + alt + m
 	firefox -P Social
-	
