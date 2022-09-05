@@ -92,3 +92,5 @@ xss-lock
 pulseaudio-control
 # drawing rectangles (could be helpful for spawning new windows or screenshots)
 slop
+# touchpad gestures
+ruby-fusuma

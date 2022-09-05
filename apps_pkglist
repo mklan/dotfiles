@@ -22,3 +22,5 @@ sxiv
 figlet
 python-pywalfox
 kitty
+# pdfunite a.pdf b.pdf out.pdf
+poppler

@@ -52,7 +52,7 @@ function installList {
   # install basic dependencies
   sudo pacman -S --noconfirm --needed base-devel git wget yajl dialog
   
-  # todo figure out optional
+  # TODO make optional
   installYay
 
   # install packages from passed list
@@ -94,7 +94,7 @@ function createSymlinks {
 #  profileFolder=$(ls $HOME/.mozilla/firefox/ | grep .default)
 #  ln -sf $(pwd)/firefox/* ~/.mozilla/firefox/$profileFolder/
 
-  # fusuma needs this 
+  # fusuma (touchpad gesture) needs this 
   sudo gpasswd -a $USER input
 
 
