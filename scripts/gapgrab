@@ -1,5 +1,5 @@
 #!/bin/bash
-#intented to allow resizing bspwm windows by dragging them from window gap. Requires rootmenu
+#intented to allow resizing bspwm windows by dragging them from window gap. Requires rootmenu and wattr
 
 
 focused="$(bspc query -N -n focused)"; [ "$focused" ] || exit
