@@ -135,17 +135,22 @@ alias y2mp3="youtube-dl --extract-audio --audio-format mp3"
 alias y2mp4="youtube-dl -i -f mp4"
 alias photo="sxiv"
 alias foto="sxiv"
+alias image="sxiv"
 alias video="mpv"
+alias play="mpv"
 
 alias file2cb="xclip -sel c <"
 
-alias perimeter81=/opt/Perimeter81/perimeter81
-
 alias week='date +%V'
 
+# TODO port to yay
 alias aur="aurman -S --noedit --noconfirm --needed --skip_news"
 
 alias entpacke='unar -d'
+alias extract='unar -d'
+
+alias pdfmerge='pdfunite'
+alias mergepdf='pdfunite'
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
@@ -187,3 +192,7 @@ export PATH=~/.local/bin:$PATH
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
