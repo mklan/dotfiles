@@ -1,0 +1,76 @@
+* {
+    font-family: MesloLGS NF;
+    font-size: 13px;
+    margin-top: 1px; /* keep things off the top area, since flexbox doesnt work for centering */
+}
+
+window#waybar {
+    background-color: #272727;
+    /* border-top: 3px solid #b5740a; */
+    color: #cacaca;
+}
+
+widget * {
+  /* background-color: #383838; */
+}
+
+widget > * {
+    padding: 0 10px;
+    margin: 1px 4px;
+}
+
+.modules-left, .modules-center, .modules-right {
+  padding: 0px 8px;
+}
+
+#workspaces {
+    padding: 0px 5px;
+}
+
+#workspaces button {
+    padding: 0;
+    background: transparent;
+    color: #cacaca;
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces .active * {
+  background-color: #4f4f4f;
+  color: #c5841a;
+}
+
+#mode {
+    background: #64727D;
+    border-bottom: 3px solid white;
+}
+
+@keyframes pulse-green {
+  to {
+    background-color: #008038;
+  }
+}
+
+#battery.charging {
+    color: #cacaca;
+    animation-name: pulse-green;
+    animation-duration: 4s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes pulse-red {
+  to {
+    background-color: #cf3030;
+  }
+}
+
+#battery.warning:not(.charging) {
+    color: #cacaca;
+    animation-name: pulse-red;
+    animation-duration: 4s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
