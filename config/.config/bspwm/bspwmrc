@@ -18,6 +18,9 @@ xsetroot -cursor_name left_ptr &
 
 # set trackpoint speed
 xinput --set-prop "12" "libinput Accel Speed" 0.5
+# set natural scrolling
+xinput --set-prop "11" "libinput Natural Scrolling Enabled" 1
+xinput --set-prop "11" "libinput Natural Scrolling Enabled Default" 1
 
 
 # lock on suspend
@@ -25,6 +28,10 @@ pgrep xss-lock || xss-lock --transfer-sleep-lock -- lock --nofork &
 
 # key-bindings
 pgrep sxhkd || sxhkd -m -1 &
+
+# touchpad gestures
+pgrep fusuma || fusuma &
+
 # FOR Debug: Not Prod!
 # pgrep sxhkd || mkdir -p $HOME/.logs && sxhkd -m -1 >> $HOME/.logs/sxhkd 2>&1 &
 
@@ -61,13 +68,12 @@ bspc config normal_border_color "$color4"
 
 bspc config directional_focus_tightness low
 
-bspc rule -a Chromium desktop='^2'
+bspc rule -a Chromium desktop='^3'
 bspc rule -a Firefox desktop='^2'
-bspc rule -a code desktop='^10'
-bspc rule -a code-oss desktop='^10'
 bspc rule -a Spotify desktop='^7'
 bspc rule -a keepassxc desktop='^9'
 
+bspc rule -a KeePassXC state=floating center=on
 bspc rule -a Pamac-manager state=floating center=on
 bspc rule -a Pamac-updater state=floating center=on
 bspc rule -a teamviewer state=floating center=on
@@ -75,6 +81,8 @@ bspc rule -a Lua5.1 state=floating # gifine
 
 # AUTOSTART
 pgrep lxsession || lxsession &
+
+# xrandr --output eDP-1 --scale 0.75x0.75
 
 
 $HOME/.config/polybar/launch.sh

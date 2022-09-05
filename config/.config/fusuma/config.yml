@@ -1,9 +1,9 @@
 swipe:
   3: 
     left: 
-      command: 'xdotool key super+Left'
+      command: 'bspc desktop -f next.occupied.local'
     right: 
-      command: 'xdotool key super+Right'
+      command: 'bspc desktop -f prev.occupied.local'
 
 pinch:
   in:
@@ -16,5 +16,5 @@ threshold:
   pinch: 0.2
 
 interval:
-  swipe: 0.2
+  swipe: 0.4
   pinch: 0.2
