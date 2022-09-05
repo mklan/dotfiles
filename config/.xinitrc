@@ -1,2 +1,4 @@
-firefox -P Social &
+
+xrandr --dpi 96
+
 exec bspwm
