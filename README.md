@@ -27,9 +27,9 @@ For a complete list look into `arch-pkglist`
 
 ## Features
 
-`super + c` vscode projects launcher
-`ctrö + al + super + brightnessUp` set max brightness
-`ctrö + al + super + brightnessDown` set lowest brightness
+`ctrl + alt + super + c` vscode projects launcher
+`ctrl + alt + super + brightnessUp` set max brightness
+`ctrl + alt + super + brightnessDown` set lowest brightness
 `super + k` toggle KeepassXC
 
 
