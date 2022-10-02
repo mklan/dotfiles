@@ -18,6 +18,10 @@ super + alt + Return
 super + d
 	rofi -show run
 
+# toggle KeePassXC
+super + k
+	cd ~/.config/bspwm/scripts && ./toggleKeePass.mjs
+
 # description: vscode project launcher
 super + alt + ctrl + c
 	vscode-projects
@@ -145,7 +149,7 @@ super + ctrl + {1-9,0}
 super + ctrl + alt + {1-9,0}
     bspc node -d {1-9,10} -f
 
-# focus desktop
+# description: focus desktop
 ctrl + {1-9,0}
 	bspc desktop -f {1-9,10}
 
