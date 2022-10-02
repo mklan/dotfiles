@@ -1,0 +1,4 @@
+#! /bin/sh
+
+DIMENSIONS=$(xdpyinfo | grep dimensions: | awk '{print $2}')
+echo $DIMENSIONS | sed -r 's/x.*//'
