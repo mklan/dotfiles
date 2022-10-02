@@ -1,3 +1,6 @@
+# uncomment to measure statup time of plugins (also uncomment last line)
+# zmodload zsh/zprof
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -6,7 +9,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -76,18 +79,18 @@ ENABLE_CORRECTION="true"
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
+export NVM_LAZY=1
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
   docker
   npm
   yarn
-  node
+  node # usage: node-docs fs
+  nvm
   extract
   httpie
-  kubectl
-  history
-  z
+  z # usage: z dotfiles (quick dir access)
   zsh-autosuggestions
 )
 
@@ -147,7 +150,7 @@ alias week='date +%V'
 alias aur="aurman -S --noedit --noconfirm --needed --skip_news"
 
 alias entpacke='unar -d'
-alias extract='unar -d'
+# alias extract='unar -d' use extract zsh plugin
 
 alias pdfmerge='pdfunite'
 alias mergepdf='pdfunite'
@@ -170,18 +173,7 @@ export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 alias jdownloader="wmname compiz && jdownloader &"
 
 
-
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-
 export JAVA_HOME=/usr/lib/jvm/default
-
-DEVKITPRO=/opt/devkitpro
-DEVKITARM=/opt/devkitpro/devkitARM
-DEVKITPPC=/opt/devkitpro/devkitPPC
 
 export PATH=~/.local/bin:$PATH
 
@@ -193,6 +185,5 @@ export PATH=~/.local/bin:$PATH
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# uncomment to measure statup time of plugins (also uncomment first line)
+#zprof
