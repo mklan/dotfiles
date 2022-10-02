@@ -10,8 +10,9 @@ super + h
 ctrl + alt + super + Return
 	urxvt
 
+# description: floating terminal
 super + alt + Return
-	~/.config/bspwm/spawn_float.sh urxvt 1550 400 500 -1
+	bottom_terminal
 
 # description: app launcher
 super + d

@@ -1,0 +1,3 @@
+#! /bin/sh
+
+~/.config/bspwm/spawn_float_sticky.sh urxvt $(($(getWidth)-8)) 500 0 -10
