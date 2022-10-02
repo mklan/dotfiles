@@ -71,7 +71,7 @@ bspc config directional_focus_tightness low
 bspc rule -a Chromium desktop='^3'
 bspc rule -a Firefox desktop='^2'
 bspc rule -a Spotify desktop='^7'
-bspc rule -a keepassxc desktop='^9'
+bspc rule -a KeePassXC desktop='^9'
 
 bspc rule -a KeePassXC state=floating center=on
 bspc rule -a Pamac-manager state=floating center=on
