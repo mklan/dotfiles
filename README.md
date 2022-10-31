@@ -28,8 +28,11 @@ For a complete list look into `arch-pkglist`
 ## Features
 
 `ctrl + alt + super + c` vscode projects launcher
+
 `ctrl + alt + super + brightnessUp` set max brightness
+
 `ctrl + alt + super + brightnessDown` set lowest brightness
+
 `super + k` toggle KeepassXC
 
 
@@ -42,16 +45,14 @@ For a complete list look into `arch-pkglist`
 
 ## Usage
 
-press `super + return` to open terminal
+press `ctrl + alt + super + return` to open terminal
 
+press `alt + super + return` to open bottom overlay terminal
 
 press `super + d` to open app launcher
 
-
 press `alt + shift + q` to close window
 
-
 press `super + [0-9]` to switch desktops
-
 
 press `super + h` to display rest of the key-bindings
