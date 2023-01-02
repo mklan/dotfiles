@@ -8,3 +8,7 @@
 .neterror > #text-container > .title > h1 {
     color: #D8CAAC; 
 }
+
+#tabbrowser-tabpanels {
+    background: var(--toolbar-bgcolor) !important;
+}
