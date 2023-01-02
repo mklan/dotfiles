@@ -55,7 +55,6 @@ i3lock-fancy-rapid-git
 xorg-xbacklight
 # thinkpad patch
 throttled
-x11-ssh-askpass
 lxappearance-gtk3
 xorg-util-macros
 python-pip
