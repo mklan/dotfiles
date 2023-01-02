@@ -13,7 +13,7 @@ function main {
   wpg-install.sh -g -i
   wpg -s ${1}
  
-  cp scripts/* /usr/local/bin
+  ./install/copy-scripts.sh
 
 
   createSymlinks
@@ -85,8 +85,6 @@ function createSymlinks {
   # dunst pywal theming
   ln -sf "${HOME}/.cache/wal/dunstrc" "${HOME}/.config/dunst/dunstrc"
   
-  # patch
-  ln -sf $(pwd)/_patches/mic_mute_external/lenovo-mutemic /etc/acpi/events/lenovo-mutemic
 
   sudo mkdir -p /etc/X11/xorg.conf.d
   sudo ln -sf $(pwd)/X11/xorg.conf.d/* /etc/X11/xorg.conf.d/
@@ -98,7 +96,9 @@ function createSymlinks {
   sudo gpasswd -a $USER input
 
 
-  sudo ln -sf $(pwd)/bluetooth/51-blueman.rules  /usr/share/polkit-1/rules.d/51-blueman.rules
+ # patches
+  ln -sf $(pwd)/_patches/mic_mute_external/lenovo-mutemic /etc/acpi/events/lenovo-mutemic
+  sudo ln -sf $(pwd)/_patches/blueman-wheel-priv/51-blueman.rules  /usr/share/polkit-1/rules.d/51-blueman.rules
 
 }
 
