@@ -6,8 +6,19 @@
 super + h
 	sxkhkd-bindings d
 
+	
+# Open Apps
+
+# description: open Firefox
+ctrl + super + alt + f
+	firefox
+
+# description: open private Firefox
+ctrl + super + alt + p
+	firefox -private-window
+
 # description: open terminal emulator
-ctrl + alt + super + Return
+ctrl + super + alt + Return
 	urxvt
 
 # description: floating terminal
