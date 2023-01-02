@@ -4,18 +4,10 @@
 # Use rofi to call systemctl for shutdown, reboot, etc
 
 # 2016 Oliver Kraitschy - http://okraits.de
-
-OPTIONS="Abort\nExit window manager\nReboot system\nPower-off system\nSuspend system\nHibernate system (broken)"
-
-#!/usr/bin/bash
-
-# rofi-power
-# Use rofi to call systemctl for shutdown, reboot, etc
-
-# 2016 Oliver Kraitschy - http://okraits.de
 # Adapted by Matthias Klan 2020
 
 LAUNCHER="rofi -width 20 -height 2 -dmenu -i -p rofi-power"
+OPTIONS="Abort\nExit window manager\nReboot system\nPower-off system\nSuspend system\nHibernate system (broken)"
 
 option=`echo -e $OPTIONS | $LAUNCHER | awk '{print $1}' | tr -d '\r\n'`
 if [ ${#option} -gt 0 ]
