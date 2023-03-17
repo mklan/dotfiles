@@ -1,6 +1,6 @@
 * {{
     active-background: {color2};
-    active-foreground: @foreground;
+    active-foreground: @background;
     normal-background: @background;
     normal-foreground: @foreground;
     urgent-background: {color1};
@@ -16,7 +16,7 @@
     selected-active-background: {color2};
     selected-active-foreground: @foreground;
     selected-normal-background: {color1};
-    selected-normal-foreground: @foreground;
+    selected-normal-foreground: {background};
     selected-urgent-background: {color3};
     selected-urgent-foreground: @foreground;
 
