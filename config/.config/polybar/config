@@ -56,7 +56,7 @@ tray-background = ${colors.background}
 
 tray-detached = false
 
-wm-restack = bspwm
+#wm-restack = bspwm
 override-redirect = false
 
 cursor-click = pointer
