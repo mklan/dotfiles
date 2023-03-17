@@ -78,7 +78,7 @@ neofetch
 w3m-imgcat
 # for demo when shwoing keystrokes
 screenkey
-# moving winows around / resizgin
+# moving winows around / resizing
 xdo-git
 # for event handeling extra keys ( external mic mute button on lenovo keyboard)
 acpid
