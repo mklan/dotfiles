@@ -13,8 +13,8 @@ rofi
 stow
 # 
 redshift
-# compositor (blurr, opacity)
-picom-tryone-git
+# compositor (blur, opacity)
+picom-jonaburg-git
 # background manager
 feh
 dfc
