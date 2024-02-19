@@ -1,0 +1,6 @@
+#! /bin/sh
+
+ACTIVE_MONITOR=$(bspc query -M -m '.focused' --names)
+echo $ACTIVE_MONITOR
+
+#~/.config/bspwm/spawn_float_sticky.sh urxvt $(($(getWidth)-8)) 500 0 -10

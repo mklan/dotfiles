@@ -85,6 +85,7 @@ function createSymlinks {
   # dunst pywal theming
   ln -sf "${HOME}/.cache/wal/dunstrc" "${HOME}/.config/dunst/dunstrc"
   
+  sudo ln -sf lemurs/* /etc/lemurs/
 
   sudo mkdir -p /etc/X11/xorg.conf.d
   sudo ln -sf $(pwd)/X11/xorg.conf.d/* /etc/X11/xorg.conf.d/

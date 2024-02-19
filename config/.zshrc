@@ -1,3 +1,11 @@
+
+# workaround for urxvt vertical prompt placement
+if [[ `ps ho command $(ps ho ppid $$)` == 'urxvt' ]]; then
+   clear
+ fi
+
+
+
 # uncomment to measure statup time of plugins (also uncomment last line)
 # zmodload zsh/zprof
 
@@ -130,6 +138,8 @@ source ~/.cache/wal/colors.sh
 
 alias ts-node='ts-node --compiler-options "{ \"experimentalDecorators\": true }"'
 
+alias pyload='node ~/projects/typescript-starter-server/src/pyload-cli/index.js'
+
 alias t=todo.sh
 alias todo=todo.sh
 alias df=dfc
@@ -146,8 +156,9 @@ alias file2cb="xclip -sel c <"
 
 alias week='date +%V'
 
-# TODO port to yay
-alias aur="aurman -S --noedit --noconfirm --needed --skip_news"
+alias yay="yay --noeditmenu --nodiffmenu --nocleanmenu"
+
+alias reload-fstab='systemctl daemon-reload'
 
 alias entpacke='unar -d'
 # alias extract='unar -d' use extract zsh plugin
@@ -168,12 +179,13 @@ alias dl="cd ~/Downloads"
 alias p="cd ~/projects"
 alias g="git"
 
-export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
+
+# Fix ssh in kitty
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+
 
 alias jdownloader="wmname compiz && jdownloader &"
 
-
-export JAVA_HOME=/usr/lib/jvm/default
 
 export PATH=~/.local/bin:$PATH
 
@@ -187,3 +199,21 @@ export PATH=~/.local/bin:$PATH
 
 # uncomment to measure statup time of plugins (also uncomment first line)
 #zprof
+
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
+eval $RUN_ZSH_CMD
+
+
+   
+export DEVKITPRO=/opt/devkitpro    
+export DEVKITARM=/opt/devkitpro/devkitARM    
+export DEVKITPPC=/opt/devkitpro/devkitPPC
+
+export ANDROID_HOME=$HOME/Android/sdk 
+export PATH=$PATH:$ANDROID_HOME/emulator 
+export PATH=$PATH:$ANDROID_HOME/tools 
+export PATH=$PATH:$ANDROID_HOME/tools/bin 
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk

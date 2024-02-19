@@ -1,0 +1,33 @@
+[pyprland]
+plugins = ["scratchpads", "workspaces_follow_focus", "shortcuts_menu"]
+
+[scratchpads.term]
+command = "kitty --class kitty-dropterm"
+animation = "fromTop"
+unfocus = "hide"
+lazy = true
+
+[scratchpads.keepassxc]
+command = "keepassxc"
+animation = "fromTop"
+unfocus = "hide"
+lazy = true
+
+[scratchpads.volume]
+command = "pavucontrol"
+unfocus = "hide"
+animation = "fromRight"
+lazy = true
+
+[shortcuts_menu]
+parameters = "--prompt-text hey --fuzzy-match true"
+engine = "rofi"
+lazy = true
+
+[shortcuts_menu.entries]
+"Open Jira ticket" = 'open-jira-ticket "$(wl-paste)"'
+"Show Jira cheatsheet" = "xdg-open https://cheatography.com/rhorber/cheat-sheets/jira-text-formatting-notation/"
+"WIKI" = "xdg-open http://localhost:8000/"
+"Serial USB Term" = "kitty miniterm --raw --eol LF /dev/ttyUSB* 115200"
+Gateify = "~/liberty/gatify.sh"
+Relayout = "pypr relayout"

@@ -9,10 +9,14 @@ urxvt-font-size-git
 polybar
 # app launcher
 rofi
+# for wayland
+rofi-lbonn-wayland 
+#
 # symlink dotfiles
 stow
 # 
-redshift
+# redshift
+redshift-wayland-git
 # compositor (blur, opacity)
 picom-jonaburg-git
 # background manager
@@ -93,3 +97,9 @@ pulseaudio-control
 slop
 # touchpad gestures
 ruby-fusuma
+# hyprland stuff
+# screen off idle
+swayidle
+swaylock-effects-git
+pyprland
+deno

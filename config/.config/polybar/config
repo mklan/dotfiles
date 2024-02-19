@@ -48,7 +48,7 @@ font-5 = "Font Awesome 5 Brands:pixelsize=10;1"
 
 modules-left = apps bspwm media
 modules-center = clock date calendar
-modules-right = bluez-profile-toggle pulseaudio-control backlight temperature memory cpu battery logout
+modules-right = bt-quick-connect bluez-profile-toggle pulseaudio-control backlight temperature memory cpu battery logout
 tray-position = right
 tray-padding = 4
 
@@ -175,6 +175,11 @@ type = custom/text
 click-left = exec rofi -show run
 content = "Apps"
 
+[module/bt-quick-connect]
+type = custom/text
+click-left = exec bluetoothctl connect 70:CE:8C:E2:CA:67
+content = "Buds+"
+
 
 [module/calendar]
 type = custom/text
@@ -200,7 +205,7 @@ label-foreground = ${colors.foreground}
 # You can copy-paste your options for each possible action, which is more
 # trouble-free but repetitive, or apply only the relevant ones (for example
 # --sink-blacklist is only needed for next-sink).
-exec = pulseaudio-control --icons-volume " , " --icon-muted " " --sink-nicknames-from "device.description" --sink-nickname "alsa_output.pci-0000_00_1b.0.analog-stereo:  Speakers" --sink-nickname "alsa_output.usb-Kingston_HyperX_Virtual_Surround_Sound_00000000-00.analog-stereo:  Headphones" listen
+exec = pulseaudio-control --icons-volume " , " --icon-muted " " --node-nicknames-from "device.description" --node-nickname "alsa_output.pci-0000_00_1b.0.analog-stereo:  Speakers" --node-nickname "alsa_output.usb-Kingston_HyperX_Virtual_Surround_Sound_00000000-00.analog-stereo:  Headphones" listen
 click-right = exec pavucontrol &
 click-left = pulseaudio-control togmute
 click-middle = pulseaudio-control --sink-blacklist "alsa_output.pci-0000_01_00.1.hdmi-stereo-extra2" next-sink
