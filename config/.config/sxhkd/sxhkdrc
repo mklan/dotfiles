@@ -23,15 +23,20 @@ ctrl + super + alt + Return
 
 # description: floating terminal
 super + alt + Return
-	bottom_terminal
+	~/.config/bspwm/scripts/bottom_terminal
 
 # description: app launcher
 super + d
 	rofi -show run
 
+	# toggle KeePassXC
+ctrl + super + alt + t
+	~/.config/bspwm/spawn_float_terminal.sh "todo" 400 1430 -10 -10
+
 # toggle KeePassXC
-super + k
-	cd ~/.config/bspwm/scripts && ./toggleKeePass.mjs
+ctrl + super + alt + k
+	~/.config/bspwm/spawn_float.sh "keepassxc" 1000 600 -50 -50
+	#cd ~/.config/bspwm/scripts && ./toggleKeePass.mjs
 
 # description: vscode project launcher
 super + alt + ctrl + c
@@ -77,9 +82,9 @@ super + m
 super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
-# swap the current node and the biggest node
+# description: swap the window with the biggest one
 super + g
-	bspc node -s biggest
+	bspc node -s biggest;
 
 #
 # state/flags
@@ -116,9 +121,15 @@ super + alt + z
 # focus/swap
 #
 
-# focus the node in the given direction
+# description: focus window in direction
 super + alt + ctrl + {Left,Down,Up,Right}
 	bspc node -f {west,south,north,east}
+
+
+# description: swap window in direction
+super + ctrl + {Left,Down,Up,Right}
+	bspc node -s {west,south,north,east}
+
 
 # focus the node for the given path jump
 #super + {p,b,comma,period}
@@ -222,12 +233,7 @@ super + shift + {Left,Down,Up,Right}
 # __________________
 
 ~button1
-	DidIClickDesktop.sh && gapgrab
-
-# Middle
-~button2
-	DidIClickDesktop.sh && mygtkmenui -- ~/.config/GTKmenu/BspwmDesktopMenui
-
+	 ~/.config/bspwm/scripts/onDesktopClick.sh && gapgrab
 
 # FN-keys
 
@@ -252,12 +258,12 @@ ctrl + super + alt + XF86MonBrightness{Down,Up}
 # Lock
 
 super + l 
-	lock
+	x11-lock
 
 super + alt + l
 	sleep 0.5; \
 	xset dpms force off; \
-	lock
+	x11-lock
 
 # Screenshot
 

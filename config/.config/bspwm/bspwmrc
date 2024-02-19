@@ -3,7 +3,7 @@
 . ~/.cache/wal/colors.sh 
 
 
-# java UI fix
+# java GUI fix (jdownloader, jetbrains)
 wmname LG3D
 
 # fix for blueman-applet devices section not opening
@@ -18,10 +18,12 @@ xsetroot -cursor_name left_ptr &
 
 # set trackpoint speed
 xinput --set-prop "12" "libinput Accel Speed" 0.5
+xinput --set-prop "14" "libinput Accel Speed" 0.5
 # set natural scrolling
-xinput --set-prop "11" "libinput Natural Scrolling Enabled" 1
-xinput --set-prop "11" "libinput Natural Scrolling Enabled Default" 1
+touchpadId=$(xinput list --id-only "`xinput list --name-only | grep 'Elan Touchpad'`")
 
+xinput --set-prop "$touchpadId" "libinput Natural Scrolling Enabled" 1
+xinput --set-prop "$touchpadId" "libinput Natural Scrolling Enabled Default" 1
 
 # lock on suspend
 pgrep xss-lock || xss-lock --transfer-sleep-lock -- lock --nofork &
@@ -73,7 +75,7 @@ bspc rule -a Firefox desktop='^2'
 bspc rule -a Spotify desktop='^7'
 #bspc rule -a KeePassXC desktop='^9'
 
-bspc rule -a KeePassXC state=floating center=on
+bspc rule -a KeePassXC state=floating
 bspc rule -a Pamac-manager state=floating center=on
 bspc rule -a Pamac-updater state=floating center=on
 bspc rule -a teamviewer state=floating center=on

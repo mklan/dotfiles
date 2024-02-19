@@ -1,22 +1,50 @@
 {
-    "custom/window": {
-        "exec": "~/.config/waybar/window_title.sh",
-        "interval": 1
-    },
-
     "layer": "top",
     "position": "top",
-    "height": 10,
-
-    "modules-left": ["wlr/workspaces"],
-    "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "disk", "memory", "cpu", "battery", "tray"],
-
+    "height": 20,
+    "modules-left": [
+        "custom/apps",
+        "hyprland/workspaces"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "custom/budsConnect",
+        "pulseaudio",
+        "memory",
+        "cpu",
+        "battery",
+        "tray"
+    ],
+    "custom/budsConnect": {
+        "exec": "echo hallo",
+        "format": "Buds+",
+        "on-click": "bluetoothctl connect 70:CE:8C:E2:CA:67"
+    },
+    "custom/apps": {
+        "exec": "echo hallo",
+        "format": "Apps",
+        "on-click": "killall rofi || rofi -show run"
+    },
+    "hyprland/workspaces": {
+        // "format": "<sub>{icon}</sub>{windows}",
+        "format-window-separator": " ",
+        "window-rewrite-default": "",
+        "window-rewrite": {
+            "firefox": "",
+            "code": "󰨞"
+        }
+    },
+    "tray": {
+        "icon-size": 17,
+        "spacing": 1,
+        "show-passive-items": true
+    },
     "pulseaudio": {
         "format": "🔊 {volume}%",
         "format-muted": "🔇 {volume}%"
     },
-
     "disk": {
         "format": "🖫 /: {percentage_used}%",
         "path": "/"
@@ -25,48 +53,26 @@
     /*     "format": "/home: {percentage_used}%", */
     /*     "path": "/home" */
     /* }, */
-
     "memory": {
         "interval": 1,
         "format": " {}% ({used:0.1f} GiB)"
-      },
-
+    },
     "cpu": {
         "interval": 1,
         "format": " {usage}%"
     },
-
     "battery": {
-        "format": "{icon} {capacity}%",
-        "format-icons": ["", "", "", "", ""]
+        "format": "{icon} {capacity}% ({time})",
+        "format-icons": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
     },
-
     "clock": {
-        "format" : "{: %d.%m.%y %H:%M}",
+        "format": "{: %H:%M    %d.%m.%y}",
         "format-alt": "{: %d.%m.%y %H:%M:%S}"
-    },
-
-    "date": {
-        "format": ""
-    },
-
-    "wlr/workspaces": {
-       "format": "{icon}",
-       "on-click": "activate",
-       "format-icons": {
-     "1": "1",
-    "2": "2",
-    "3": "3",
-    "4": "4",
-    "5": "5",
-    "6": "6",
-    "7": "7",
-    "8": "8",
-    "9": "9",
-    "10": "10",
-    "urgent": "",
-    "active": "",
-    "default": ""
     }
-   }
 }

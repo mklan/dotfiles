@@ -1,37 +1,41 @@
 * {
-    font-family: MesloLGS NF;
-    font-size: 13px;
-    margin-top: 1px; /* keep things off the top area, since flexbox doesnt work for centering */
+  font-family: MesloLGS, NF Monospace, FontAwesome;
+  font-size: 13px;
+  margin-top: 1px;
+  /* keep things off the top area, since flexbox doesnt work for centering */
 }
 
 window#waybar {
-    background-color: #272727;
-    /* border-top: 3px solid #b5740a; */
-    color: #cacaca;
+  background-color: #272727;
+  opacity: 0.8;
+  /* border-top: 3px solid #b5740a; */
+  color: #cacaca;
 }
 
 widget * {
   /* background-color: #383838; */
 }
 
-widget > * {
-    padding: 0 10px;
-    margin: 1px 4px;
+widget>* {
+  padding: 0 10px;
+  margin: 1px 4px;
 }
 
-.modules-left, .modules-center, .modules-right {
+.modules-left,
+.modules-center,
+.modules-right {
   padding: 0px 8px;
 }
 
 #workspaces {
-    padding: 0px 5px;
+  padding: 0px 5px;
 }
 
 #workspaces button {
-    padding: 0;
-    background: transparent;
-    color: #cacaca;
-    border-bottom: 3px solid transparent;
+  padding: 0;
+  background: transparent;
+  color: #cacaca;
+  border-bottom: 3px solid transparent;
 }
 
 #workspaces .active * {
@@ -40,8 +44,8 @@ widget > * {
 }
 
 #mode {
-    background: #64727D;
-    border-bottom: 3px solid white;
+  background: #64727D;
+  border-bottom: 3px solid white;
 }
 
 @keyframes pulse-green {
@@ -51,12 +55,12 @@ widget > * {
 }
 
 #battery.charging {
-    color: #cacaca;
-    animation-name: pulse-green;
-    animation-duration: 4s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  color: #cacaca;
+  animation-name: pulse-green;
+  animation-duration: 4s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 @keyframes pulse-red {
@@ -66,11 +70,15 @@ widget > * {
 }
 
 #battery.warning:not(.charging) {
-    color: #cacaca;
-    animation-name: pulse-red;
-    animation-duration: 4s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  color: #cacaca;
+  animation-name: pulse-red;
+  animation-duration: 4s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
+
+#tray>.active {
+  padding: 10px;
+}

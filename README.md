@@ -56,3 +56,19 @@ press `alt + shift + q` to close window
 press `super + [0-9]` to switch desktops
 
 press `super + h` to display rest of the key-bindings
+
+
+## notes do not commit yet
+
+- explain super key combination (in favor to mac yabai)
+    - document ( blog ) how to run yabai and bspwm
+- document and fix popup terminal ( find proper name)
+- more gif demos of controls ( spawning , switching mouse context, gaps)
+- document more in general by showing features of this config (high potential, if everyone understands how amazing this system is)
+    - document this awesome piece: ./config/.config/bspwm/spawn_float_terminal.sh gtop 1000 1200 -100 50 &
+- clean screenshots to demo
+- find wallpaper that fits theme 
+- make current green forest theme default but enable pywal stuff
+- help menu action execution
+- more focus on the workflow, since it is super efficient
+- description why it is efficient
