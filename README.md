@@ -6,7 +6,7 @@ GNU/Linux system configuration using Hyprland as compositor (Legacy Mode: bspwm)
 
 ![Theme switching](https://github.com/mklan/dotfiles/blob/master/screenshots/demo.gif)
 
-TODO: Create Demos for more features.
+TODO: Create demos for more features.
 
 ## Core system components
 
