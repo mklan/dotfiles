@@ -66,8 +66,3 @@ Legacy Mode:
 `alt + super + return` to open bottom overlay terminal (bspwm only)
 
 `super + h` display rest of the key-bindings
-
-
-
-- more focus on the workflow, since it is super efficient
-- description why it is efficient
