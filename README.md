@@ -42,7 +42,13 @@ For a complete list look into `_install/arch-pkglist`
 
 `strg + [0-9]` to switch desktops
 
-`alt + shift + q` close selected window
+`hypr + [0-9]` send to window + switch
+
+`hypr + arrow` switch focus
+
+`ctrl + super + arrow` swap windows
+
+`super + q` close focused window
 
 `super + c` vscode projects launcher
 
