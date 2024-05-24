@@ -1,0 +1,56 @@
+rofi-lbonn-wayland
+# symlink dotfiles
+stow
+# more readabble df
+dfc
+# backlight controls
+light
+# generate theme from image
+python-pywal
+
+# bash
+zsh
+# fonts
+#ttf-ubuntu-font-family
+#ttf-font-awesome-5
+#powerline-fonts
+#adobe-source-code-pro-fonts
+# nerd-fonts-complete  (this is too big)
+# pulseaudio controls
+# notifications
+dunst
+tlp
+acpi_call
+transset-df
+playerctl
+# themeing
+wpgtk-git
+# thinkpad patch
+#throttled
+pamac-aur
+# audiomixer visualizer
+cava
+pipes.sh
+cmatrix
+asciiquarium
+sl
+tty-clock
+#
+ranger
+neofetch
+# for demo when shwoing keystrokes
+screenkey
+# for event handeling extra keys (external mic mute button on lenovo keyboard)
+acpid
+# cron
+cronie
+unarchiver
+# hyprland stuff
+hyprland
+# screen off idle
+swayidle
+swaylock-effects-git
+pyprland
+deno
+waybar
+rofi-lbonn-wayland-git

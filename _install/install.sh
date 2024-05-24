@@ -6,20 +6,19 @@ function main {
   
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
-	  installList './arch-pkglist'
+	  ./install-list.sh './arch-pkglist'
   fi
 
   # install theme
   wpg-install.sh -g -i
   wpg -s ${1}
  
-  ./install/copy-scripts.sh
+  ./copy-scripts.sh
 
 
   createSymlinks
-  installZsh
 
-  ./systemd/setup.sh
+  ../systemd/setup.sh
   
   # disable lightdm to use startx at startup
   systemctl disable lightdm.service
@@ -43,36 +42,11 @@ function main {
 
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
-        installList './apps_pkglist'
+        ./install-list.sh './apps_pkglist'
   fi
 
 }
 
-function installList {
-  # install basic dependencies
-  sudo pacman -S --noconfirm --needed base-devel git wget yajl dialog
-  
-  # TODO make optional
-  installYay
-
-  # install packages from passed list
-  selection=$(sudo ./install/list-select.sh $1 "Select to install")
-
-  yay -S --noeditmenu --nodiffmenu --nocleanmenu --noconfirm ${selection}
-}
-
-function installZsh {
-  # install oh my zsh
-  wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
-
-  # switch to zsh
-  chsh -s /usr/bin/zsh $USER
-  # install zsh plugins
-  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-
-  # themes
-  yay -S --noeditmenu --nodiffmenu --nocleanmenu --noconfirm zsh-theme-powerlevel10k-git
-}
 
 function createSymlinks {
 
@@ -101,18 +75,6 @@ function createSymlinks {
   ln -sf $(pwd)/_patches/mic_mute_external/lenovo-mutemic /etc/acpi/events/lenovo-mutemic
   sudo ln -sf $(pwd)/_patches/blueman-wheel-priv/51-blueman.rules  /usr/share/polkit-1/rules.d/51-blueman.rules
 
-}
-
-function installYay {
-  if ! command -v "yay" &> /dev/null
-  then
-    echo "yay not found! will install ..."
-    git clone https://aur.archlinux.org/yay.git
-    cd yay
-    makepkg -si --skipinteg --noconfirm --needed
-    cd ..
-    rm -rf yay
-  fi
 }
 
 main
