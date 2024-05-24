@@ -1,0 +1,1 @@
+deno run --allow-write --allow-env --allow-read --allow-run ~/.config/hypr/scripts/mpv_pip.ts $1

@@ -1,0 +1,1 @@
+wal -l --theme /home/matze/dotfiles/config/.config/wal/colorschemes/dark/everforest.json
