@@ -9,10 +9,9 @@ newwall=$(echo $wallpaper | sed "s|$HOME/wallpaper/||g")
 
 
 swww img $wallpaper \
-    --transition-bezier .43,1.19,1,.4 \
-    --transition-fps=120 \
+    --transition-fps=60 \
     --transition-step=90 \
-    --transition-type="random" \
-    --transition-duration=0.7 \
+    --transition-type="wipe" \
+    --transition-duration=1.4 \
     --transition-pos "$( hyprctl cursorpos )"
 
