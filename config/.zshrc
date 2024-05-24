@@ -135,6 +135,7 @@ source ~/.cache/wal/colors.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias pokemon='pokemon-colorscripts'
 
 alias ts-node='ts-node --compiler-options "{ \"experimentalDecorators\": true }"'
 
@@ -156,7 +157,8 @@ alias file2cb="xclip -sel c <"
 
 alias week='date +%V'
 
-alias yay="yay --noeditmenu --nodiffmenu --nocleanmenu"
+alias yay="yay --noconfirm"
+
 
 alias reload-fstab='systemctl daemon-reload'
 
@@ -178,6 +180,7 @@ alias -- -="cd -"
 alias dl="cd ~/Downloads"
 alias p="cd ~/projects"
 alias g="git"
+alias df="dfc"
 
 
 # Fix ssh in kitty
