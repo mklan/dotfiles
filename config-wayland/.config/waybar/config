@@ -15,8 +15,14 @@
         "memory",
         "cpu",
         "battery",
-        "tray"
+        "tray",
+        "custom/powerMenu"
     ],
+    "custom/powerMenu": {
+        "exec": "echo hallo",
+        "format": "pwr",
+        "on-click": "wlogout"
+    },
     "custom/budsConnect": {
         "exec": "echo hallo",
         "format": "Buds+",
@@ -28,12 +34,15 @@
         "on-click": "killall rofi || rofi -show run"
     },
     "hyprland/workspaces": {
-        // "format": "<sub>{icon}</sub>{windows}",
+        "format": "<sub>{icon}</sub>{windows}",
         "format-window-separator": " ",
-        "window-rewrite-default": "",
+        "window-rewrite-default": "",
         "window-rewrite": {
-            "firefox": "",
-            "code": "󰨞"
+            "firefox": "󰈹",
+            "chrome": "",
+            "code": "",
+            "kitty": "",
+            "thunar": ""
         }
     },
     "tray": {
@@ -62,7 +71,8 @@
         "format": " {usage}%"
     },
     "battery": {
-        "format": "{icon} {capacity}% ({time})",
+        "format": "{icon}   {capacity}% ({time})",
+        "format-time": "{H}:{M}",
         "format-icons": [
             "",
             "",
@@ -72,7 +82,7 @@
         ]
     },
     "clock": {
-        "format": "{: %H:%M    %d.%m.%y}",
-        "format-alt": "{: %d.%m.%y %H:%M:%S}"
+        "format": "{:%H:%M    %d.%m.%y}",
+        "format-alt": "{:%d.%m.%y %H:%M:%S}"
     }
 }

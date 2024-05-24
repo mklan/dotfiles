@@ -1,18 +1,12 @@
 {
     "label": "lock",
-    "action": "swaylock",
+    "action": "sleep 0.2 && ~/.config/hypr/scripts/lock.sh",
     "text": "Lock",
     "keybind": "l"
 }
 {
-    "label": "hibernate",
-    "action": "systemctl hibernate",
-    "text": "Hibernate",
-    "keybind": "h"
-}
-{
     "label": "logout",
-    "action": "loginctl terminate-user $USER",
+    "action": "quit-hypr.sh",
     "text": "Logout",
     "keybind": "e"
 }
