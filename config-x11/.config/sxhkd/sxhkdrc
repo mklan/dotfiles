@@ -4,7 +4,7 @@
 
 # description: display shortcuts
 super + h
-	sxkhkd-bindings d
+    sxkhkd-bindings
 
 	
 # Open Apps
