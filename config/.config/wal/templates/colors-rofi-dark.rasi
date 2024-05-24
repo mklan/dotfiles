@@ -1,5 +1,5 @@
 * {{
-    active-background: {color2};
+    active-background: {color5};
     active-foreground: @background;
     normal-background: @background;
     normal-foreground: @foreground;
@@ -13,23 +13,21 @@
     alternate-urgent-background: @background;
     alternate-urgent-foreground: @foreground;
 
-    selected-active-background: {color2};
+    selected-active-background: {color5};
     selected-active-foreground: @foreground;
-    selected-normal-background: {color1};
+    selected-normal-background: {color5};
     selected-normal-foreground: {background};
     selected-urgent-background: {color3};
     selected-urgent-foreground: @foreground;
 
-    background-color: @background;
-    background: {background};
+    background: {background}BF;
     foreground: {foreground};
-    border-color: {color1};
+    border-color: {color4};
     spacing: 2;
 }}
 
 #window {{
-    background-color: @background;
-    border: 2;
+    border: 5;
     padding: 2.5ch;
 }}
 
@@ -79,7 +77,7 @@
 }}
 
 #element.normal.normal {{
-    background-color: @normal-background;
+    background-color: transparent;
     text-color: @normal-foreground;
 }}
 
@@ -109,7 +107,7 @@
 }}
 
 #element.alternate.normal {{
-    background-color: @alternate-normal-background;
+    background-color:transparent;
     text-color: @alternate-normal-foreground;
 }}
 
