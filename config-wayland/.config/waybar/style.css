@@ -32,10 +32,12 @@ widget>* {
 }
 
 #workspaces button {
+  margin: 0;
   padding: 0;
   background: transparent;
   color: #cacaca;
-  border-bottom: 3px solid transparent;
+
+  /* border-bottom: 3px solid transparent; */
 }
 
 #workspaces .active * {

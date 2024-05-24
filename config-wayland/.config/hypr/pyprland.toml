@@ -5,19 +5,11 @@ plugins = ["scratchpads", "workspaces_follow_focus", "shortcuts_menu"]
 command = "kitty --class kitty-dropterm"
 animation = "fromTop"
 unfocus = "hide"
-lazy = true
 
 [scratchpads.keepassxc]
 command = "keepassxc"
-animation = "fromTop"
+animation = "fromBottom"
 unfocus = "hide"
-lazy = true
-
-[scratchpads.volume]
-command = "pavucontrol"
-unfocus = "hide"
-animation = "fromRight"
-lazy = true
 
 [shortcuts_menu]
 parameters = "--prompt-text hey --fuzzy-match true"

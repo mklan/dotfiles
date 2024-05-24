@@ -1,6 +1,8 @@
+#!/usr/bin/env -S deno run -A --allow-env
+
 import { writeFileSync, readFileSync } from "node:fs";
 import { getFocusedMonitor } from "./utils/monitor.ts";
-import { hyprctl } from "./lib/hyprctl.ts";
+import {hyprctl, batch} from "./lib/hyprctl.ts";
 
 (async () => {
   let [nextWorkspace] = Deno.args;
@@ -25,7 +27,7 @@ import { hyprctl } from "./lib/hyprctl.ts";
 
   if (!nextWorkspace || nextWorkspace == activeWorkspace) return;
 
-  await hyprctl(`dispatch moveworkspacetomonitor ${nextWorkspace} current`, `dispatch workspace ${nextWorkspace}`);
+  await batch(`dispatch moveworkspacetomonitor ${nextWorkspace} current`, `dispatch workspace ${nextWorkspace}`);
 
 })();
 
