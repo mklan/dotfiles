@@ -10,7 +10,7 @@ polybar
 # app launcher
 rofi
 # for wayland
-rofi-lbonn-wayland 
+rofi-lbonn-wayland
 #
 # symlink dotfiles
 stow
@@ -98,8 +98,11 @@ slop
 # touchpad gestures
 ruby-fusuma
 # hyprland stuff
+hyprland
 # screen off idle
 swayidle
 swaylock-effects-git
 pyprland
 deno
+waybar
+rofi-lbonn-wayland-git

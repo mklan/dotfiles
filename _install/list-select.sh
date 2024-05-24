@@ -1,8 +1,9 @@
 #!/bin/bash
+
 list=$(sed -e '/^#/d' $1) # trim comments
 #TODO sort
 
-# fill dialog option
+# preselect all
 options=()
 for entry in $list
 do
