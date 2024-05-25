@@ -3,7 +3,7 @@
 function installList {
 
 # install basic dependencies
-  sudo pacman -S --noconfirm --needed base-devel git wget yajl dialog
+  sudo pacman -S --noconfirm --needed base-devel git wget yajl dialog deno
   
   installYay
 
