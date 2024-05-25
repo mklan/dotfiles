@@ -31,14 +31,14 @@ function createSymlinks {
   ln -sf "${HOME}/.cache/wal/dunstrc" "${HOME}/dotfiles/config/.config/dunst/dunstrc"
 
   # create symlinks
-  stow ../config
-  stow ../config-wayland
+
+  cd ..
+
+  stow config
+  stow config-wayland
   
-  sudo ln -sf ../lemurs/* /etc/lemurs/
-
-  # fusuma (touchpad gesture) needs this 
-  sudo gpasswd -a $USER input
-
+  sudp rm /etc/lemurs/*
+  sudo ln -sf lemurs/* /etc/lemurs/
 
   # patches (keep for now commented out)
   # ln -sf $(pwd)/_patches/mic_mute_external/lenovo-mutemic /etc/acpi/events/lenovo-mutemic
