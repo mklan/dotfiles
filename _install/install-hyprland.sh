@@ -9,9 +9,11 @@ function main {
 	  ./install-list.sh hyprland.packages.json
   fi
 
+  echo "copying helpful util scripts"
   ./copy-scripts.sh
 
-
+  echo "creating symlinks"
+  cd ..
   createSymlinks
   
   
@@ -22,6 +24,8 @@ function main {
   # add user to video group (for light control)
   sudo usermod -aG video $USER
   sudo usermod -aG wheel $USER
+
+  echo "done :)"
 }
 
 
@@ -31,8 +35,6 @@ function createSymlinks {
   ln -sf "${HOME}/.cache/wal/dunstrc" "${HOME}/dotfiles/config/.config/dunst/dunstrc"
 
   # create symlinks
-
-  cd ..
 
   stow config
   stow config-wayland
