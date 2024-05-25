@@ -7,10 +7,10 @@ list=$(sed -e '/^#/d' $1) # trim comments
 options=()
 for entry in $list
 do
-  options+=("$entry" "on")
+  options+=("$entry" "some comment" "on")
 done
 
-cmd=(dialog --separate-output --no-items --checklist "${2:-Select options:}" 22 76 16)
+cmd=(dialog --separate-output --checklist "${2:-Select options:}" 22 76 16)
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
 echo $choices
