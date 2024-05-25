@@ -8,10 +8,10 @@ function installList {
   installYay
 
   # install packages from passed list
-  selection=$(./list-select.sh $1 "Select to install")
+  selection=$(./list-select.ts $1)
 
 
-  yay -S --noeditmenu --nodiffmenu --nocleanmenu --noconfirm ${selection}
+  yay -S --noconfirm ${selection}
 }
 
 function installYay {

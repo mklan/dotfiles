@@ -6,7 +6,7 @@ function main {
   
   if [[ $REPLY =~ ^[Yy]$ ]]
   then
-	  ./install-list.sh './hyprland-pkglist'
+	  ./install-list.sh hyprland.packages.json
   fi
 
   ./copy-scripts.sh
