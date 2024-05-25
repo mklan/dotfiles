@@ -37,7 +37,7 @@ function createSymlinks {
   stow config
   stow config-wayland
   
-  sudp rm /etc/lemurs/*
+  sudo rm /etc/lemurs/*
   sudo ln -sf lemurs/* /etc/lemurs/
 
   # patches (keep for now commented out)
