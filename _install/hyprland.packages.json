@@ -12,7 +12,7 @@
   "stow": "symlinking dotfiles",
   "dfc": "colorized df",
   "light": "brightness controls",
-  "python-pywal": "",
+  "pywal-git": "",
   "nm-applet": "",
   "zsh": "",
   "dunst": "",
