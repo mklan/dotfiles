@@ -26,7 +26,7 @@ function main {
   sudo usermod -aG wheel $USER
 
   echo "setting theme"
-  wal -l --theme ~/.config/wal/colorschemes/dark/everforest_oled.json
+  wal --theme ~/.config/wal/colorschemes/dark/everforest_oled.json
 
   echo "done :)"
 }
@@ -35,7 +35,7 @@ function main {
 function createSymlinks {
 
   # dunst pywal theming
-  ln -sf "${HOME}/.cache/wal/dunstrc" "${HOME}/dotfiles/config/.config/dunst/dunstrc"
+  #ln -sf "${HOME}/.cache/wal/dunstrc" "${HOME}/dotfiles/config/.config/dunst/dunstrc"
 
   # create symlinks
 
