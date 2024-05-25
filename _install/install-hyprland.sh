@@ -25,6 +25,9 @@ function main {
   sudo usermod -aG video $USER
   sudo usermod -aG wheel $USER
 
+  echo "setting theme"
+  wal -l --theme ~/.config/wal/colorschemes/dark/everforest_oled.json
+
   echo "done :)"
 }
 
