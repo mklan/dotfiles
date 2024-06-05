@@ -4,12 +4,12 @@ current=$(light)
 
 if (($1 < 0 && $(echo "$current <= 1" |bc -l)));
 then
-    if (($(echo "$current == 0.07" |bc -l)));
+    if (($(echo "$current == 0.5" |bc -l)));
     then
       light -S 0
     else
-      echo "[$current <= 1] set to 0.07"
-      light -S 0.07 #the smallest value before turning off
+      echo "[$current <= 1] set to 0.5"
+      light -S 0.5 #the smallest value before turning off
     fi
 else
   (( delta = $1 < 0 ? $1 * -1 : $1 ))

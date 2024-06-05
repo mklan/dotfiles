@@ -1,3 +1,6 @@
+#!/usr/bin/env -S deno run -A --allow-env
+
+
 import { execute as $ } from "./utils/execute.ts";
 
 let [action] = Deno.args;
