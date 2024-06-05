@@ -20,7 +20,7 @@ fi
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH=/usr/share/oh-my-zsh/
 
 # load theme
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
@@ -156,8 +156,6 @@ alias play="mpv"
 alias file2cb="xclip -sel c <"
 
 alias week='date +%V'
-
-alias yay="yay --noconfirm"
 
 
 alias reload-fstab='systemctl daemon-reload'
