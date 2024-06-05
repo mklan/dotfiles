@@ -1,2 +1,0 @@
-event=button/micmute MICMUTE 00000080 00000000
-action=amixer set Capture toggle
