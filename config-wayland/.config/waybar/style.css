@@ -6,8 +6,8 @@
 }
 
 window#waybar {
-  background-color: #272727;
-  opacity: 0.8;
+  background-color: #000;
+  /* opacity: 0.0; */
   /* border-top: 3px solid #b5740a; */
   color: #cacaca;
 }
