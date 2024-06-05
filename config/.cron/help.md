@@ -16,4 +16,5 @@
 
 run every minute a battery check
 
-* * * * * ~/.cron/low_battery_warning
+* * * * * ~/.cron/every1min.sh
+0 * * * * ~/.cron/every60min.sh
