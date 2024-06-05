@@ -28,14 +28,23 @@ function main {
   echo "setting theme"
   wal --theme ~/.config/wal/colorschemes/dark/everforest_oled.json
 
+  echo "systemctl"
+
+  sudo systemctl enable NetworkManager
+
+  echo "setting zsh as default shell"
+  chsh -s $(which zsh)
+
   echo "done :)"
+
 }
 
 
 function createSymlinks {
 
   # dunst pywal theming
-  #ln -sf "${HOME}/.cache/wal/dunstrc" "${HOME}/dotfiles/config/.config/dunst/dunstrc"
+  mkdir -p ~/.config/dunst
+  ln -sf "${HOME}/.cache/wal/dunstrc" "${HOME}/.config/dunst/dunstrc"
 
   # create symlinks
 
