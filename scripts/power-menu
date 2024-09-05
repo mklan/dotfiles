@@ -6,30 +6,27 @@
 # 2016 Oliver Kraitschy - http://okraits.de
 # Adapted by Matthias Klan 2020
 
-LAUNCHER="rofi -width 20 -height 2 -dmenu -i -p rofi-power"
-OPTIONS="Abort\nExit window manager\nReboot system\nPower-off system\nSuspend system\nHibernate system (broken)"
+LAUNCHER="rofi -width 20 -height 1 -dmenu -i -p Logout"
+OPTIONS="Logout\nLock\nReboot\nShutdown\nSuspend"
 
 option=`echo -e $OPTIONS | $LAUNCHER | awk '{print $1}' | tr -d '\r\n'`
 if [ ${#option} -gt 0 ]
 then
     case $option in
-      Abort)
-        xdotool key Escape
+      Logout)
+        quit-hypr.sh
         ;;
-      Exit)
-        bspc quit
+      Lock)
+        ~/.config/hypr/scripts/lock.sh
         ;;
       Reboot)
         systemctl reboot
         ;;
-      Power-off)
+      Shutdown)
         systemctl poweroff
         ;;
       Suspend)
         systemctl suspend
-        ;;
-      Hibernate)
-        systemctl hibernate
         ;;
       *)
         ;;
