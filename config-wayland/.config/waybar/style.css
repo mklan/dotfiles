@@ -1,6 +1,6 @@
 * {
-  font-family: MesloLGS, NF Monospace, FontAwesome;
-  font-size: 13px;
+  font-family: Source Code Pro Medium, MesloLGS;
+  font-size: 11px;
   margin-top: 1px;
   /* keep things off the top area, since flexbox doesnt work for centering */
 }
@@ -9,7 +9,7 @@ window#waybar {
   background-color: #000;
   /* opacity: 0.0; */
   /* border-top: 3px solid #b5740a; */
-  color: #cacaca;
+  color: #d8caac;
 }
 
 widget * {
@@ -17,23 +17,23 @@ widget * {
 }
 
 widget>* {
-  padding: 0 10px;
-  margin: 1px 4px;
+  padding: 0 6px;
+  margin: 0px 0px;
 }
 
 .modules-left,
 .modules-center,
 .modules-right {
-  padding: 0px 8px;
+  padding: 0px 0px;
 }
 
 #workspaces {
-  padding: 0px 5px;
+  padding: 0px 0px;
 }
 
 #workspaces button {
   margin: 0;
-  padding: 0;
+  padding: 0 0.9em;
   background: transparent;
   color: #cacaca;
 
@@ -41,8 +41,8 @@ widget>* {
 }
 
 #workspaces .active * {
-  background-color: #4f4f4f;
-  color: #c5841a;
+  background: none;
+  color: #87c095;
 }
 
 #mode {
@@ -50,19 +50,22 @@ widget>* {
   border-bottom: 3px solid white;
 }
 
+#temperature{
+  padding-left: 1px;
+}
+
+#cpu{
+  padding-right: 1px;
+}
+
 @keyframes pulse-green {
   to {
-    background-color: #008038;
+    background-color: #87c095;
   }
 }
 
 #battery.charging {
-  color: #cacaca;
-  animation-name: pulse-green;
-  animation-duration: 4s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
+  color: #87c095;
 }
 
 @keyframes pulse-red {
@@ -80,7 +83,3 @@ widget>* {
   animation-direction: alternate;
 }
 
-
-#tray>.active {
-  padding: 10px;
-}

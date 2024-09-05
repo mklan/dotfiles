@@ -1,7 +1,7 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 20,
+    "height": 22,
     "modules-left": [
         "custom/apps",
         "hyprland/workspaces"
@@ -10,80 +10,165 @@
         "clock"
     ],
     "modules-right": [
-        "custom/budsConnect",
-        "pulseaudio",
-        "memory",
-        "cpu",
-        "battery",
-        "tray",
+        "custom/todo",
+        "group/hardware",
+        "group/connection",
+        "group/stats",
         "custom/powerMenu"
     ],
     "custom/powerMenu": {
         "exec": "echo hallo",
-        "format": "pwr",
-        "on-click": "wlogout"
+        "format": "",
+        "on-click": "power-menu"
+    },
+    "backlight": {
+        //"device": "intel_backlight",
+        "format": "<span foreground='#d8caac'>{percent}% {icon}</span>",
+        "format-icons": ["", ""]
+    },
+    "custom/todo": {
+        "exec": "~/.config/waybar/modules/todo/countTodos.sh",
+        "interval": 5,
+        "on-click": "kitty --hold sh -c todo.sh",
+        "format": " {}"
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{icon}",
+        "format-ethernet": "{icon}",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "<span foreground='#e68183'>{icon}</span>",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ipaddr}",
+        "format-icons": {
+            "wifi": ["󰤢", "󰤢", "󰤢" ,"󰤨", "󰤨"],
+            "ethernet": ["󰤢"],
+            "disconnected": ["󰌙"]
+        },
+        "on-click": "kitty --class nmtui --hold sh -c nmtui"
+    },
+    "bluetooth": {
+        "interval": 2,
+        "on-click": "blueman-manager",
+        "format": "",
+        "format-disabled": "<span foreground='#515151'></span>",
+        "format-connected": "<span foreground='#87c095'></span>",
+        "format-connected-battery": "<span foreground='#87c095'>{device_battery_percentage}% </span>",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
     },
     "custom/budsConnect": {
         "exec": "echo hallo",
-        "format": "Buds+",
-        "on-click": "bluetoothctl connect 70:CE:8C:E2:CA:67"
+        "tooltip-format": "Connect Buds",
+        "format": "󰥰",
+        "on-click": "bluetoothctl connect 10:E4:C2:3C:47:70"
     },
     "custom/apps": {
         "exec": "echo hallo",
-        "format": "Apps",
+        "format": "󰀻",
         "on-click": "killall rofi || rofi -show run"
     },
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        // "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C ",
+        "format": "/{temperatureC}°C"
+    },
     "hyprland/workspaces": {
-        "format": "<sub>{icon}</sub>{windows}",
-        "format-window-separator": " ",
-        "window-rewrite-default": "",
+        "format": "{id} {windows}",
+        "window-rewrite-default": "󰘔",
         "window-rewrite": {
-            "firefox": "󰈹",
+            "firefox": "",
+            "class<firefox> title<.*Mozilla Firefox Private Browsing*>": "󰗹",
             "chrome": "",
-            "code": "",
-            "kitty": "",
-            "thunar": ""
+            "code": "",
+            "kitty": "",
+            "thunar": "",
+            "vlc": "󰕼",
+            "mpv": ""
         }
     },
-    "tray": {
-        "icon-size": 17,
-        "spacing": 1,
-        "show-passive-items": true
-    },
     "pulseaudio": {
-        "format": "🔊 {volume}%",
-        "format-muted": "🔇 {volume}%"
+        "format": "{volume}% 󰕾",
+        "format-muted": "󰝟"
     },
     "disk": {
         "format": "🖫 /: {percentage_used}%",
         "path": "/"
     },
-    /* "disk": { */
-    /*     "format": "/home: {percentage_used}%", */
-    /*     "path": "/home" */
-    /* }, */
+    "group/bluetooth": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-left-to-right": false
+        },
+        "modules": [
+			"bluetooth",
+            "custom/budsConnect"
+		]
+    },
+    "group/connection": {
+        "orientation": "horizontal",
+		"modules": [
+            "group/bluetooth",
+			"network"
+		]
+	},
+    "group/stats": {
+        "orientation": "horizontal",
+		"modules": [
+            "pulseaudio",
+            "backlight",
+            "battery"
+		]
+	},
+    "group/hardware": {
+        "orientation": "horizontal",
+		"modules": [
+			"group/cpu",
+			"memory"
+		]
+	},
+    "group/cpu": {
+        "orientation": "horizontal",
+		"modules": [
+			"cpu",
+			"temperature"
+		]
+	},
     "memory": {
-        "interval": 1,
-        "format": " {}% ({used:0.1f} GiB)"
+        "interval": 30,
+        "format": "M: {used:0.1f}Gb"
     },
     "cpu": {
-        "interval": 1,
-        "format": " {usage}%"
+        "interval": 30,
+        "format": "C: {usage}%"
     },
     "battery": {
-        "format": "{icon}   {capacity}% ({time})",
+        /* "format": "{capacity}% ({time})", */
+        "format": "{capacity}% {icon}",
         "format-time": "{H}:{M}",
         "format-icons": [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "󰂃",
+            "󰁺",
+            "󰁻",
+            "󰁼",
+            "󰁽",
+            "󰁾",
+            "󰁿",
+            "󰂁",
+            "󰂁",
+            "󰂂",
+            "󰂂",
+            "󰁹"
         ]
     },
     "clock": {
         "interval": 1,
-        "format": "{:%H:%M    %d.%m}",
-        "format-alt": "{:%H:%M:%S %d.%m}"
+        "format": "{:%H:%M}",
+        "format-alt": "{:%H:%M:%S %a %d.%m.%y}",
+        "tooltip": true,
+        "tooltip-format": "{:%d.%m.%y}"
     }
 }
