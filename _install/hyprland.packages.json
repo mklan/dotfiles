@@ -10,7 +10,6 @@
   "wireplumber": "policy manager for pipewire",
   "rofi-wayland": "app launcher",
   "stow": "symlinking dotfiles",
-  "ttf-font-awesome-5": "fonts",
   "dfc": "colorized df",
   "light": "brightness controls",
   "pywal-git": "generate themes",
@@ -21,8 +20,7 @@
   "zsh-autosuggestions": "",
   "zsh-theme-powerlevel10k-git": "",
   "dunst": "notification deamon",
-  "tlp": "power management",
-  "lemurs": "login manager",
+  "auto-cpufreq": "power management",
   "acpi_call": "",
   "neofetch": "",
   "cronie": "",
@@ -35,8 +33,13 @@
   "hyprshot": "screenshots",
   "dhcpcd": "basic networking",
   "xorg-xhost": "display not found fix",
-  "gtk-theme-flat-color-git": "pywal/wpgtk theme",
+  "themix-full": "gtk theme editor",
   "nwg-look": "gtk theme settings",
   "pulseaudio-control":"",
-  "pavucontrol": ""
+  "pavucontrol": "",
+  "greetd":"",
+  "greetd-tuigreet-bin": "login manager",
+  "ttf-adobe-source-code-pro-fonts": "",
+  "ttf-nerd-fonts-symbols": "https://kwest.haus/blog/nerd-fonts",
+  "thinkfan": ""      
 }
