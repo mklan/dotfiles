@@ -1,23 +1,17 @@
-#!/usr/bin/bash
+# #!/usr/bin/bash
 
-# src: https://github.com/knadh/rofi-vscode-projects
+# Get the list of folders
+folders=$(find "$1" -maxdepth 1 -mindepth 1 -type d -printf '%f\n')
 
-TITLE='vscode-project'
+folders="$folders
+../dotfiles"
 
-LAUNCHER='rofi -dmenu -p'
-#LAUNCHER='dmenu -p'
-#LAUNCHER='dmenu-mac -p'
-#LAUNCHER='choose'
+# Use rofi to select a folder
+selected_folder=$(echo "$folders" | rofi -dmenu -p "Select a folder")
 
-# Path to the projects.json file (vscode alefragnani project manager)
-SRC=~/.config/Code\ -\ OSS/User/globalStorage/alefragnani.project-manager/projects.json
-# SRC=~/.config/Code/User/globalStorage/alefragnani.project-manager/projects.json
-
-prj=$(jq -r "sort_by(.name) | .[].name" < "$SRC" | $LAUNCHER $TITLE $@)
-
-
-# If there was a selection, find its path from the src file and launch vscode.
-if [ -n "$prj" ]; then
-    prjpath=$(jq -r --arg prj "$prj" '.[] | select(.name==$prj) | .rootPath' < "$SRC")
-    code $prjpath
+# Check if a folder was selected
+if [ -n "$selected_folder" ]; then
+    code "$1/$selected_folder"
+else
+    echo "No folder selected."
 fi
