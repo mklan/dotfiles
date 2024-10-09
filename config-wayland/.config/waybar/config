@@ -7,7 +7,8 @@
         "hyprland/workspaces"
     ],
     "modules-center": [
-        "clock"
+        "clock",
+        "custom/weather"
     ],
     "modules-right": [
         "custom/todo",
@@ -68,6 +69,11 @@
         "exec": "echo hallo",
         "format": "󰀻",
         "on-click": "killall rofi || rofi -show run"
+    },
+    "custom/weather": {
+        "exec": "~/.config/waybar/modules/weather/weather.sh Vienna",
+        "interval": 600,
+        "return-type": "json"
     },
     "temperature": {
         // "thermal-zone": 2,
@@ -167,8 +173,9 @@
     "clock": {
         "interval": 1,
         "format": "{:%H:%M}",
-        "format-alt": "{:%H:%M:%S %a %d.%m.%y}",
+        "format-alt": "        {:%a %H:%M:%S %d.%m.%y}",
         "tooltip": true,
         "tooltip-format": "{:%d.%m.%y}"
     }
+    
 }

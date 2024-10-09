@@ -1,0 +1,1 @@
+pgrep -x $1 && pkill -x $1; nohup $1 &>/dev/null &

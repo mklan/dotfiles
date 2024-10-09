@@ -1,0 +1,1 @@
+git submodule add git@github.com:mklan/private_dotfiles.git ../_private

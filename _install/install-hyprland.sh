@@ -31,6 +31,8 @@ function main {
   echo "systemctl"
 
   sudo systemctl enable NetworkManager
+  systemctl enable --now auto-cpufreq
+  systemctl enable greetd
 
   echo "setting zsh as default shell"
   chsh -s $(which zsh)

@@ -35,11 +35,12 @@
   "xorg-xhost": "display not found fix",
   "themix-full": "gtk theme editor",
   "nwg-look": "gtk theme settings",
-  "pulseaudio-control":"",
+  "pamixer": "",
   "pavucontrol": "",
-  "greetd":"",
+  "greetd": "",
   "greetd-tuigreet-bin": "login manager",
   "ttf-adobe-source-code-pro-fonts": "",
   "ttf-nerd-fonts-symbols": "https://kwest.haus/blog/nerd-fonts",
-  "thinkfan": ""      
+  "thinkfan": "",
+  "wl-clipboard": "set clipboard in scripts"
 }

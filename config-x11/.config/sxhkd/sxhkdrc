@@ -40,7 +40,7 @@ ctrl + super + alt + k
 
 # description: vscode project launcher
 super + alt + ctrl + c
-	vscode-projects
+	vscode-projects ~/projects
 
 # description: shutdown menu
 ctrl + alt + Delete
