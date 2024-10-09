@@ -1,0 +1,1 @@
+ln -s auto-cpufreq.conf /etc/auto-cpufreq.conf

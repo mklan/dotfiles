@@ -12,9 +12,10 @@ if [[ `ps ho command $(ps ho ppid $$)` == 'urxvt' ]]; then
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
+#
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -23,7 +24,7 @@ export PATH=$HOME/bin:/usr/local/bin:$PATH
 export ZSH=/usr/share/oh-my-zsh/
 
 # load theme
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+#source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # load private zsh stuff
 if [[ -r ~/.zshrc_private ]]; then
@@ -34,7 +35,7 @@ fi
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="minimal"
+#ZSH_THEME="minimal"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -143,7 +144,7 @@ alias pyload='node ~/projects/typescript-starter-server/src/pyload-cli/index.js'
 
 alias t=todo.sh
 alias todo=todo.sh
-alias df=dfc
+#alias df=dfc
 alias youtube=mpsyt
 alias y2mp3="youtube-dl --extract-audio --audio-format mp3"
 alias y2mp4="youtube-dl -i -f mp4"
@@ -185,15 +186,8 @@ alias df="dfc"
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 
-alias jdownloader="wmname compiz && jdownloader &"
-
-
 export PATH=~/.local/bin:$PATH
 
-
-# tabtab source for packages
-# uninstall by removing these lines
-[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -205,16 +199,17 @@ typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
 eval $RUN_ZSH_CMD
 
-
+export EDITOR=vim
    
 export DEVKITPRO=/opt/devkitpro    
 export DEVKITARM=/opt/devkitpro/devkitARM    
 export DEVKITPPC=/opt/devkitpro/devkitPPC
 
-export ANDROID_HOME=$HOME/Android/sdk 
-export PATH=$PATH:$ANDROID_HOME/emulator 
-export PATH=$PATH:$ANDROID_HOME/tools 
-export PATH=$PATH:$ANDROID_HOME/tools/bin 
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
-export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+
+
+eval "$(starship init zsh)"
