@@ -6,13 +6,19 @@ GNU/Linux system configuration using Hyprland as compositor (Legacy Mode: bspwm)
 
 ### AI prompt scratchpad
 
-Easy access to your prefered prompt
+Instant access to your prefered prompt
 
 ![Theme switching](https://github.com/mklan/dotfiles/blob/master/screenshots/ai_prompt.gif)
 
-### Theme generation (x11 only)
+### Code Project launcher
 
-`wallpaper ~/path/to/some/wallpaper.jpg`
+Quickly launch projects
+
+![Theme switching](https://github.com/mklan/dotfiles/blob/master/screenshots/project-launcher.gif)
+
+### Theme generation
+
+`setTheme ~/path/to/some/wallpaper.jpg`
 
 ![Theme switching](https://github.com/mklan/dotfiles/blob/master/screenshots/wallpaper_switch.gif)
 

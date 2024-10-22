@@ -13,6 +13,7 @@ countdown() {
         sleep 1
     done
     dunstctl close-all
+    sleep 0.5
 	
 }
 
