@@ -2,15 +2,25 @@
 
 GNU/Linux system configuration using Hyprland as compositor (Legacy Mode: bspwm)
 
+## Features
+
+### AI prompt scratchpad
+
+Easy access to your prefered prompt
+
+![Theme switching](https://github.com/mklan/dotfiles/blob/master/screenshots/ai_prompt.gif)
+
+### Theme generation (x11 only)
+
 `wallpaper ~/path/to/some/wallpaper.jpg`
 
-![Theme switching](https://github.com/mklan/dotfiles/blob/master/screenshots/demo.gif)
+![Theme switching](https://github.com/mklan/dotfiles/blob/master/screenshots/wallpaper_switch.gif)
+
 
 TODO: Create demos for more features.
 
 ## Core system components
 
-- pywal
 - kitty
 - zsh
 - rofi
@@ -25,9 +35,10 @@ TODO: Create demos for more features.
 ### X11 (Legacy)
 
 - bspwm
-- picom
-- sxhkd
 - polybar
+- picom
+- pywal
+- sxhkd
 - i3-lock
 
 For a complete list look into `_install/arch-pkglist`
