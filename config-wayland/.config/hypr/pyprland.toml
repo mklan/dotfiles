@@ -1,5 +1,5 @@
 [pyprland]
-plugins = ["scratchpads", "workspaces_follow_focus", "shortcuts_menu"]
+plugins = ["scratchpads", "workspaces_follow_focus", "shortcuts_menu", "toggle_special"]
 
 [scratchpads.term]
 animation = "fromTop"
