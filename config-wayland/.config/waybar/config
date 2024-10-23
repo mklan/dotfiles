@@ -63,7 +63,9 @@
         "exec": "echo hallo",
         "tooltip-format": "Connect Buds",
         "format": "󰥰",
-        "on-click": "bluetoothctl connect 10:E4:C2:3C:47:70"
+        //"on-click": "bluetoothctl connect 10:E4:C2:3C:47:70",
+        "on-click": "bluetoothctl connect F4:2B:8C:C8:D5:AB"
+
     },
     "custom/apps": {
         "exec": "echo hallo",

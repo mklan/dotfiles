@@ -6,7 +6,7 @@ GNU/Linux system configuration using Hyprland as compositor (Legacy Mode: bspwm)
 
 ### AI prompt scratchpad
 
-Instant access to your prefered prompt
+Instant access to your preferred prompt
 
 ![Theme switching](https://github.com/mklan/dotfiles/blob/master/screenshots/ai_prompt.gif)
 

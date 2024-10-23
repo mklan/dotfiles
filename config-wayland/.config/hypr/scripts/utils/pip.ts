@@ -6,16 +6,18 @@ const pheight = 360;
 const margin = 40;
 
 export async function pip() {
-
   const monitor = await getFocusedMonitor();
 
-
   await batch(
-    'dispatch togglefloating', 
-    'dispatch pin', 
+    "dispatch togglefloating",
+    "dispatch pin",
     `dispatch resizeactive exact ${pwidth} ${pheight}`,
-    'dispatch centerwindow', 
+    "dispatch centerwindow"
   );
 
-  await hyprctl(`dispatch moveactive ${parseInt(monitor.width)/2 - pwidth / 2 - margin} ${parseInt(monitor.height)/2 - pheight / 2 - margin}`);
+  await hyprctl(
+    `dispatch moveactive ${
+      parseInt(monitor.width) / monitor.scale / 2 - pwidth / 2 - margin
+    } ${parseInt(monitor.height) / monitor.scale / 2 - pheight / 2 - margin}`
+  );
 }
