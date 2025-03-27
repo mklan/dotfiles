@@ -1,0 +1,1 @@
+hyprctl monitors -j | jq -r 'first(.[] | select(.focused == true)).name'

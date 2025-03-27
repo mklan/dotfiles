@@ -1,8 +1,8 @@
-#!/usr/bin/env -S deno run -A --allow-env
+#!/usr/bin/env -S deno run -A
 
 import { writeFileSync, readFileSync } from "node:fs";
 import { getFocusedMonitor } from "./utils/monitor.ts";
-import {hyprctl, batch} from "./lib/hyprctl.ts";
+import { hyprctl, batch } from "./lib/hyprctl.ts";
 
 (async () => {
   let [nextWorkspace] = Deno.args;
@@ -27,8 +27,10 @@ import {hyprctl, batch} from "./lib/hyprctl.ts";
 
   if (!nextWorkspace || nextWorkspace == activeWorkspace) return;
 
-  await batch(`dispatch moveworkspacetomonitor ${nextWorkspace} current`, `dispatch workspace ${nextWorkspace}`);
-
+  await batch(
+    `dispatch moveworkspacetomonitor ${nextWorkspace} current`,
+    `dispatch workspace ${nextWorkspace}`
+  );
 })();
 
 // HELPER
@@ -44,4 +46,3 @@ function getState() {
 function setState(state) {
   writeFileSync("/dev/shm/hyprland.tmp", JSON.stringify(state, null, 2));
 }
-

@@ -1,6 +1,15 @@
 #!/usr/bin/env -S deno run -A --allow-env
 
 Deno.serve(async (_req) => {
+  // _req.headers.set("Access-Control-Allow-Origin", "*");
+  // _req.headers.set(
+  //   "Access-Control-Allow-Methods",
+  //   "GET, POST, PUT, DELETE, OPTIONS"
+  // );
+  // _req.headers.set(
+  //   "Access-Control-Allow-Headers",
+  //   "Content-Type, Authorization"
+  // );
   let url = new URL(_req.url);
   if (url.pathname === "/notify") {
     const text = url.searchParams.get("text");
