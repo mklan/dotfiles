@@ -100,7 +100,6 @@ ruby-fusuma
 # hyprland stuff
 hyprland
 # screen off idle
-swayidle
 swaylock-effects-git
 pyprland
 deno

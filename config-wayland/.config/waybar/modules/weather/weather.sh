@@ -1,25 +1,33 @@
 #!/bin/bash
 
-weather=$(curl -s "wttr.in/$1?format=%t")
+API_KEY=$OPENWEATHERMAP_KEY  # <-- Replace with your actual API key
+UNITS="metric"                         # Use "imperial" for Fahrenheit
 
-# Remove the + sign for positive temperatures
-temp=$(echo $weather | sed 's/+//')
+# If no city is given, try to detect it via IP geolocation
+if [ -z "$1" ]; then
+  CITY=$(curl -s ipinfo.io/city)
+else
+  CITY="$1"
+fi
 
-# Fetch the weather condition to determine the icon
-condition=$(curl -s "wttr.in/$1?format=%C")
+response=$(curl -s "https://api.openweathermap.org/data/2.5/weather?q=${CITY}&appid=${API_KEY}&units=${UNITS}")
 
+temp=$(echo "$response" | jq '.main.temp' | xargs printf "%.0f") # Round to integer
+condition=$(echo "$response" | jq -r '.weather[0].main')
+
+# Choose icon based on condition
 case $condition in
-  *Sunny*|*Clear*)
-    icon="" # ""  # Font Awesome sun icon
+  Clear)
+    icon=""
     ;;
-  *"Partly cloudy"*|*Cloudy*|*Overcast*)
-    icon=""  #""  # Font Awesome cloud icon
+  Clouds)
+    icon=""
     ;;
-  *Rain*|*Drizzle*)
-    icon="󰖗"  # Font Awesome umbrella icon
+  Rain|Drizzle)
+    icon="󰖗"
     ;;
-  *Snow*)
-    icon="󰼶"  # Font Awesome snowflake icon
+  Snow)
+    icon="󰼶"
     ;;
   *)
     icon=""
@@ -27,4 +35,4 @@ case $condition in
 esac
 
 # Output for Waybar
-echo "{\"text\": \"${icon} ${temp}\", \"tooltip\": \"${condition}\"}"
+echo "{\"text\": \"${icon} ${temp}°C\", \"tooltip\": \"${condition} in ${CITY}\"}"

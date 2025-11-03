@@ -21,11 +21,11 @@ swaylock \
 	--screenshots \
 	--indicator \
 	--indicator-radius 100 \
-	--indicator-thickness 7 \
+	--indicator-thickness 4 \
 	--effect-blur 7x5 \
 	--effect-vignette 0.5:0.5 \
-	--ring-color '${color5}' \
-	--key-hl-color 880033 \
+	--ring-color ${color5} \
+	--key-hl-color ${color6} \
 	--line-color 00000000 \
 	--inside-color 00000000 \
 	--separator-color 00000000 \

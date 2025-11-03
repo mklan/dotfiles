@@ -7,11 +7,6 @@ command = "kitty --class kitty-dropterm"
 class = "kitty-dropterm"
 unfocus = "hide"
 
-[scratchpads.keepassxc]
-command = "keepassxc"
-animation = "fromBottom"
-unfocus = "hide"
-
 [shortcuts_menu]
 parameters = "--prompt-text hey --fuzzy-match true"
 engine = "rofi"

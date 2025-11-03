@@ -83,3 +83,8 @@ Legacy Mode:
 `alt + super + return` to open bottom overlay terminal (bspwm only)
 
 `super + h` display rest of the key-bindings
+
+## OLED Theme
+
+https://addons.mozilla.org/en-US/firefox/addon/black21/
+

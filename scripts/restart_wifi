@@ -1,0 +1,1 @@
+/usr/bin/nmcli radio wifi off && sleep 1 && /usr/bin/nmcli radio wifi on
