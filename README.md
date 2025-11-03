@@ -8,20 +8,19 @@ GNU/Linux system configuration using Hyprland as compositor (Legacy Mode: bspwm)
 
 Instant access to your preferred prompt
 
-![Theme switching](https://github.com/mklan/dotfiles/blob/master/screenshots/ai_prompt.gif)
+![Theme switching](https://github.com/mklan/dotfiles/blob/main/screenshots/ai_prompt.gif)
 
 ### Code Project launcher
 
 Quickly launch projects
 
-![Theme switching](https://github.com/mklan/dotfiles/blob/master/screenshots/project-launcher.gif)
+![Theme switching](https://github.com/mklan/dotfiles/blob/main/screenshots/project-launcher.gif)
 
 ### Theme generation
 
 `setTheme ~/path/to/some/wallpaper.jpg`
 
-![Theme switching](https://github.com/mklan/dotfiles/blob/master/screenshots/wallpaper_switch.gif)
-
+![Theme switching](https://github.com/mklan/dotfiles/blob/main/screenshots/wallpaper_switch.gif)
 
 TODO: Create demos for more features.
 
@@ -77,7 +76,6 @@ For a complete list look into `_install/arch-pkglist`
 
 `hypr + brightnessDown` set min brightness
 
-
 Legacy Mode:
 
 `alt + super + return` to open bottom overlay terminal (bspwm only)
@@ -87,4 +85,3 @@ Legacy Mode:
 ## OLED Theme
 
 https://addons.mozilla.org/en-US/firefox/addon/black21/
-
