@@ -1,4 +1,10 @@
 [global]
+
+    ### Shortcuts ###    
+    close = ctrl+space
+    close_all = ctrl+shift+space
+    context = ctrl+shift+period
+
     ### Display ###
 
     monitor = 0
@@ -19,13 +25,12 @@
     origin = top-right
 
 
-    # Offset from theorigin
-    offset = 04x04
+    # Offset from the origin
+    offset = 4,4
 
     indicate_hidden = yes
     shrink = yes
     transparency = 0
-    notification_height = 0
     separator_height = 3
     padding = 12
     horizontal_padding = 12
@@ -82,11 +87,6 @@
 
 [experimental]
     per_monitor_dpi = false
-
-[shortcuts]
-    close = ctrl+space
-    close_all = ctrl+shift+space
-    context = ctrl+shift+period
 
 [urgency_low]
     background = "{color0}"

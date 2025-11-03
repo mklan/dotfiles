@@ -1,4 +1,4 @@
-#!/usr/bin/env -S deno run -A --allow-env
+#!/usr/bin/env -S deno run -A
 
 Deno.serve(async (_req) => {
   // _req.headers.set("Access-Control-Allow-Origin", "*");

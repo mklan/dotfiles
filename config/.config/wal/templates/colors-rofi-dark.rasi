@@ -2,27 +2,28 @@
     font: "Source Code Pro 8";
 
     active-background: {color5};
-    active-foreground: @background;
-    normal-background: @background;
-    normal-foreground: @foreground;
+    active-foreground: {background};
+    normal-background: {background};
+    normal-foreground: {foreground};
     urgent-background: {color1};
-    urgent-foreground: @foreground;
+    urgent-foreground: {foreground};
 
-    alternate-active-background: @background;
-    alternate-active-foreground: @foreground;
-    alternate-normal-background: @background;
-    alternate-normal-foreground: @foreground;
-    alternate-urgent-background: @background;
-    alternate-urgent-foreground: @foreground;
+    alternate-active-background: {background};
+    alternate-active-foreground: {foreground};
+    alternate-normal-background: {background};
+    alternate-normal-foreground: {foreground};
+    alternate-urgent-background: {background};
+    alternate-urgent-foreground: {foreground};
 
-    selected-active-background: {color5};
-    selected-active-foreground: @foreground;
+    selected-active-background: {color1};
+    selected-active-foreground: {color0};
     selected-normal-background: {color5};
-    selected-normal-foreground: {background};
+    selected-normal-foreground: {color0};
     selected-urgent-background: {color3};
-    selected-urgent-foreground: @foreground;
+    selected-urgent-foreground: {color0};
 
-    background: {background}BF;
+    background-color: {background};
+    background: {background};
     foreground: {foreground};
     border-color: {color4};
     spacing: 2;
@@ -31,6 +32,7 @@
 #window {{
     border: 5;
     padding: 2.5ch;
+    width: 20%;
 }}
 
 #mainbox {{
@@ -56,7 +58,7 @@
     expand: false;
     str: ":";
     margin: 0px 0.3em 0em 0em;
-    text-color: @normal-foreground;
+    text-color: @foreground;
 }}
 
 #listview {{
@@ -123,12 +125,12 @@
     text-color: @alternate-active-foreground;
 }}
 
-#scrollbar {
+#scrollbar {{
     width: 0px;
     border: 0;
     handle-width: 0px;
     padding: 0;
-}
+}}
 
 #sidebar {{
     border: 2px 0px 0px;

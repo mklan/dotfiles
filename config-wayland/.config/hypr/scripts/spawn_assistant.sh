@@ -3,7 +3,8 @@
 
 
 #URL=https://copilot.microsoft.com
-URL=https://www.deepseek.com/
+#URL=https://www.deepseek.com/
+URL=https://chatgpt.com/
 
 /usr/bin/firefox --profile ~/.mozilla/firefox/76fj82x8.headless --new-instance --kiosk --class "assistant" $URL & disown
 

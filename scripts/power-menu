@@ -6,7 +6,7 @@
 # 2016 Oliver Kraitschy - http://okraits.de
 # Adapted by Matthias Klan 2020
 
-LAUNCHER="rofi -width 20 -height 1 -dmenu -i -p Logout"
+LAUNCHER="rofi -width 20 -height 1 -dmenu -i -p Logout -location 3 -yoffset 30 -xoffset -30"
 OPTIONS="Logout\nLock\nReboot\nShutdown\nSuspend"
 
 option=`echo -e $OPTIONS | $LAUNCHER | awk '{print $1}' | tr -d '\r\n'`
