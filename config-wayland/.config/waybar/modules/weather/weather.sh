@@ -35,4 +35,4 @@ case $condition in
 esac
 
 # Output for Waybar
-echo "{\"text\": \"${icon} ${temp}°C\", \"tooltip\": \"${condition} in ${CITY}\"}"
+echo "{\"text\": \" ${icon}  ${temp}°C\", \"tooltip\": \"${condition} in ${CITY}\"}"

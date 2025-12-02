@@ -2,7 +2,11 @@
 # workaround for urxvt vertical prompt placement
 if [[ `ps ho command $(ps ho ppid $$)` == 'urxvt' ]]; then
    clear
- fi
+fi
+
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+
 
 
 
@@ -136,6 +140,10 @@ source ~/.cache/wal/colors.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias h=Hyprland
+alias 'home-vpn-up'='wg-quick up Downloads/t14-nas.conf'
+alias 'home-vpn-down'='wg-quick down Downloads/t14-nas.conf'
+
 alias pokemon='pokemon-colorscripts'
 
 alias ts-node='ts-node --compiler-options "{ \"experimentalDecorators\": true }"'
@@ -166,6 +174,8 @@ alias entpacke='unar -d'
 
 alias pdfmerge='pdfunite'
 alias mergepdf='pdfunite'
+
+alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
@@ -211,5 +221,10 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
 
+export SSH_ASKPASS=/usr/bin/ksshaskpass
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
 
 eval "$(starship init zsh)"
+
+bindkey '^R' fzf-history-widget
