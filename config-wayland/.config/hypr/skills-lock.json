@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "tobi-hyprland": {
+      "source": "smithery/ai",
+      "sourceType": "well-known",
+      "computedHash": "45f23800a1387fe072c3ba34760ec845cd223754cffc5fbe5d9908133c2b0005"
+    }
+  }
+}

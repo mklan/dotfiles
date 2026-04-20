@@ -58,6 +58,10 @@ widget>* {
   padding-right: 1px;
 }
 
+#custom_apps{
+  margin-top: 3px;
+}
+
 @keyframes pulse-green {
   to {
     background-color: #87c095;

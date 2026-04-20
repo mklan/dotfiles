@@ -47,6 +47,21 @@
         },
         "on-click": "kitty --class nmtui --hold sh -c nmtui"
     },
+    "group/network": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-left-to-right": false
+        },
+        "modules": [
+			"network",
+            "custom/vpn"
+		]
+    },
+    "custom/vpn": {
+        "exec": "echo ''",
+        "interval": 5,
+        "on-click": "kitty --hold sh -c '~/wireguard/toggle-home-vpn.sh'"
+    },
     "bluetooth": {
         "interval": 2,
         "on-click": "blueman-manager",
@@ -63,15 +78,15 @@
         "exec": "echo hallo",
         "tooltip-format": "Connect Buds",
         "format": "󰥰",
-        "on-click": "bluetoothctl connect 10:E4:C2:3C:47:70"
+        "on-click": "bluetoothctl connect 58:18:62:0F:25:D6 # galaxy buds +: 10:E4:C2:3C:47:70"
     },
     "custom/apps": {
         "exec": "echo hallo",
-        "format": "󰀻",
+        "format": "<span>󰀻</span>",
         "on-click": "killall rofi || rofi -show run"
     },
     "custom/weather": {
-        "exec": "~/.config/waybar/modules/weather/weather.sh Vienna",
+        "exec": "~/.config/waybar/modules/weather/weather.sh",
         "interval": 600,
         "return-type": "json"
     },
@@ -118,7 +133,7 @@
         "orientation": "horizontal",
 		"modules": [
             "group/bluetooth",
-			"network"
+			"group/network"
 		]
 	},
     "group/stats": {
