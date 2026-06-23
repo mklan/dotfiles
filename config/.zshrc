@@ -140,7 +140,7 @@ source ~/.cache/wal/colors.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias h=Hyprland
+alias h=start-hyprland
 alias 'home-vpn-up'='wg-quick up Downloads/t14-nas.conf'
 alias 'home-vpn-down'='wg-quick down Downloads/t14-nas.conf'
 
@@ -193,7 +193,7 @@ alias df="dfc"
 
 
 # Fix ssh in kitty
-[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
+#[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 
 export PATH=~/.local/bin:$PATH
@@ -228,3 +228,10 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 eval "$(starship init zsh)"
 
 bindkey '^R' fzf-history-widget
+
+# bun completions
+[ -s "/home/matze/.bun/_bun" ] && source "/home/matze/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

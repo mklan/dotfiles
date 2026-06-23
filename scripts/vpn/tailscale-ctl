@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+    echo "Usage: $(basename "$0") up|down"
+    exit 1
+}
+
+[ $# -eq 1 ] || usage
+
+ACTION="$1"
+
+if [ "$ACTION" != "up" ] && [ "$ACTION" != "down" ]; then
+    usage
+fi
+
+# ── Bring Tailscale up or down ────────────────────────────────────────────────
+if [ "$ACTION" = "up" ]; then
+    TAILSCALED_STATUS="$(systemctl is-active tailscaled 2>/dev/null || true)"
+
+    if [ "$TAILSCALED_STATUS" != "active" ]; then
+        echo "→ tailscaled is not running (status: ${TAILSCALED_STATUS:-unknown}). Starting it…"
+        sudo systemctl start tailscaled
+
+        # Wait until it actually becomes active (max 10 seconds)
+        for i in {1..20}; do
+            if systemctl is-active --quiet tailscaled 2>/dev/null; then
+                echo "✔ tailscaled is now active."
+                break
+            fi
+            sleep 0.5
+        done
+
+        if ! systemctl is-active --quiet tailscaled 2>/dev/null; then
+            echo "✘ ERROR: tailscaled failed to start. Check 'systemctl status tailscaled'."
+            exit 1
+        fi
+    else
+        echo "✔ tailscaled is already running."
+    fi
+
+    echo "→ Bringing Tailscale up…"
+    sudo tailscale up
+    echo "✔ Tailscale is up."
+else
+    echo "→ Bringing Tailscale down…"
+    sudo tailscale down
+
+    # Stop tailscaled so it stops injecting DNS when not in use
+    sudo systemctl stop tailscaled 2>/dev/null || true
+    echo "✔ Tailscale is down. tailscaled stopped."
+fi

@@ -13,8 +13,8 @@
     "modules-right": [
         "custom/todo",
         "group/hardware",
-        "group/connection",
         "group/stats",
+        "group/connection",
         "custom/powerMenu"
     ],
     "custom/powerMenu": {
@@ -33,19 +33,14 @@
         "on-click": "kitty --hold sh -c todo.sh",
         "format": " {}"
     },
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{icon}",
-        "format-ethernet": "{icon}",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "<span foreground='#e68183'>{icon}</span>",
-        "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ipaddr}",
-        "format-icons": {
-            "wifi": ["󰤢", "󰤢", "󰤢" ,"󰤨", "󰤨"],
-            "ethernet": ["󰤢"],
-            "disconnected": ["󰌙"]
-        },
-        "on-click": "kitty --class nmtui --hold sh -c nmtui"
+    "custom/network": {
+        "exec": "~/.config/waybar/modules/vpn/network-vpn-status.sh",
+        "interval": 5,
+        "return-type": "json",
+        "format": "{}",
+        "on-click": "kitty --class nmtui --hold sh -c nmtui",
+        "on-click-right": "~/.config/waybar/modules/vpn/tailscale-toggle.sh",
+        "tooltip": true
     },
     "group/network": {
         "orientation": "horizontal",
@@ -53,14 +48,8 @@
             "transition-left-to-right": false
         },
         "modules": [
-			"network",
-            "custom/vpn"
-		]
-    },
-    "custom/vpn": {
-        "exec": "echo ''",
-        "interval": 5,
-        "on-click": "kitty --hold sh -c '~/wireguard/toggle-home-vpn.sh'"
+            "custom/network"
+        ]
     },
     "bluetooth": {
         "interval": 2,
@@ -104,7 +93,7 @@
             "firefox": "",
             "class<firefox> title<.*Mozilla Firefox Private Browsing*>": "󰗹",
             "chrome": "",
-            "code": "",
+            "class<code>": "",
             "kitty": "",
             "thunar": "",
             "vlc": "󰕼",
@@ -133,7 +122,9 @@
         "orientation": "horizontal",
 		"modules": [
             "group/bluetooth",
-			"group/network"
+			"group/network",
+                        "battery"
+
 		]
 	},
     "group/stats": {
@@ -141,7 +132,6 @@
 		"modules": [
             "pulseaudio",
             "backlight",
-            "battery"
 		]
 	},
     "group/hardware": {
@@ -168,7 +158,7 @@
     },
     "battery": {
         /* "format": "{capacity}% ({time})", */
-        "format": "{capacity}% {icon}",
+        "format": "{icon}{capacity}%",
         "format-time": "{H}:{M}",
         "format-icons": [
             "󰂃",

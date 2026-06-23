@@ -26,7 +26,7 @@
 
 
     # Offset from the origin
-    offset = 4,4
+    offset = 4,22
 
     indicate_hidden = yes
     shrink = yes
@@ -85,6 +85,9 @@
     startup_notification = false
     force_xinerama = false
 
+    ### Mouse actions ###
+    mouse_middle_click = script_action
+
 [experimental]
     per_monitor_dpi = false
 
@@ -92,14 +95,17 @@
     background = "{color0}"
     foreground = "{color15}"
     timeout = 10
+    script = ~/.config/hypr/scripts/dunst-focus.sh
 
 [urgency_normal]
     background = "{color0}"
     foreground = "{color15}"
     timeout = 10
+    script = ~/.config/hypr/scripts/dunst-focus.sh
 
 [urgency_critical]
     background = "{color0}"
     foreground = "{color15}"
     frame_color = "{color15}"
     timeout = 0
+    script = ~/.config/hypr/scripts/dunst-focus.sh

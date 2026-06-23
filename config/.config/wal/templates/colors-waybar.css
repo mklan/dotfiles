@@ -1,37 +1,100 @@
-@define-color foreground {foreground};
-
+@define-color foreground {color15};
 @define-color background {background};
-
-@define-color cursor {cursor};
-
 @define-color color0 {color0};
-
 @define-color color1 {color1};
-
 @define-color color2 {color2};
-
-@define-color color3 {color3};
-
-@define-color color4 {color4};
-
-@define-color color5 {color5};
-
-@define-color color6 {color6};
-
-@define-color color7 {color7};
-
 @define-color color8 {color8};
-
-@define-color color9 {color9};
-
-@define-color color10 {color10};
-
-@define-color color11 {color11};
-
 @define-color color12 {color12};
-
-@define-color color13 {color13};
-
 @define-color color14 {color14};
-
 @define-color color15 {color15};
+
+* {{
+  font-family: "Source Code Pro Medium", MesloLGS, monospace;
+  font-size: 11px;
+}}
+
+window#waybar {{
+  background-color: @background;
+  color: @color15;
+}}
+
+widget * {{
+}}
+
+widget>* {{
+  padding: 0 3px;
+  margin: 0px 0px;
+}}
+
+.modules-left,
+.modules-center,
+.modules-right {{
+  padding: 0px 0px;
+}}
+
+#workspaces {{
+  padding: 0px 0px;
+}}
+
+#workspaces button {{
+  margin: 0;
+  padding: 0 0.9em;
+  background: transparent;
+  color: @color15;
+}}
+
+#workspaces .active * {{
+  background: none;
+  color: @color14;
+}}
+
+#mode {{
+  background: @color8;
+  border-bottom: 3px solid white;
+}}
+
+#temperature{{
+  padding-left: 1px;
+}}
+
+#cpu{{
+  padding-right: 1px;
+}}
+
+#custom_apps{{
+}}
+
+@keyframes pulse-green {{
+  to {{
+    background-color: @color14;
+  }}
+}}
+
+#battery.charging {{
+  color: @color14;
+}}
+
+#custom-network.wifi-vpn-up {{
+  color: @color12;
+}}
+
+@keyframes pulse-red {{
+  to {{
+    background-color: @color1;
+  }}
+}}
+
+#battery.warning:not(.charging) {{
+  color: @color15;
+  animation-name: pulse-red;
+  animation-duration: 4s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}}
+
+tooltip {{
+  color: @color15;
+  background-color: #000000;
+  border: 1px solid @color8;
+}}
