@@ -1,23 +1,28 @@
+@define-color foreground #d8caac;
+@define-color background #000000;
+@define-color color0 #000000;
+@define-color color1 #ff9c9e;
+@define-color color2 #c2e69c;
+@define-color color8 #868d80;
+@define-color color12 #89beba;
+@define-color color14 #87c095;
+@define-color color15 #d8caac;
+
 * {
   font-family: "Source Code Pro Medium", MesloLGS, monospace;
   font-size: 11px;
-  margin-top: 1px;
-  /* keep things off the top area, since flexbox doesnt work for centering */
 }
 
 window#waybar {
-  background-color: #000;
-  /* opacity: 0.0; */
-  /* border-top: 3px solid #b5740a; */
-  color: #d8caac;
+  background-color: @background;
+  color: @color15;
 }
 
 widget * {
-  /* background-color: #383838; */
 }
 
 widget>* {
-  padding: 0 6px;
+  padding: 0 3px;
   margin: 0px 0px;
 }
 
@@ -35,18 +40,16 @@ widget>* {
   margin: 0;
   padding: 0 0.9em;
   background: transparent;
-  color: #cacaca;
-
-  /* border-bottom: 3px solid transparent; */
+  color: @color15;
 }
 
 #workspaces .active * {
   background: none;
-  color: #87c095;
+  color: @color14;
 }
 
 #mode {
-  background: #64727D;
+  background: @color8;
   border-bottom: 3px solid white;
 }
 
@@ -59,27 +62,30 @@ widget>* {
 }
 
 #custom_apps{
-  margin-top: 3px;
 }
 
 @keyframes pulse-green {
   to {
-    background-color: #87c095;
+    background-color: @color14;
   }
 }
 
 #battery.charging {
-  color: #87c095;
+  color: @color14;
+}
+
+#custom-network.wifi-vpn-up {
+  color: @color12;
 }
 
 @keyframes pulse-red {
   to {
-    background-color: #cf3030;
+    background-color: @color1;
   }
 }
 
 #battery.warning:not(.charging) {
-  color: #cacaca;
+  color: @color15;
   animation-name: pulse-red;
   animation-duration: 4s;
   animation-timing-function: linear;
@@ -87,3 +93,8 @@ widget>* {
   animation-direction: alternate;
 }
 
+tooltip {
+  color: @color15;
+  background-color: #000000;
+  border: 1px solid @color8;
+}

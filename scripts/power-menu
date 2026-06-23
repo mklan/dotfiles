@@ -6,10 +6,23 @@
 # 2016 Oliver Kraitschy - http://okraits.de
 # Adapted by Matthias Klan 2020
 
-LAUNCHER="rofi -width 20 -height 1 -dmenu -i -p Logout -location 3 -yoffset 30 -xoffset -30"
-OPTIONS="Logout\nLock\nReboot\nShutdown\nSuspend"
+DOCKED_MODE_SCRIPT="$HOME/.config/hypr/scripts/docked-mode.sh"
 
-option=`echo -e $OPTIONS | $LAUNCHER | awk '{print $1}' | tr -d '\r\n'`
+if [ -x "$DOCKED_MODE_SCRIPT" ]; then
+    DOCKED_STATUS=$("$DOCKED_MODE_SCRIPT" --status)
+    if [ "$DOCKED_STATUS" = "on" ]; then
+        DOCKED_LABEL="Disable Docked Mode"
+    else
+        DOCKED_LABEL="Enable Docked Mode"
+    fi
+else
+    DOCKED_LABEL="Enable Docked Mode"
+fi
+
+LAUNCHER="rofi -width 20 -height 1 -dmenu -i -p Logout -location 3 -yoffset 30 -xoffset -30"
+OPTIONS="Logout\nLock\n$DOCKED_LABEL\nReboot\nShutdown\nSuspend"
+
+option=`echo -e $OPTIONS | $LAUNCHER | tr -d '\r\n'`
 if [ ${#option} -gt 0 ]
 then
     case $option in
@@ -18,6 +31,12 @@ then
         ;;
       Lock)
         ~/.config/hypr/scripts/lock.sh
+        ;;
+      Enable\ Docked\ Mode)
+        "$DOCKED_MODE_SCRIPT" --toggle
+        ;;
+      Disable\ Docked\ Mode)
+        "$DOCKED_MODE_SCRIPT" --toggle
         ;;
       Reboot)
         systemctl reboot

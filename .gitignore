@@ -3,3 +3,5 @@ config/.zshrc_private
 tmp/
 .vscode
 internal_notes.md
+config-wayland/.config/waybar/style.css
+scripts/session-selector
