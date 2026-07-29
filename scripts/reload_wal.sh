@@ -1,5 +1,7 @@
-touch ~/.config/waybar/style.css
-wal -l --theme /home/matze/dotfiles/config/.config/wal/colorschemes/dark/everforest_oled.json
-cp ~/.cache/wal/colors-waybar.css ~/.config/waybar/style.css
-pkill -SIGUSR2 waybar 2>/dev/null || true
-pkill dunst 2>/dev/null; dunst &>/dev/null & disown
+#!/bin/bash
+
+# Reload the dark (OLED) Everforest theme.
+# For full dark/light switching use: switch-theme.sh [dark|light]
+
+DOTFILES_DIR="${DOTFILES_DIR:-$HOME/dotfiles}"
+exec "$DOTFILES_DIR/scripts/switch-theme.sh" dark
