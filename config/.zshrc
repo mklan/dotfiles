@@ -1,4 +1,6 @@
 
+eval $(keychain -q --eval id_rsa nas)
+
 # workaround for urxvt vertical prompt placement
 if [[ `ps ho command $(ps ho ppid $$)` == 'urxvt' ]]; then
    clear
@@ -222,7 +224,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
 
 export SSH_ASKPASS=/usr/bin/ksshaskpass
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+[[ -z "$SSH_AUTH_SOCK" ]] && export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 
 eval "$(starship init zsh)"
