@@ -24,7 +24,7 @@
     },
     "backlight": {
         //"device": "intel_backlight",
-        "format": "<span foreground='#d8caac'>{percent}% {icon}</span>",
+        "format": "<span foreground='#d8caac'>{percent}%\u2005{icon}</span>",
         "format-icons": ["", ""]
     },
     "custom/todo": {
@@ -88,6 +88,8 @@
     },
     "hyprland/workspaces": {
         "format": "{id} {windows}",
+        "tooltip": true,
+        "tooltip-format": "{icon}  {name}\n{windows}",
         "window-rewrite-default": "󰘔",
         "window-rewrite": {
             "firefox": "",
@@ -101,7 +103,7 @@
         }
     },
     "pulseaudio": {
-        "format": "{volume}% 󰕾",
+        "format": "{volume}%\u2005󰕾",
         "format-muted": "󰝟"
     },
     "disk": {
@@ -123,7 +125,7 @@
 		"modules": [
             "group/bluetooth",
 			"group/network",
-                        "battery"
+            "battery"
 
 		]
 	},
@@ -157,8 +159,7 @@
         "format": "C: {usage}%"
     },
     "battery": {
-        /* "format": "{capacity}% ({time})", */
-        "format": "{icon}{capacity}%",
+        "format": "{icon}\u2009{capacity}%",
         "format-time": "{H}:{M}",
         "format-icons": [
             "󰂃",
