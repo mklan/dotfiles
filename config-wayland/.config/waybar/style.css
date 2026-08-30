@@ -18,22 +18,19 @@ window#waybar {
   color: @color15;
 }
 
-widget * {
-}
-
 widget>* {
   padding: 0 3px;
-  margin: 0px 0px;
+  margin: 0;
 }
 
 .modules-left,
 .modules-center,
 .modules-right {
-  padding: 0px 0px;
+  padding: 0;
 }
 
 #workspaces {
-  padding: 0px 0px;
+  padding: 0;
 }
 
 #workspaces button {
@@ -61,9 +58,6 @@ widget>* {
   padding-right: 1px;
 }
 
-#custom_apps{
-}
-
 @keyframes pulse-green {
   to {
     background-color: @color14;
@@ -76,6 +70,22 @@ widget>* {
 
 #custom-network.wifi-vpn-up {
   color: @color12;
+}
+
+#custom-network.wifi-up {
+  color: @color1;
+  animation: pulse-wifi-up 1.5s ease-out 1;
+}
+
+#custom-network.network-down {
+  color: @color8;
+}
+
+@keyframes pulse-wifi-up {
+  0%   { opacity: 0.3; }
+  30%  { opacity: 1;   }
+  60%  { opacity: 0.4; }
+  100% { opacity: 1;   }
 }
 
 @keyframes pulse-red {

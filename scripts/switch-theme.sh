@@ -58,12 +58,13 @@ fi
 
 # ── 1. Regenerate all pywal templates ────────────────────────────────────────
 echo "Applying pywal scheme: $WAL_SCHEME"
-wal --theme "$WAL_SCHEME"
+wal -l --theme "$WAL_SCHEME"
 
 # ── 2. Waybar ─────────────────────────────────────────────────────────────────
-if [ -f ~/.cache/wal/colors-waybar.css ]; then
+touch ~/.config/waybar/style.css
+if [ -f ~/.cache/wal/waybar-style.css.tpl ]; then
     mkdir -p ~/.config/waybar
-    cp ~/.cache/wal/colors-waybar.css ~/.config/waybar/style.css
+    cp ~/.cache/wal/waybar-style.css.tpl ~/.config/waybar/style.css
     pkill -SIGUSR2 waybar 2>/dev/null || true
 fi
 
