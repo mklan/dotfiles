@@ -1,0 +1,12 @@
+AppLauncher 1.0 AppLauncher.qml
+Audio 1.0 Audio.qml
+Backlight 1.0 Backlight.qml
+Battery 1.0 Battery.qml
+Bluetooth 1.0 Bluetooth.qml
+Clock 1.0 Clock.qml
+Hardware 1.0 Hardware.qml
+Network 1.0 Network.qml
+PowerMenu 1.0 PowerMenu.qml
+Todo 1.0 Todo.qml
+Weather 1.0 Weather.qml
+Workspaces 1.0 Workspaces.qml
