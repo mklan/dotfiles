@@ -59,7 +59,7 @@ Text {
     // Pulse animation for wifi-up (no VPN)
     SequentialAnimation on opacity {
         running: NetworkService.cssClass === "wifi-up"
-        loops: 1
+        loops: Animation.Infinite
         NumberAnimation { from: 0.3; to: 1;   duration: 450; easing.type: Easing.OutQuad }
         NumberAnimation { from: 1;   to: 0.4; duration: 450; easing.type: Easing.InQuad  }
         NumberAnimation { from: 0.4; to: 1;   duration: 600; easing.type: Easing.OutQuad }
