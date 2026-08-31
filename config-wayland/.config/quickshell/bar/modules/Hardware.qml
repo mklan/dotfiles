@@ -10,7 +10,7 @@ RowLayout {
 
     property string cpuText:  "C: --%"
     property string tempText: ""
-    property string memText:  "M: --Gb"
+    property string memText:  "M: --GB"
 
     // CPU usage
     Process {
@@ -49,7 +49,7 @@ RowLayout {
         stdout: SplitParser {
             onRead: (line) => {
                 const v = line.trim()
-                if (v) root.memText = "M: " + v + "Gb"
+                if (v) root.memText = "M: " + v + "GB"
             }
         }
     }
