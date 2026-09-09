@@ -1,61 +1,61 @@
 import QtQuick
-import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
 import ".."
 import "./modules"
 
 // Main bar – full-width, height 22, anchored to top of a monitor.
-// Instantiated once per screen by shell.qml via Variants.
+// Instantiated once per screen by shell.qml via Variants; the instantiator
+// passes the screen to anchor to.
 PanelWindow {
     id: barWindow
 
     // Layer-shell: top of screen, fill width, exclusive zone so windows don't go under bar
-    WlrLayerShell.layer:                 WlrLayerShell.Layer.Top
-    WlrLayerShell.anchors.top:           true
-    WlrLayerShell.anchors.left:          true
-    WlrLayerShell.anchors.right:         true
-    WlrLayerShell.exclusiveZone:         Theme.barHeight
-    WlrLayerShell.keyboardInteractivity: WlrLayerShell.KeyboardInteractivity.None
+    WlrLayershell.layer:        WlrLayer.Top
+    WlrLayershell.anchors.top:  true
+    WlrLayershell.anchors.left: true
+    WlrLayershell.anchors.right: true
+    WlrLayershell.exclusiveZone: Theme.barHeight
+    WlrLayershell.keyboardFocus: WlrKeyboardFocus.None
 
     implicitHeight: Theme.barHeight
     color: Theme.background
 
-    RowLayout {
+    Item {
         anchors.fill: parent
-        anchors.leftMargin:  0
-        anchors.rightMargin: 0
-        spacing: 0
 
         // ── Left ──────────────────────────────────────────────
-        RowLayout {
+        Row {
+            id: leftSection
+            anchors { left: parent.left; verticalCenter: parent.verticalCenter }
             spacing: 0
             AppLauncher {}
             Workspaces {}
         }
 
-        // ── Spacer ────────────────────────────────────────────
-        Item { Layout.fillWidth: true }
-
-        // ── Center ────────────────────────────────────────────
-        RowLayout {
+        // ── Center – truly centered regardless of left/right widths ───────────
+        Row {
+            anchors.centerIn: parent
             spacing: 0
             Clock {}
             Weather {}
         }
 
-        // ── Spacer ────────────────────────────────────────────
-        Item { Layout.fillWidth: true }
-
         // ── Right ─────────────────────────────────────────────
-        RowLayout {
-            spacing: 0
+        Row {
+            id: rightSection
+            anchors { right: parent.right; verticalCenter: parent.verticalCenter }
+            spacing: Theme.moduleSpacing
             Todo {}
             Hardware {}
             Audio {}
             Backlight {}
-            Bluetooth {}
-            Network {}
+            Row {
+                id: connectivityGroup
+                spacing: 0   // BT + wifi read as one connectivity group
+                Bluetooth {}
+                Network {}
+            }
             Battery {}
             PowerMenu {}
         }

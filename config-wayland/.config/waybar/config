@@ -28,18 +28,18 @@
         "format-icons": ["", ""]
     },
     "custom/todo": {
-        "exec": "~/.config/waybar/modules/todo/countTodos.sh",
+        "exec": "~/dotfiles/scripts/bar-modules/todo/countTodos.sh",
         "interval": 5,
         "on-click": "kitty --hold sh -c todo.sh",
         "format": " {}"
     },
     "custom/network": {
-        "exec": "~/.config/waybar/modules/vpn/network-vpn-status.sh",
+        "exec": "~/dotfiles/scripts/bar-modules/vpn/network-vpn-status.sh",
         "interval": 5,
         "return-type": "json",
         "format": "{}",
         "on-click": "kitty --class nmtui --hold sh -c nmtui",
-        "on-click-right": "~/.config/waybar/modules/vpn/tailscale-toggle.sh",
+        "on-click-right": "~/dotfiles/scripts/bar-modules/vpn/tailscale-toggle.sh",
         "tooltip": true
     },
     "group/network": {
@@ -75,7 +75,7 @@
         "on-click": "killall rofi || rofi -show run"
     },
     "custom/weather": {
-        "exec": "~/.config/waybar/modules/weather/weather.sh",
+        "exec": "~/dotfiles/scripts/bar-modules/weather/weather.sh",
         "interval": 600,
         "return-type": "json"
     },

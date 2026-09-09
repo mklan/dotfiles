@@ -1,15 +1,15 @@
 import QtQuick
+import QtQuick.Controls
 import "../overlays"
 import "../.."
 import "../../services"
 
-//  Todo bar chip – shows count, opens immersive overlay on click
+// Todo bar chip – shows count, opens floating overlay on click
 Item {
     id: root
     implicitWidth: label.implicitWidth + Theme.padH * 2
     implicitHeight: Theme.barHeight
 
-    // Shared overlay instance (created lazily)
     property var _overlay: null
 
     function ensureOverlay() {
@@ -20,7 +20,7 @@ Item {
     Text {
         id: label
         anchors.centerIn: parent
-        text: " " + TodoService.count
+        text: "\uF046 " + TodoService.count
         color: Theme.foreground
         font.family: Theme.fontFamily
         font.pixelSize: Theme.fontSize
@@ -28,6 +28,7 @@ Item {
 
     MouseArea {
         anchors.fill: parent
+        cursorShape: Qt.PointingHandCursor
         onClicked: {
             const ov = root.ensureOverlay()
             if (ov.visible) {

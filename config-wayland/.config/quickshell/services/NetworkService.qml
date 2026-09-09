@@ -4,8 +4,9 @@ import Quickshell.Io
 
 // Polls network-vpn-status.sh every 5 seconds.
 // Exposes: text, cssClass, tooltip
-QtObject {
+Item {
     id: root
+    visible: false
 
     readonly property string text:     _text
     readonly property string cssClass: _cssClass
@@ -17,7 +18,7 @@ QtObject {
 
     Process {
         id: proc
-        command: ["sh", "-c", "~/.config/waybar/modules/vpn/network-vpn-status.sh"]
+        command: ["sh", "-c", "~/dotfiles/scripts/bar-modules/vpn/network-vpn-status.sh"]
         running: false
         stdout: SplitParser {
             onRead: (line) => {

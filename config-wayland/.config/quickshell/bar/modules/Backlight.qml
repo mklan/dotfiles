@@ -8,11 +8,12 @@ Text {
 
     property string _pct: "--"
 
-    text: _pct + "% " + (_pct !== "--" ? (_pctInt > 50 ? "" : "") : "")
+    text: _pct + "% " + (_pct !== "--" ? (_pctInt > 50 ? "\uF185" : "\uF111") : "")
 
     property int _pctInt: parseInt(_pct) || 0
 
     color: Theme.foreground
+    height: Theme.barHeight
     font.family: Theme.fontFamily
     font.pixelSize: Theme.fontSize
     leftPadding: Theme.padH

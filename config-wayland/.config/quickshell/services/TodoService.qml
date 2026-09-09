@@ -5,8 +5,9 @@ import Quickshell.Io
 // Polls todo.sh every 5 seconds and exposes:
 //   count  – integer todo count
 //   items  – list of { num, priority, text } objects
-QtObject {
+Item {
     id: root
+    visible: false
 
     readonly property int count: _count
     readonly property var items: _items
@@ -32,20 +33,22 @@ QtObject {
         id: listProc
         command: ["sh", "-c", "todo.sh ls 2>/dev/null"]
         running: false
+        property var _buf: []
         stdout: SplitParser {
-            property var _buf: []
             onRead: (line) => {
                 // Match numbered lines: "NN (PRIORITY) text" or "NN text"
                 const m = line.match(/^\s*(\d+)\s+(?:\(([A-Z])\)\s+)?(.+)$/)
                 if (m) {
-                    _buf.push({
+                    listProc._buf.push({
                         num:      parseInt(m[1]),
                         priority: m[2] || "",
                         text:     m[3].trim()
                     })
                 }
             }
-            onStreamFinished: {
+        }
+        onRunningChanged: {
+            if (!running) {
                 root._items = _buf.slice()
                 _buf = []
             }
