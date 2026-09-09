@@ -1,6 +1,12 @@
 [terminal]
 vt = 2
 
-[default_session]
+# Auto-login on boot only
+[initial_session]
 command = "tuigreet --cmd Hyprland"
 user = "matze"
+
+# After logout: show the login screen instead of auto-logging in again
+[default_session]
+command = "tuigreet --cmd Hyprland"
+user = "greeter"
