@@ -20,36 +20,32 @@ if systemctl is-active --quiet tailscaled 2>/dev/null; then
         VPN_REASON="Tailscale"
         TAILNET=$(echo "$TS_OUTPUT" | grep -oP '^[^ ]+' | head -1 || true)
         SELF_IP=$(echo "$TS_OUTPUT" | grep -oP '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+' | head -1 || true)
-        VPN_TEXT="$VPN_ICON"
         VPN_TOOLTIP="Tailscale: connected\nTailnet: ${TAILNET:-?}\nIP: ${SELF_IP:-?}"
     fi
 fi
 
-# ── Home router check (cached every 60s) ──
+# ── Home router check (fire-and-forget, cached 10s) ──
 # 192.168.1.1 = home router; reachable = on home network (travel router, LAN, etc.)
+# Runs async so it never blocks the bar update. Only affects tooltip.
 ROUTER_CACHE="/tmp/waybar-router-ping"
-if [ "$VPN_CLASS" != "vpn-up" ]; then
-    STALE=0
-    if [ -f "$ROUTER_CACHE" ]; then
-        CACHE_TIME=$(stat -c %Y "$ROUTER_CACHE" 2>/dev/null || echo 0)
-        [ "$(($(date +%s) - CACHE_TIME))" -ge 60 ] && STALE=1
-    else
-        STALE=1
-    fi
+HOME_TOOLTIP=""
+HOME_REACHABLE=false
 
-    if [ "$STALE" = "1" ]; then
-        if ping -c1 -W1 192.168.1.1 &>/dev/null; then
-            echo "up" > "$ROUTER_CACHE"
-        else
-            echo "down" > "$ROUTER_CACHE"
-        fi
+# Launch ping in background if cache is stale (>10s)
+if [ -f "$ROUTER_CACHE" ]; then
+    CACHE_TIME=$(stat -c %Y "$ROUTER_CACHE" 2>/dev/null || echo 0)
+    if [ "$(($(date +%s) - CACHE_TIME))" -ge 10 ]; then
+        (ping -c1 -W1 192.168.1.1 &>/dev/null && echo "up" || echo "down") > "$ROUTER_CACHE" &
     fi
+else
+    (ping -c1 -W1 192.168.1.1 &>/dev/null && echo "up" || echo "down") > "$ROUTER_CACHE" &
+fi
 
-    if [ "$(cat "$ROUTER_CACHE" 2>/dev/null)" = "up" ]; then
-        VPN_CLASS="vpn-up"
-        VPN_REASON="Home network"
-        VPN_TOOLTIP="Home network: reachable\n(router at 192.168.1.1)"
-    fi
+if [ "$(cat "$ROUTER_CACHE" 2>/dev/null)" = "up" ]; then
+    HOME_REACHABLE=true
+    HOME_TOOLTIP="Home network: reachable"
+else
+    HOME_TOOLTIP="Home network: unreachable"
 fi
 
 # ── Tunnel interface check ──
@@ -101,8 +97,6 @@ if command -v nmcli &>/dev/null; then
         # Check if actually disconnected or no IP assigned
         if [ "$DEV_STATE" = "disconnected" ] || [ -z "$IP" ] || [ "$IP" = "?" ]; then
             WIFI_CLASS="network-down"
-        elif [ "$VPN_CLASS" = "vpn-up" ]; then
-            WIFI_CLASS="wifi-vpn-up"
         else
             WIFI_CLASS="wifi-up"
         fi
@@ -118,8 +112,6 @@ if command -v nmcli &>/dev/null; then
             # Gray out if disconnected or no IP
             if [ "$ETH_STATE" = "disconnected" ] || [ -z "$IP" ] || [ "$IP" = "?" ]; then
                 WIFI_CLASS="network-down"
-            elif [ "$VPN_CLASS" = "vpn-up" ]; then
-                WIFI_CLASS="wifi-vpn-up"
             else
                 WIFI_CLASS="wifi-up"
             fi
@@ -133,6 +125,16 @@ else
     WIFI_TOOLTIP="nmcli not available"
 fi
 
+# ── Home override: connected + home reachable → wifi-home ──
+if [ "$WIFI_CLASS" = "wifi-up" ] && [ "$HOME_REACHABLE" = "true" ]; then
+    WIFI_CLASS="wifi-home"
+fi
+
+# ── Assemble tooltip: connection + IP + home reachability + VPN ──
+TOOLTIP="$WIFI_TOOLTIP"
+[ -n "$HOME_TOOLTIP" ] && TOOLTIP="$TOOLTIP\n$HOME_TOOLTIP"
+[ -n "$VPN_TOOLTIP" ] && TOOLTIP="$TOOLTIP\n$VPN_TOOLTIP"
+
 cat <<EOF
-{"text": "$WIFI_ICON $VPN_TEXT", "class": "$WIFI_CLASS", "tooltip": "$WIFI_TOOLTIP\n$VPN_TOOLTIP"}
+{"text": "$WIFI_ICON", "class": "$WIFI_CLASS", "tooltip": "$TOOLTIP"}
 EOF

@@ -6,24 +6,21 @@ import Quickshell.Wayland
 import "../.."
 import "../../services"
 
-//  Todo immersive overlay panel – slides in from the top of the bar.
-// Shown as a dedicated layer-shell popup window.
+// Todo overlay panel – slides in from below the bar, floats above content.
+// Does NOT overlap the bar (margins.top = barHeight).
 PanelWindow {
     id: overlay
 
-    // Layer-shell positioning: top of screen, stretching horizontally
-    WlrLayerShell.layer: WlrLayerShell.Layer.Overlay
-    WlrLayerShell.anchors.top:   true
-    WlrLayerShell.anchors.left:  true
-    WlrLayerShell.anchors.right: true
-    WlrLayerShell.keyboardInteractivity: WlrLayerShell.KeyboardInteractivity.OnDemand
+    WlrLayershell.layer:        WlrLayer.Overlay
+    WlrLayershell.anchors.top:   true
+    WlrLayershell.anchors.right: true
+    WlrLayershell.margins.top:   Theme.barHeight
+    WlrLayershell.keyboardFocus: WlrKeyboardFocus.OnDemand
 
-    // The window is large enough for bar + panel content;
-    // the inner rectangle slides downward into view.
-    implicitHeight: Theme.barHeight + panel.implicitHeight
+    implicitWidth:  340
+    implicitHeight: panel.height
     color: "transparent"
 
-    // Dismiss on Escape
     Shortcut {
         sequence: "Escape"
         context: Qt.ApplicationShortcut
@@ -31,47 +28,32 @@ PanelWindow {
     }
 
     function open() {
-        slideAnim.to = Theme.barHeight
-        slideAnim.start()
+        openAnim.to = panel.implicitHeight
+        openAnim.start()
     }
 
     function close() {
-        slideAnim.to = -panel.implicitHeight
-        slideAnim.start()
+        closeAnim.start()
         closeTimer.restart()
     }
 
-    Timer {
-        id: closeTimer
-        interval: 220
-        onTriggered: overlay.visible = false
-    }
+    NumberAnimation { id: openAnim;  target: panel; property: "height"; duration: 180; easing.type: Easing.OutCubic }
+    NumberAnimation { id: closeAnim; target: panel; property: "height"; to: 0;  duration: 160; easing.type: Easing.InCubic }
+    Timer { id: closeTimer; interval: 200; onTriggered: overlay.visible = false }
 
-    // Panel slides in from above
     Rectangle {
         id: panel
         width: parent.width
+        height: 0
         implicitHeight: column.implicitHeight + 24
-        // Start hidden above the bar
-        y: -implicitHeight
-        color: Theme.background
+        clip: true
+        color: "#0d0d0d"
         border.color: Theme.disabled
         border.width: 1
 
-        NumberAnimation {
-            id: slideAnim
-            target: panel
-            property: "y"
-            duration: 180
-            easing.type: Easing.OutCubic
-        }
-
         Column {
             id: column
-            anchors {
-                top: parent.top; left: parent.left; right: parent.right
-                margins: 12
-            }
+            anchors { top: parent.top; left: parent.left; right: parent.right; margins: 12 }
             spacing: 0
 
             // Header
@@ -99,7 +81,6 @@ PanelWindow {
                         width: parent.width
                         spacing: 6
 
-                        // Priority badge
                         Text {
                             visible: modelData.priority !== ""
                             text: "(" + modelData.priority + ")"
@@ -108,14 +89,13 @@ PanelWindow {
                             color: {
                                 switch (modelData.priority) {
                                     case "A": return Theme.warning
-                                    case "B": return "#d8c57c"    // yellow
+                                    case "B": return "#d8c57c"
                                     case "C": return Theme.active
                                     default:  return Theme.foreground
                                 }
                             }
                         }
 
-                        // Todo text
                         Text {
                             Layout.fillWidth: true
                             text: modelData.text
@@ -123,14 +103,9 @@ PanelWindow {
                             font.family: Theme.fontFamily
                             font.pixelSize: Theme.fontSize
                             elide: Text.ElideRight
-
-                            HoverHandler {
-                                id: rowHover
-                                cursorShape: Qt.PointingHandCursor
-                            }
+                            HoverHandler { id: rowHover; cursorShape: Qt.PointingHandCursor }
                         }
 
-                        // Done checkmark hint on hover
                         Text {
                             visible: rowHover.hovered
                             text: "✓"
@@ -140,7 +115,6 @@ PanelWindow {
                         }
                     }
 
-                    // Separator line
                     Rectangle {
                         anchors.bottom: parent.bottom
                         width: parent.width
@@ -162,12 +136,7 @@ PanelWindow {
                     anchors.verticalCenter: parent.verticalCenter
                     spacing: 6
 
-                    Text {
-                        text: "+"
-                        color: Theme.active
-                        font.family: Theme.fontFamily
-                        font.pixelSize: Theme.fontSize
-                    }
+                    Text { text: "+"; color: Theme.active; font.family: Theme.fontFamily; font.pixelSize: Theme.fontSize }
 
                     TextField {
                         id: addField
@@ -178,7 +147,7 @@ PanelWindow {
                         color: Theme.foreground
                         placeholderTextColor: Theme.disabled
                         background: Rectangle {
-                            color: "transparent"
+                            color: "#1a1a1a"
                             border.color: Theme.disabled
                             border.width: 1
                         }
@@ -193,16 +162,4 @@ PanelWindow {
             }
         }
     }
-
-    // Click-outside area (below panel) to dismiss
-    MouseArea {
-        anchors {
-            top: panel.bottom
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-        }
-        onClicked: overlay.close()
-    }
 }
-

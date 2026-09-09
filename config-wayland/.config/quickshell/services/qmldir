@@ -1,3 +1,4 @@
 singleton TodoService 1.0 TodoService.qml
 singleton WeatherService 1.0 WeatherService.qml
 singleton NetworkService 1.0 NetworkService.qml
+singleton TailscaleService 1.0 TailscaleService.qml

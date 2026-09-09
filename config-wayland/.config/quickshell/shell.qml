@@ -4,14 +4,19 @@ import "./bar"
 
 // Root shell entry point.
 // Quickshell loads this file and expects a ShellRoot as the root object.
-// Variants spawns one Bar (PanelWindow) per connected screen.
+// Variants spawns one instance of the delegate per connected screen,
+// providing the top bar and the bottom media bar on each screen.
 ShellRoot {
     Variants {
         model: Quickshell.screens
 
-        Bar {
+        Item {
+            id: screenVariant
+
             required property var modelData
-            screen: modelData
+
+            Bar { screen: screenVariant.modelData }
+            MediaBar { screen: screenVariant.modelData }
         }
     }
 }
