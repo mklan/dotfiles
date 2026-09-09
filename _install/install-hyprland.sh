@@ -32,7 +32,6 @@ function main {
 
   sudo systemctl enable NetworkManager
   systemctl enable --now auto-cpufreq
-  systemctl enable greetd
 
   echo "setting zsh as default shell"
   chsh -s $(which zsh)
@@ -52,9 +51,6 @@ function createSymlinks {
 
   stow config
   stow config-wayland
-  
-  sudo rm -rf /etc/lemurs/*
-  sudo ln -sf lemurs/* /etc/lemurs/
 
   # patches (keep for now commented out)
   # ln -sf $(pwd)/_patches/mic_mute_external/lenovo-mutemic /etc/acpi/events/lenovo-mutemic
