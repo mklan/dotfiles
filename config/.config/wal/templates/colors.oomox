@@ -1,6 +1,6 @@
 BG={background.strip}
 FG={foreground.strip}
-SEL_BG={color5.strip}
+SEL_BG={color12.strip}
 SEL_FG={color0.strip}
 ACCENT_BG={color2.strip}
 TXT_BG={background.strip}
@@ -11,7 +11,7 @@ HDR_BG={color0.strip}
 HDR_FG={foreground.strip}
 HDR_BTN_BG={color0.strip}
 HDR_BTN_FG={foreground.strip}
-WM_BORDER_FOCUS={color5.strip}
+WM_BORDER_FOCUS={color12.strip}
 WM_BORDER_UNFOCUS={color8.strip}
 ICONS_STYLE=numix
 ICONS_NUMIX_GRADIENT=False

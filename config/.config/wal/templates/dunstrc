@@ -26,7 +26,9 @@
 
 
     # Offset from the origin
-    offset = 4,22
+    # dunst 1.13 requires parentheses. Hyprland pushes overlay surfaces below
+    # the bar's exclusive zone (+22), so y=0 sits flush against the bar bottom.
+    offset = (4, 0)
 
     indicate_hidden = yes
     shrink = yes

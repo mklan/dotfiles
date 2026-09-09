@@ -1,0 +1,5 @@
+# Allow passwordless tailscale control for the bar toggle
+# (tailscale-ctl wrapper: scripts/vpn/tailscale-ctl)
+# Install: sudo install -o root -g root -m 440 tailscale-sudoers /etc/sudoers.d/tailscale
+# Verify:   sudo visudo -c
+matze ALL=(ALL) NOPASSWD: /usr/bin/systemctl start tailscaled, /usr/bin/systemctl stop tailscaled, /usr/bin/tailscale up, /usr/bin/tailscale down
