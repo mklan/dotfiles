@@ -2,9 +2,11 @@
 plugins = ["scratchpads", "workspaces_follow_focus", "shortcuts_menu", "toggle_special"]
 
 [scratchpads.term]
-animation = "fromTop"
 command = "kitty --class kitty-dropterm"
 class = "kitty-dropterm"
+size = "75% 45%"
+animation = "fromTop"
+margin = 26
 unfocus = "hide"
 
 [shortcuts_menu]
