@@ -4,7 +4,7 @@
 
 SCRIPT_DIR="$(dirname "$0")"
 
-gap=$(hyprctl --instance 0 getoption general:gaps_in | awk '{print $3}')
+gap=$(hyprctl getoption general:gaps_in | awk 'NR==1{print $4}')
 
 delta=${1:0}
 new=$((gap + delta))
