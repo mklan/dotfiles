@@ -107,6 +107,13 @@ if command -v oomox-cli &>/dev/null && [ -f ~/.cache/wal/colors.oomox ]; then
     oomox-cli -o "$OOMOX_OUT_THEME" ~/.cache/wal/colors.oomox && \
     command -v gsettings &>/dev/null && \
         gsettings set org.gnome.desktop.interface gtk-theme "$OOMOX_OUT_THEME" 2>/dev/null || true
+    # oomox-cli swaps dark/light variants — fix them so prefer-dark gets OLED black
+    for _ver in "$HOME/.themes/$OOMOX_OUT_THEME/gtk-3.0" \
+                "$HOME/.themes/$OOMOX_OUT_THEME/gtk-3.20"; do
+        [ -f "$_ver/dist/gtk.css" ] && cp "$_ver/dist/gtk.css" "$_ver/dist/gtk-dark.css"
+        # Import from file instead of gresource (which has the wrong variant)
+        echo '@import url("dist/gtk-dark.css");' > "$_ver/gtk-dark.css"
+    done
 fi
 
 # ── 8. VSCode / VSCodium ──────────────────────────────────────────────────────

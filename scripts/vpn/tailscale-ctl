@@ -40,7 +40,9 @@ if [ "$ACTION" = "up" ]; then
     fi
 
     echo "→ Bringing Tailscale up…"
-    sudo tailscale up
+    # Non-default settings must be mentioned explicitly or 'tailscale up' refuses
+    # (tailscale status shows the current values; update if you change settings)
+    sudo tailscale up --accept-dns=false --accept-routes --operator=matze
     echo "✔ Tailscale is up."
 else
     echo "→ Bringing Tailscale down…"
