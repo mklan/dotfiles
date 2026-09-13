@@ -5,3 +5,6 @@ tmp/
 internal_notes.md
 config-wayland/.config/waybar/style.css
 scripts/session-selector
+# Local environment files
+**/.env
+**/*.env
