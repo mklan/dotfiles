@@ -1,7 +1,13 @@
 #!/bin/bash
 
-# OpenWeatherMap API key (hardcoded — Waybar doesn't inherit shell env vars)
-API_KEY="REMOVED_API_KEY"
+# OpenWeatherMap API key — read from environment variable.
+# Waybar doesn't inherit shell env vars; see scripts/bar-modules/weather/SETUP.md
+# for how to configure this securely.
+API_KEY="${OPENWEATHER_API_KEY:-}"
+if [ -z "$API_KEY" ]; then
+    echo '{"text": " 󰅐 ?", "tooltip": "OPENWEATHER_API_KEY is not set"}'
+    exit 1
+fi
 UNITS="metric"
 CITY="${1:-}"
 
