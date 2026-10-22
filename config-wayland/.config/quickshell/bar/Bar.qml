@@ -34,11 +34,27 @@ PanelWindow {
         }
 
         // ── Center – truly centered regardless of left/right widths ───────────
-        Row {
-            anchors.centerIn: parent
-            spacing: 0
-            Clock {}
-            Weather {}
+        // Explicit layout, NOT a Row: the Row's positioner re-lays out one frame
+        // behind the clock's animated width, so HH:mm wobbled a few px to the
+        // right while the detail slide-outs animate. Here the clock module's
+        // center is pinned to the old Row's resting position (bar center minus
+        // half the weather width) via a direct x binding that compensates the
+        // width change exactly: HH:mm never moves, rest or expanded. Weather
+        // just follows the clock's right edge and gets pushed out of the way.
+        Item {
+            id: centerSection
+            anchors.fill: parent
+
+            Clock {
+                id: centerClock
+                x: centerSection.width / 2 - width / 2 - centerWeather.width / 2
+                anchors.verticalCenter: parent.verticalCenter
+            }
+            Weather {
+                id: centerWeather
+                x: centerClock.x + centerClock.width
+                anchors.verticalCenter: parent.verticalCenter
+            }
         }
 
         // ── Right ─────────────────────────────────────────────
