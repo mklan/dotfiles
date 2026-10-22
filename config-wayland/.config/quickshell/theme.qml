@@ -7,7 +7,8 @@ QtObject {
     readonly property color background: "#000000"
     readonly property color foreground: "#d8caac"
     readonly property color disabled:   "#868d80"
-    readonly property color active:     "#87c095"   // green – active workspace
+    readonly property color active:     "#87c095"   // green – active workspace (focused monitor)
+    readonly property color visibleWs:  "#89beba"   // teal  – workspace visible on another monitor
     readonly property color charging:   "#c2e69c"   // pale green – battery charging (brighter)
     readonly property color vpn:        "#89beba"   // teal  – vpn/wifi-vpn-up
     readonly property color warning:    "#ff9c9e"   // red   – wifi-up signal pulse, battery warning
