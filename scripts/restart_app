@@ -1,1 +1,27 @@
-pgrep -x $1 && pkill -x $1; nohup $1 &>/dev/null &
+#!/usr/bin/env bash
+# restart_app <name> — restart a GUI app, guaranteeing exactly one instance.
+#
+# Uses flock so two concurrent invocations can never both spawn the app.
+# The old process is killed and we wait until it is actually gone before
+# starting the replacement — no race window with two live instances.
+
+set -euo pipefail
+
+APP="$1"
+LOCKFILE="/tmp/restart_${APP}.lock"
+
+exec 9>"$LOCKFILE"
+flock -w 10 9 || { echo "restart_app: could not acquire lock for $APP" >&2; exit 1; }
+
+# Kill existing instance(s) and wait for them to exit
+if pgrep -x "$APP" >/dev/null; then
+    pkill -x "$APP"
+    for _ in $(seq 1 50); do        # up to 5 seconds
+        pgrep -x "$APP" >/dev/null || break
+        sleep 0.1
+    done
+    # Force-kill if still alive
+    pkill -9 -x "$APP" 2>/dev/null || true
+fi
+
+nohup "$APP" &>/dev/null 9>&- &
