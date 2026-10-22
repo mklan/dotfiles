@@ -40,9 +40,14 @@ widget>* {{
   color: @color15;
 }}
 
-#workspaces .active * {{
-  background: none;
+/* Focused workspace on focused monitor — green */
+#workspaces button.active {{
   color: @color14;
+}}
+
+/* Workspace visible on another (non-focused) monitor — blue */
+#workspaces button.visible {{
+  color: @color12;
 }}
 
 #mode {{
