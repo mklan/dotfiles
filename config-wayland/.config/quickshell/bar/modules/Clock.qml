@@ -5,11 +5,20 @@ import "../.."
 // the LEFT and seconds + date (":ss dd.MM.yy") out to the RIGHT. Both sides
 // share the same animation, so the centered bar row grows symmetrically and
 // HH:mm never moves on screen.
+//
+// Clicking the clock toggles a pinned state: the details slide out and STAY
+// out (until clicked again). Hover still works as before when not pinned.
+//
+// NOTE: horizontal positions use direct x bindings, NOT anchors – Item anchors
+// snap to whole pixels, which made HH:mm jump ~1px when the module width
+// changed between collapsed/expanded. Vertical anchors are fine (no change).
 Item {
     id: root
 
     property var now: new Date()
     property int detailGap: 6
+    property bool pinned: false
+    readonly property bool expanded: pinned || clockHover.hovered
 
     height: Theme.barHeight
     // Reserve symmetric space for the WIDER of the two slide-outs: the module
@@ -21,14 +30,16 @@ Item {
            + Theme.padH * 2 + detailGap * 2
 
     HoverHandler { id: clockHover }
+    TapHandler {
+        acceptedButtons: Qt.LeftButton
+        onTapped: root.pinned = !root.pinned
+    }
 
     // Main value – HH:mm, stays in place
     Text {
         id: timeText
-        anchors {
-            horizontalCenter: parent.horizontalCenter
-            verticalCenter: parent.verticalCenter
-        }
+        anchors.verticalCenter: parent.verticalCenter
+        x: (parent.width - width) / 2
         text: Qt.formatDateTime(now, "HH:mm")
         color: Theme.foreground
         font.family: Theme.fontFamily
@@ -38,24 +49,22 @@ Item {
     // Slide-out weekday – left of the time
     Item {
         id: leftHolder
-        anchors {
-            right: timeText.left
-            rightMargin: root.detailGap
-            verticalCenter: parent.verticalCenter
-        }
+        anchors.verticalCenter: parent.verticalCenter
+        x: timeText.x - root.detailGap - width
         height: timeText.height
-        width: clockHover.hovered ? leftDetail.implicitWidth : 0
+        width: root.expanded ? leftDetail.implicitWidth : 0
         clip: true
         Behavior on width { NumberAnimation { duration: 180; easing.type: Easing.OutCubic } }
 
         Text {
             id: leftDetail
-            anchors { right: parent.right; verticalCenter: parent.verticalCenter }
+            anchors.verticalCenter: parent.verticalCenter
+            x: parent.width - width
             text: Qt.formatDateTime(now, "ddd")
             opacity: leftHolder.width > 0
                 ? leftHolder.width / Math.max(implicitWidth, 1) : 0
             Behavior on opacity { NumberAnimation { duration: 120 } }
-            color: Qt.lighter(Theme.disabled, 1.25)
+            color: root.pinned ? Theme.foreground : Qt.lighter(Theme.disabled, 1.25)
             font.family: Theme.fontFamily
             font.pixelSize: Theme.fontSize
         }
@@ -65,24 +74,22 @@ Item {
     // (no gap, so hovering reads as HH:mm:ss)
     Item {
         id: rightHolder
-        anchors {
-            left: timeText.right
-            leftMargin: 0
-            verticalCenter: parent.verticalCenter
-        }
+        anchors.verticalCenter: parent.verticalCenter
+        x: timeText.x + timeText.width
         height: timeText.height
-        width: clockHover.hovered ? rightDetail.implicitWidth : 0
+        width: root.expanded ? rightDetail.implicitWidth : 0
         clip: true
         Behavior on width { NumberAnimation { duration: 180; easing.type: Easing.OutCubic } }
 
         Text {
             id: rightDetail
-            anchors { left: parent.left; verticalCenter: parent.verticalCenter }
+            anchors.verticalCenter: parent.verticalCenter
+            x: 0
             text: Qt.formatDateTime(now, ":ss dd.MM.yy")
             opacity: rightHolder.width > 0
                 ? rightHolder.width / Math.max(implicitWidth, 1) : 0
             Behavior on opacity { NumberAnimation { duration: 120 } }
-            color: Qt.lighter(Theme.disabled, 1.25)
+            color: root.pinned ? Theme.foreground : Qt.lighter(Theme.disabled, 1.25)
             font.family: Theme.fontFamily
             font.pixelSize: Theme.fontSize
         }
