@@ -1,0 +1,20 @@
+# Ensure WiFi rfkill state file always says "unblocked" (0).
+#
+# Problem: ath11k_pci (Qualcomm QCNFA765) resets ~5-7 min after resume.
+# The rfkill device is removed/re-created, and systemd-rfkill.service
+# restores the saved state. If it was "1" (soft-blocked) from a prior
+# manual disable cycle, WiFi stays blocked until manually re-enabled.
+#
+# This service writes "0" to all wlan rfkill state files at boot,
+# ensuring systemd-rfkill always restores "unblocked".
+
+[Unit]
+Description=Ensure WiFi rfkill state is always unblocked
+After=systemd-rfkill.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'for f in /var/lib/systemd/rfkill/*:wlan; do [ -f "$f" ] && echo 0 > "$f"; done'
+
+[Install]
+WantedBy=multi-user.target
