@@ -33,10 +33,12 @@ hl.on("hyprland.start", function()
 
     -- Quickshell bar
     hl.exec_cmd("~/dotfiles/scripts/restart_app quickshell")
+
+    -- OLED burn-in prevention (needs compositor socket ready)
+    hl.exec_cmd("~/.config/hypr/scripts/prevent-oled-burnin.sh")
 end)
 
 -- exec equivalent: runs on every config reload (startup + reload)
 hl.exec_cmd("setxkbmap de")
-hl.exec_cmd("~/.config/hypr/scripts/prevent-oled-burnin.sh")
 hl.exec_cmd("~/.config/hypr/scripts/spawn_assistant.sh")
 hl.exec_cmd("/usr/bin/nmcli radio wifi on")
