@@ -60,12 +60,13 @@ hl.bind("SUPER+ALT + down",  hl.dsp.window.resize({ x = 0,   y = 40,  relative =
 hl.bind("SUPER + mouse:272", hl.dsp.window.drag({ action = "move" }),   { mouse = true })
 hl.bind("SUPER + mouse:273", hl.dsp.window.drag({ action = "resize" }), { mouse = true })
 
--- ── Workspace switching (native dispatch — no external script) ─────────────────
+-- ── Workspace switching (smart multi-monitor swap with history) ───────────────
 
+local ws_switcher = CONFIG .. "/scripts/setWorkspace.ts"
 for i = 1, 9 do
-    hl.bind("CTRL + " .. i, hl.dsp.focus({ workspace = i }))
+    hl.bind("CTRL + " .. i, hl.dsp.exec_cmd(ws_switcher .. " " .. i))
 end
-hl.bind("CTRL + 0", hl.dsp.focus({ workspace = 10 }))
+hl.bind("CTRL + 0", hl.dsp.exec_cmd(ws_switcher .. " 10"))
 
 -- ── Workspace cycling
 
