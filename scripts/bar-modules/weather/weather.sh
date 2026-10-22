@@ -1,9 +1,16 @@
 #!/bin/bash
 
-# OpenWeatherMap API key — read from environment variable.
-# Waybar doesn't inherit shell env vars; see scripts/bar-modules/weather/SETUP.md
-# for how to configure this securely.
+# OpenWeatherMap API key — read from environment variable first, then fall
+# back to a local .env file (gitignored) next to this script.
+# Waybar/Quickshell don't inherit shell env vars; see
+# scripts/bar-modules/weather/SETUP.md for how to configure this securely.
 API_KEY="${OPENWEATHER_API_KEY:-}"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+if [ -z "$API_KEY" ] && [ -f "$SCRIPT_DIR/.env" ]; then
+    # shellcheck disable=SC1091
+    . "$SCRIPT_DIR/.env"
+    API_KEY="${OPENWEATHER_API_KEY:-}"
+fi
 if [ -z "$API_KEY" ]; then
     echo '{"text": " 󰅐 ?", "tooltip": "OPENWEATHER_API_KEY is not set"}'
     exit 1
