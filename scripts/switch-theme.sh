@@ -25,6 +25,9 @@
 #     hot-reloads those files on change)
 #   - GTK2 fallback palette (~/.gtkrc-2.0.mine)
 #   - Qt5/Qt6 follow the GTK palette via QT_QPA_PLATFORMTHEME=gtk3 (see envs.lua)
+#   - Firefox userChrome.css + userContent.css as dual light-dark() palettes
+#     (all non-headless profiles; they recolor live via the color-scheme flip,
+#     store themes are pinned off via extensions.activeThemeID in user.js)
 
 THEME="${1:-dark}"
 DOTFILES_DIR="${DOTFILES_DIR:-$HOME/dotfiles}"
@@ -263,5 +266,84 @@ for SETTINGS_FILE in \
         echo "VSCode theme set to: $VSCODE_THEME  ($SETTINGS_FILE)"
     fi
 done
+
+# ── 8. Firefox (userChrome.css / userContent.css) ─────────────────────────────
+# The templates are rendered as DUAL palettes: every color becomes a
+# light-dark(<light>, <dark>) pair (scripts/gen-ff-theme.py). Firefox resolves
+# light-dark() against prefers-color-scheme, which follows the color-scheme
+# GSettings key flipped in step 6 – so the chrome recolors live on every
+# switch and the deployed files are mode-independent. The files themselves are
+# still only read at startup: restart Firefox when the template content
+# changes (not on ordinary theme switches).
+FF_CHROME_CSS=$(mktemp)
+FF_CONTENT_CSS=$(mktemp)
+python3 "$DOTFILES_DIR/scripts/gen-ff-theme.py" \
+    "$WAL_SCHEME_LIGHT" "$WAL_SCHEME_DARK" \
+    "$WAL_DIR/templates/firefox-userChrome.css" "$FF_CHROME_CSS"
+python3 "$DOTFILES_DIR/scripts/gen-ff-theme.py" \
+    "$WAL_SCHEME_LIGHT" "$WAL_SCHEME_DARK" \
+    "$WAL_DIR/templates/firefox-userContent.css" "$FF_CONTENT_CSS"
+
+if [ -s "$FF_CHROME_CSS" ] && [ -s "$FF_CONTENT_CSS" ]; then
+    FF_DEPLOYED=0
+    FF_NEED_RESTART=0
+    for FF_ROOT in "$HOME/.mozilla/firefox" \
+                   "$HOME/.var/app/org.mozilla.firefox/.mozilla/firefox" \
+                   "$HOME/snap/firefox/common/.mozilla/firefox"; do
+        for FF_DIR in "$FF_ROOT"/*/; do
+            [ -d "$FF_DIR" ] || continue
+            case "$FF_DIR" in *headless*) continue ;; esac
+            [ -f "$FF_DIR/prefs.js" ] || continue
+
+            mkdir -p "$FF_DIR/chrome"
+
+            # the deployed file is mode-independent – a restart is only needed
+            # when an older single-palette version gets replaced
+            grep -q 'light-dark(#' "$FF_DIR/chrome/userChrome.css" 2>/dev/null || FF_NEED_RESTART=1
+
+            cp "$FF_CHROME_CSS" "$FF_DIR/chrome/userChrome.css"
+            cp "$FF_CONTENT_CSS" "$FF_DIR/chrome/userContent.css"
+
+            # user.js is re-applied at every startup – keep one managed block in it
+            FF_USERJS="$FF_DIR/user.js"
+            touch "$FF_USERJS"
+            # ensure a trailing newline so the marker lines stay at line start
+            # (otherwise the managed block can't be replaced on the next run)
+            [ -n "$(tail -c1 "$FF_USERJS")" ] && echo >> "$FF_USERJS"
+            sed -i '\|^/\* >>> wal firefox >>>|,\|^/\* <<< wal firefox <<<|d' "$FF_USERJS"
+            cat >> "$FF_USERJS" <<'EOF'
+/* >>> wal firefox >>> — managed by switch-theme.sh, do not edit in between */
+// userChrome.css / userContent.css are generated from the pywal templates
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+// Pin the built-in theme so the wal palette owns the colors (remove this line
+// to go back to themes from the store – but they will fight the wal palette)
+user_pref("extensions.activeThemeID", "default-theme@mozilla.org");
+// Firefox Sync re-installs and re-activates store themes from other synced
+// devices minutes after startup (e.g. the "Black" theme, id
+// {9b84b6b4-07c4-4b4b-ba21-394d86f6e9ee}). An active dark LWT theme forces
+// the chrome AND prefers-color-scheme dark, so both userChrome.css and
+// userContent.css get stuck on the dark half of their light-dark() palettes –
+// no theme switch and no Firefox restart can win against sync re-poisoning.
+// Pin the theme selection and take the theme business away from sync:
+user_pref("services.sync.prefs.sync.extensions.activeThemeID", false);
+user_pref("services.sync.prefs.sync.browser.theme.toolbar-theme", false);
+user_pref("services.sync.prefs.sync.browser.theme.content-theme", false);
+user_pref("services.sync.prefs.sync.browser.theme.native-theme", false);
+user_pref("services.sync.prefs.sync.layout.css.prefers-color-scheme.content-override", false);
+user_pref("services.sync.prefs.sync.ui.systemUsesDarkTheme", false);
+// The add-on sync engine re-installs the store theme xpi itself – disable it
+// (drop this line if you want add-on sync back, but the theme can return)
+user_pref("services.sync.engine.addons.enabled", false);
+/* <<< wal firefox <<< */
+EOF
+            echo "Firefox: deployed theme to $FF_DIR"
+            FF_DEPLOYED=1
+        done
+    done
+    if [ "$FF_NEED_RESTART" = 1 ] && pgrep -x firefox >/dev/null 2>&1; then
+        echo "Firefox: restart Firefox once – after that, theme switches apply live"
+    fi
+fi
+rm -f "$FF_CHROME_CSS" "$FF_CONTENT_CSS"
 
 echo "Done. Theme: $THEME"

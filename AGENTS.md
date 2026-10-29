@@ -39,6 +39,8 @@
 | `colors-rofi-dark.rasi` | `~/.cache/wal/colors-rofi-dark.rasi`                       | wal generates                           |
 | `colors-gtk.css`        | `~/.config/gtk-4.0/colors.css` + inlined into `~/.themes/wal-<mode>/gtk-3.0/gtk.css` | `switch-theme.sh` (palette defines) |
 | `gtk-surfaces.css` (static, `config/.config/gtk/`) | `~/.config/gtk-4.0/gtk.css` + inlined into `~/.themes/wal-<mode>/gtk-3.0/gtk.css` | `switch-theme.sh` (palette widget rules) |
+| `firefox-userChrome.css`  | `<profile>/chrome/userChrome.css` (all non-headless Firefox profiles) | rendered by `scripts/gen-ff-theme.py` into `light-dark()` pairs, `cp` via `switch-theme.sh` |
+| `firefox-userContent.css` | `<profile>/chrome/userContent.css` (all non-headless Firefox profiles) | rendered by `scripts/gen-ff-theme.py` into `light-dark()` pairs, `cp` via `switch-theme.sh` |
 
 ## Bar
 
@@ -67,6 +69,17 @@
 - Colors via wal-generated `colors-rofi-dark.rasi`
 - Window rules: floats, stays focused, blur layer rule
 
+## Browser
+
+- **Firefox 158** — native install (`/usr/bin/firefox`), profiles in `~/.mozilla/firefox/`
+- Chrome is pywal-themed via `userChrome.css` + `userContent.css` (rendered from the `firefox-userChrome.css` / `firefox-userContent.css` templates by `scripts/gen-ff-theme.py`)
+- `switch-theme.sh` deploys them into every non-headless profile's `chrome/` dir and keeps a managed block in `<profile>/user.js` that enables `toolkit.legacyUserProfileCustomizations.stylesheets` and pins `extensions.activeThemeID` to `default-theme@mozilla.org` (store themes are disabled on purpose — they fight the wal palette)
+- **Theme switches apply live, no Firefox restart**: every color in the generated CSS is a `light-dark(<light>, <dark>)` pair and the templates declare `color-scheme: light dark` on `:root`; Firefox resolves `light-dark()` against `prefers-color-scheme`, which tracks `org.gnome.desktop.interface color-scheme` at runtime (verified empirically 2026-10: content `matchMedia`, chrome UI and Dark Reader all flip on `switch-theme.sh dark|light`). Two gotchas (both handled in the template): (1) Firefox's theme machinery forces `color-scheme` on chrome subtrees (`lwt-toolbar` → `--toolbar-color-scheme`) – the template forces `color-scheme: light dark !important` on `#main-window *` so `light-dark()` follows the system again; (2) the urlbar subtree resolves `light-dark()` in custom properties against its own forced scheme (the pill went dark in light mode) – the field vars are registered via `@property` so they resolve at `:root` and inherit as plain colors. The deployed files are mode-independent — Firefox only re-reads them when the *templates* change (restart then)
+- **Dark Reader** (addon@darkreader.org) follows the switcher via its automation (`mode: "system"`, `behavior: "Scheme"`): dark mode → `theme.mode=1` (dark scheme), light → `theme.mode=0` (light scheme; the `data-darkreader-scheme` attribute then reads `dimmed`, which just means "not dark"). Its popup label “Auto (the system is dark)” is generated from the extension's *on/off* state (`data.isEnabled`), not the system scheme — with `behavior: "Scheme"` it is permanently wrong; ignore it
+- Chrome UI icons are pinned to the palette gray (`color8`) via the `--toolbarbutton-icon-fill` / `--icon-color` / `--menuitem-icon-fill` token family – Firefox's `light-dark()` defaults render them white in the dark mode
+- **Firefox Sync is the theme saboteur** (verified empirically 2026-10): the synced add-on engine re-installs and re-activates store themes from other devices (e.g. the "Black" theme `{9b84b6b4-07c4-4b4b-ba21-394d86f6e9ee}`) minutes after every Firefox start. An active dark LWT theme forces the chrome AND `prefers-color-scheme` dark, so the `light-dark()` palettes get stuck on the dark half – theme switches look dead and restarts "don't help" because sync re-poisons within ~1 minute. The managed `user.js` block (switch-theme.sh) therefore pins `extensions.activeThemeID` AND disables theme prefs sync (`services.sync.prefs.sync.extensions.activeThemeID`, `browser.theme.*`, `ui.systemUsesDarkTheme`, …) plus `services.sync.engine.addons.enabled` (that engine is what drags the theme xpi back in). Don't remove those pins; and don't let the theme get selected again on other synced devices
+- **`gsettings` flips are the only live lever for Firefox** – the deployed userChrome/userContent files are mode-independent; if Firefox ever looks stuck on one palette, first check that no dark LWT theme is active (about:addons → Themes) and that `org.gnome.desktop.interface color-scheme` actually holds the expected value
+
 ## Key Dotfile Locations
 
 ```
@@ -85,6 +98,7 @@
 └── scripts/
     ├── link-scripts.sh           # stow scripts/ into ~/.local/bin (run after adding a script)
     ├── cleanup.sh                # reclaim disk space (package caches, trash, journal)
+    ├── gen-ff-theme.py           # render Firefox templates as light-dark() dual palettes
     └── reload_wal.sh              # regenerate pywal, deploy CSS, restart waybar+dunst
 ```
 

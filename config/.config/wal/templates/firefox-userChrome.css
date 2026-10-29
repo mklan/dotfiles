@@ -1,0 +1,344 @@
+/* Firefox chrome theme (userChrome.css) driven by the wal palettes.
+ * Source template:  ~/dotfiles/config/.config/wal/templates/firefox-userChrome.css
+ * Rendered by:      scripts/gen-ff-theme.py  (via scripts/switch-theme.sh)
+ * Deployed by:      scripts/switch-theme.sh  →  <profile>/chrome/userChrome.css
+ *
+ * Replaces the store theme: switch-theme.sh pins extensions.activeThemeID to
+ * default-theme@mozilla.org (see user.js) so these colors own the whole chrome.
+ *
+ * LIVE THEMING: every color placeholder is rendered as a
+ *   light-dark(<light palette>, <dark palette>)
+ * pair. Firefox resolves light-dark() against prefers-color-scheme, which
+ * tracks org.gnome.desktop.interface color-scheme at runtime – so
+ * switch-theme.sh flips that setting and the whole chrome recolors on the fly,
+ * no Firefox restart needed. The deployed file itself is mode-independent;
+ * Firefox only re-reads it when the template changes (restart then).
+ *
+ * NOTE: the template is rendered with Python str.format() – literal curly
+ * braces must be DOUBLED (two consecutive braces) or rendering crashes.
+ */
+
+/* ── live dual palette ─────────────────────────────────────────────── */
+/* Declare both variants so every light-dark() below (and Firefox's own UI
+ * tokens) follows the active mode instantly. */
+:root {{
+  color-scheme: light dark;
+}}
+
+/* Firefox's theme machinery forces `color-scheme` on chrome subtrees
+ * (lwt-toolbar="light|dark" → --toolbar-color-scheme → toolbars/urlbar),
+ * which makes light-dark() resolve against the FORCED scheme instead of the
+ * system one – the chrome then sticks to one palette. Force both schemes on
+ * the whole chrome so every light-dark() below (and Firefox's own tokens)
+ * follows prefers-color-scheme, which tracks org.gnome.desktop.interface
+ * color-scheme live. */
+#main-window, #main-window *,
+#navigator-toolbox, #navigator-toolbox *,
+panel, panel * {{
+  color-scheme: light dark !important;
+}}
+
+/* The urlbar subtree resolves light-dark() against its own theme-forced
+ * color-scheme, so the field/pill picked the dark palette even in light mode.
+ * Registering the field variables makes their light-dark()/color-mix values
+ * resolve on :root (where color-scheme is right) and inherit as plain colors. */
+@property --toolbar-field-background-color {{ syntax: "<color>"; inherits: true; initial-value: transparent; }}
+@property --toolbar-field-focus-background-color {{ syntax: "<color>"; inherits: true; initial-value: transparent; }}
+@property --toolbar-field-background-color-focus {{ syntax: "<color>"; inherits: true; initial-value: transparent; }}
+@property --urlbar-background {{ syntax: "<color>"; inherits: true; initial-value: transparent; }}
+@property --urlbar-border {{ syntax: "<color>"; inherits: true; initial-value: transparent; }}
+
+/* ── palette (wal colors) ──────────────────────────────────────────── */
+:root, #main-window {{
+  --wal-bg: {background};
+  --wal-fg: {foreground};
+  --wal-surface: {color0};
+  --wal-dim: {color8};
+  --wal-accent: {color5};
+  --wal-accent-2: {color6};
+  --wal-danger: {color1};
+  --wal-hover: color-mix(in srgb, {color8} 35%, transparent);
+  --wal-active: color-mix(in srgb, {color8} 55%, transparent);
+}}
+
+/* ── theme variables (override whatever the built-in theme sets) ───── */
+:root {{
+  --tabpanel-background-color: {background} !important;
+  --lwt-accent-color: {background} !important;
+  --lwt-accent-color-inactive: {background} !important;
+  --lwt-page-background: {background} !important;
+  --lwt-text-color: {foreground} !important;
+  --lwt-tab-textcolor: {color8} !important;
+  --lwt-tab-textcolor-inactive: {color8} !important;
+  --lwt-tab-line-color: {color5} !important;
+
+  --tab-selected-bgcolor: {background} !important;
+  --tab-selected-textcolor: {foreground} !important;
+  --tab-selected-linecolor: {color5} !important;
+
+  --toolbar-bgcolor: {background} !important;
+  --toolbar-color: {foreground} !important;
+  --toolbar-border-color: {color8} !important;
+  --toolbar-field-background-color: color-mix(in srgb, {color8} 14%, {background}) !important;
+  --toolbar-field-color: {foreground} !important;
+  --toolbar-field-border-color: {color8} !important;
+  --toolbar-field-focus-background-color: color-mix(in srgb, {color8} 20%, {background}) !important;
+  /* Firefox's own token spelling (our -focus-background- variant above is kept
+   * for older layouts) */
+  --toolbar-field-background-color-focus: color-mix(in srgb, {color8} 20%, {background}) !important;
+  --toolbar-field-focus-color: {foreground} !important;
+  --toolbar-field-color-focus: {foreground} !important;
+  --toolbar-field-icon-fill: {color8} !important;
+  --toolbar-field-icon-fill-attention: {color5} !important;
+  --toolbarbutton-hover-background: var(--wal-hover) !important;
+  --toolbarbutton-active-background: var(--wal-active) !important;
+
+  --urlbarView-background: {color0} !important;
+  --urlbarView-color: {foreground} !important;
+  --urlbarView-highlight-background: {color5} !important;
+  --urlbarView-highlight-color: {color0} !important;
+  --urlbarView-url-color: {color8} !important;
+  --urlbarView-action-color: {color6} !important;
+  --urlbarView-help-color: {color8} !important;
+
+  --arrowpanel-background-color: {color0} !important;
+  --arrowpanel-color: {foreground} !important;
+  --arrowpanel-border-color: {color8} !important;
+  --panel-separator-color: {color8} !important;
+
+  --sidebar-background-color: {background} !important;
+  --sidebar-text-color: {foreground} !important;
+  --sidebar-border-color: {color8} !important;
+
+  --chrome-content-separator-color: {color8} !important;
+  --focus-outline-color: {color5} !important;
+  --button-hover-bgcolor: var(--wal-hover) !important;
+  --button-active-bgcolor: var(--wal-active) !important;
+  --button-primary-bgcolor: {color5} !important;
+  --button-primary-color: {color0} !important;
+  --checkbox-border-color: {color8} !important;
+  --menu-background-color: {color0} !important;
+  --menu-color: {foreground} !important;
+  --menuitem-hover-background: var(--wal-hover) !important;
+  --arrowpanel-faint-outline-color: transparent !important;
+}}
+
+/* ── icons: gray, not light-dark() white ───────────────────────────── */
+/* Firefox fills its SVG icons from these tokens; their defaults are
+ * light-dark(--color-gray-70, --color-gray-0) / currentColor, i.e. white
+ * whenever the chrome resolves color-scheme: dark. Pin them to the
+ * palette gray (color8) instead. */
+:root {{
+  --toolbarbutton-icon-fill: {color8} !important;
+  --toolbarbutton-icon-fill-hover: color-mix(in srgb, {color8} 45%, {foreground}) !important;
+  --toolbarbutton-icon-fill-active: color-mix(in srgb, {color8} 45%, {foreground}) !important;
+  --toolbarbutton-icon-fill-attention: {color3} !important;
+  --toolbarbutton-icon-fill-attention-text: {color0} !important;
+  --icon-color: {color8} !important;
+  --menuitem-icon-fill: {color8} !important;
+  --panel-icon-fill: {color8} !important;
+  --button-icon-fill: {color8} !important;
+  --button-icon-stroke: {color8} !important;
+}}
+
+/* tab audio/mute overlay + close icons follow the same gray */
+.tabbrowser-tab .tab-icon-overlay,
+.close-icon > .toolbarbutton-icon {{
+  fill: {color8} !important;
+}}
+
+/* the tab close X (.tab-close-button.close-icon) is a ghost button: its
+ * close-12.svg renders via context-fill from the element's `fill`, and the
+ * ghost `color` token comes from light-dark() and goes white. Pin both to the
+ * palette gray. Hover/active must be restated here because these !important
+ * rules also beat the UA's own :hover variants. */
+.tab-close-button {{
+  color: {color8} !important;
+  fill: {color8} !important;
+}}
+.tab-close-button:hover {{
+  color: color-mix(in srgb, {color8} 45%, {foreground}) !important;
+  fill: color-mix(in srgb, {color8} 45%, {foreground}) !important;
+}}
+.tab-close-button:hover:active {{
+  color: {foreground} !important;
+  fill: {foreground} !important;
+}}
+
+/* icons inside the search field + urlbar dropdown use fill: currentColor
+ * (→ the field text color, i.e. white in the dark theme) – pin them to the
+ * same gray. This covers the magnifier, the engine button, dropmarkers, the
+ * settings cog, result-row type icons and the hardcoded light-dark() pin badge. */
+.searchbar-search-icon,
+.searchbar-search-button,
+.urlbar-icon,
+.ac-type-icon,
+.search-setting-button > .button-box > .button-icon,
+.searchmode-switcher-dropmarker,
+#urlbar-search-mode-indicator-close,
+.searchmode-switcher-close,
+.urlbar[variant-b] .urlbar-input-box,
+.urlbarView-icon,
+.urlbarView-splitbutton-dropmarker,
+.urlbarView-type-icon,
+.urlbarView-userContext-icon {{
+  fill: {color8} !important;
+}}
+
+/* icons LEFT of the input fields (search-engine button, identity block:
+ * padlock, trust/permissions, tracking-protection shield) inherit
+ * fill: currentColor from containers that carry the field text color.
+ * Gray their `color` instead of `fill`, so colored engine favicons and the
+ * critical permission icons (camera/mic/geo = --icon-color-critical) keep
+ * their own fills. */
+.searchbar-engine-image,
+.sharing-icon,
+#identity-icon,
+#trust-icon,
+#permissions-granted-icon,
+#tracking-protection-icon,
+.notification-anchor-icon,
+#blocked-permissions-container > .blocked-permission-icon {{
+  color: {color8} !important;
+}}
+
+/* …but keep semantic states accented (starred bookmark, active reader mode,
+ * search-mode revert, bookmark badge in results) */
+#star-button[starred],
+#urlbar-revert-button,
+#reader-mode-button[readeractive] > .urlbar-icon,
+.urlbarView-row[type="bookmark"] > .urlbarView-row-inner > .urlbarView-no-wrap > .urlbarView-type-icon {{
+  fill: {color3} !important;
+}}
+
+/* ── window & toolbars: flat background ────────────────────────────── */
+#main-window, #navigator-toolbox, #titlebar,
+#TabsToolbar, #nav-bar, #PersonalToolbar, #toolbar-menubar {{
+  background-color: {background} !important;
+  background-image: none !important;
+  color: {foreground} !important;
+}}
+
+#navigator-toolbox {{
+  border-bottom: 1px solid {color8} !important;
+  box-shadow: none !important;
+}}
+
+toolbar {{
+  background-color: transparent !important;
+  background-image: none !important;
+}}
+
+toolbarbutton {{
+  color: {foreground} !important;
+}}
+
+/* ── tabs ──────────────────────────────────────────────────────────── */
+.tabbrowser-tab .tab-background {{
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}}
+
+.tabbrowser-tab .tab-label {{ color: {color8} !important; }}
+.tabbrowser-tab:hover .tab-label {{ color: {foreground} !important; }}
+.tabbrowser-tab[selected] .tab-label {{ color: {foreground} !important; }}
+
+/* accent underline marks the active tab */
+.tabbrowser-tab[selected] .tab-background {{
+  box-shadow: inset 0 -2px 0 0 {color5} !important;
+}}
+
+.tabbrowser-tab[pinned] .tab-content {{ color: {color8} !important; }}
+
+#TabsToolbar {{
+  border-bottom: none !important;
+  box-shadow: none !important;
+}}
+
+#tabbrowser-tabs:not([movingtab]) > #tabbrowser-arrowscrollbox > .tabbrowser-tab > .tab-stack > .tab-background:not([selected]) {{
+  box-shadow: none !important;
+}}
+
+/* ── urlbar / searchbar fields ─────────────────────────────────────── */
+#urlbar-background, #searchbar {{
+  background-color: {color0} !important;
+  background-image: none !important;
+  border: 1px solid {color8} !important;
+  box-shadow: none !important;
+}}
+
+#urlbar[focused] #urlbar-background,
+#urlbar[focused-within] #urlbar-background,
+#searchbar:focus-within {{
+  border-color: {color5} !important;
+  background-color: {color0} !important;
+  box-shadow: none !important;
+}}
+
+#urlbar-input, .urlbarView-title, .urlbarView-url, .urlbarView-action {{
+  color: {foreground} !important;
+}}
+
+.urlbarView-row[selected] .urlbarView-title,
+.urlbarView-row[selected] .urlbarView-url {{
+  color: {color0} !important;
+}}
+
+/* ── panels, menus, popups ─────────────────────────────────────────── */
+menupopup, menupopup > menu, .menupopup-arrowscrollbox,
+panel, panelview, .panel-arrowcontent, #appMenu-popup,
+menulist-popup, autocomplete-richlistbox {{
+  background-color: {color0} !important;
+  background-image: none !important;
+  color: {foreground} !important;
+  border-color: {color8} !important;
+}}
+
+menu, menuitem, .subviewbutton, .panel-list-item {{
+  color: {foreground} !important;
+}}
+
+menu:hover, menuitem:hover, .subviewbutton:hover,
+.subviewbutton[checked], .panel-list-item:hover {{
+  background-color: var(--wal-hover) !important;
+  color: {foreground} !important;
+}}
+
+/* ── sidebar (bookmarks, history, TST, …) ──────────────────────────── */
+#sidebar-box {{
+  background-color: {background} !important;
+  color: {foreground} !important;
+  border-right: 1px solid {color8} !important;
+}}
+
+#sidebar-header {{
+  background-color: {background} !important;
+  color: {foreground} !important;
+  border-bottom: 1px solid {color8} !important;
+}}
+
+#sidebar-splitter {{ background-color: {color8} !important; }}
+#sidebar {{ background-color: {background} !important; }}
+
+/* ── findbar / statuspanel / bookmarks bar ─────────────────────────── */
+findbar {{
+  background-color: {color0} !important;
+  color: {foreground} !important;
+  border-bottom: 1px solid {color8} !important;
+}}
+
+#statuspanel #statusbar-label {{
+  background-color: {color0} !important;
+  color: {foreground} !important;
+}}
+
+#PersonalToolbar .bookmark-item {{
+  color: {foreground} !important;
+}}
+
+/* ── scrollbars (chrome) ───────────────────────────────────────────── */
+* {{
+  scrollbar-color: {color8} {background} !important;
+}}

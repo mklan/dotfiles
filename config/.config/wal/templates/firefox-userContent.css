@@ -1,0 +1,28 @@
+/* Firefox content pages (userContent.css) driven by the wal palettes.
+ * Source template:  ~/dotfiles/config/.config/wal/templates/firefox-userContent.css
+ * Rendered by:      scripts/gen-ff-theme.py  (via scripts/switch-theme.sh)
+ * Deployed by:      scripts/switch-theme.sh  →  <profile>/chrome/userContent.css
+ *
+ * Every color is rendered as a light-dark(<light>, <dark>) pair, so the
+ * palette flips live with org.gnome.desktop.interface color-scheme (which
+ * drives prefers-color-scheme in content) – no Firefox restart needed.
+ *
+ * NOTE: the template is rendered with Python str.format() – literal curly
+ * braces must be DOUBLED (two consecutive braces) or rendering crashes.
+ */
+
+/* Internal pages follow the palette instead of flashing white/black.
+ * (about:blank / about:newtab / about:home used to be forced pitch black.) */
+@-moz-document url(about:blank),
+               url(about:home),
+               url(about:newtab),
+               url(about:privatebrowsing) {{
+  html, body {{
+    background-color: {background} !important;
+    color: {foreground} !important;
+  }}
+
+  * {{
+    scrollbar-color: {color8} {background};
+  }}
+}}
