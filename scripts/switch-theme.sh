@@ -13,7 +13,10 @@
 #   - dunst
 #   - kitty (SIGUSR1)
 #   - hyprland colors (via wal cache)
-#   - VSCode workbench.colorTheme
+#   - VSCode workbench.colorTheme – dark: Blackforest extension (pure-black
+#     OLED void), light: generated "Wal Light" theme; "Wal OLED" and "Wal Light"
+#     are generated from the wal schemes into the managed extension
+#     wal.wal-palette (scripts/gen-vscode-theme.py)
 #   - GTK3 live theme switch: the wal palette is deployed as a real theme
 #     (~/.themes/wal-<mode>) and switched via org.gnome.desktop.interface
 #     gtk-theme – running GTK3 apps restyle instantly (GTK3 never re-reads
@@ -27,9 +30,12 @@ THEME="${1:-dark}"
 DOTFILES_DIR="${DOTFILES_DIR:-$HOME/dotfiles}"
 WAL_DIR="$DOTFILES_DIR/config/.config/wal"
 
-# VSCode theme names (sainnhe.everforest extension)
-VSCODE_DARK_THEME="Everforest Dark (Hard)"
-VSCODE_LIGHT_THEME="Everforest Light (Hard)"
+# VSCode themes. "Wal OLED" / "Wal Light" are generated from the wal schemes
+# in step 7 (managed extension wal.wal-palette). Dark keeps the Blackforest
+# extension (pure-black OLED void) by default – set VSCODE_DARK_THEME="Wal OLED"
+# for a palette-exact dark theme that matches the rest of the desktop.
+VSCODE_DARK_THEME="Blackforest"
+VSCODE_LIGHT_THEME="Wal Light"
 
 # The wal scheme pair drives the dual-palette Firefox CSS (light-dark() pairs)
 WAL_SCHEME_DARK="$WAL_DIR/colorschemes/dark/everforest_oled.json"
@@ -197,6 +203,47 @@ fi
 # turns the call into "hyproled off" when the active theme disables it.
 echo "$UI_MODE" > "$HOME/.cache/theme-mode"
 "$DOTFILES_DIR/config-wayland/.config/hypr/scripts/hyproled.sh" -s -a 0:0:2880:45 || true
+
+
+# ── 7. VSCode / VSCodium ──────────────────────────────────────────────────────
+# Two themes are generated from the wal scheme files into a small managed
+# extension (wal.wal-palette) with scripts/gen-vscode-theme.py:
+#   Wal OLED  – from WAL_SCHEME_DARK
+#   Wal Light – from WAL_SCHEME_LIGHT
+# The theme files are deterministic per scheme – they only change when the
+# scheme files change (VSCode re-reads theme files at startup, so that needs
+# a restart). Flipping workbench.colorTheme below is live. First run only:
+# VSCode must be restarted once before it sees the new extension.
+VSCODE_THEME_ID="wal.wal-palette-0.0.1"
+for EXT_DIR in "$HOME/.vscode/extensions" "$HOME/.vscode-oss/extensions"; do
+    [ -d "$EXT_DIR" ] || continue
+    THEME_EXT="$EXT_DIR/$VSCODE_THEME_ID"
+    mkdir -p "$THEME_EXT/themes"
+    if [ ! -f "$THEME_EXT/package.json" ]; then
+        cat > "$THEME_EXT/package.json" <<'EOF'
+{
+  "name": "wal-palette",
+  "displayName": "Wal Palette",
+  "description": "pywal-generated themes (managed by dotfiles/switch-theme.sh)",
+  "version": "0.0.1",
+  "publisher": "wal",
+  "engines": { "vscode": "^1.60.0" },
+  "categories": ["Themes"],
+  "contributes": {
+    "themes": [
+      { "label": "Wal OLED", "uiTheme": "vs-dark", "path": "./themes/wal-oled.json" },
+      { "label": "Wal Light", "uiTheme": "vs", "path": "./themes/wal-light.json" }
+    ]
+  }
+}
+EOF
+        echo "VSCode: created theme extension $THEME_EXT (restart VSCode once to load it)"
+    fi
+    python3 "$DOTFILES_DIR/scripts/gen-vscode-theme.py" \
+        "$WAL_SCHEME_DARK" "$THEME_EXT/themes/wal-oled.json" "Wal OLED" dark
+    python3 "$DOTFILES_DIR/scripts/gen-vscode-theme.py" \
+        "$WAL_SCHEME_LIGHT" "$THEME_EXT/themes/wal-light.json" "Wal Light" light
+done
 
 for SETTINGS_FILE in \
     "$HOME/.config/Code/User/settings.json" \
