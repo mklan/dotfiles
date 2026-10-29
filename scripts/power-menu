@@ -19,8 +19,23 @@ else
     DOCKED_LABEL="Enable Docked Mode"
 fi
 
+THEME_MODE_FILE="$HOME/.cache/theme-mode"
+SWITCH_THEME_SCRIPT="$(command -v switch-theme.sh || echo "$HOME/.local/bin/switch-theme.sh")"
+
+if [ -f "$THEME_MODE_FILE" ]; then
+    THEME_MODE=$(tr -d '\r\n' < "$THEME_MODE_FILE")
+else
+    THEME_MODE="dark"
+fi
+
+if [ "$THEME_MODE" = "light" ]; then
+    THEME_LABEL="Switch to Dark Theme"
+else
+    THEME_LABEL="Switch to Light Theme"
+fi
+
 LAUNCHER="rofi -width 20 -height 1 -dmenu -i -p Logout -location 3 -yoffset 30 -xoffset -30"
-OPTIONS="Logout\nLock\n$DOCKED_LABEL\nReboot\nShutdown\nSuspend"
+OPTIONS="Logout\nLock\n$DOCKED_LABEL\n$THEME_LABEL\nReboot\nShutdown\nSuspend"
 
 option=`echo -e $OPTIONS | $LAUNCHER | tr -d '\r\n'`
 if [ ${#option} -gt 0 ]
@@ -37,6 +52,12 @@ then
         ;;
       Disable\ Docked\ Mode)
         "$DOCKED_MODE_SCRIPT" --toggle
+        ;;
+      Switch\ to\ Dark\ Theme)
+        "$SWITCH_THEME_SCRIPT" dark
+        ;;
+      Switch\ to\ Light\ Theme)
+        "$SWITCH_THEME_SCRIPT" light
         ;;
       Reboot)
         systemctl reboot
