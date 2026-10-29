@@ -30,17 +30,20 @@ WAL_DIR="$DOTFILES_DIR/config/.config/wal"
 VSCODE_DARK_THEME="Everforest Dark (Hard)"
 VSCODE_LIGHT_THEME="Everforest Light (Hard)"
 
+# The wal scheme pair drives the dual-palette Firefox CSS (light-dark() pairs)
+WAL_SCHEME_DARK="$WAL_DIR/colorschemes/dark/everforest_oled.json"
+WAL_SCHEME_LIGHT="$WAL_DIR/colorschemes/light/everforest_light.json"
 
 case "$THEME" in
     dark|oled)
-        WAL_SCHEME="$WAL_DIR/colorschemes/dark/everforest_oled.json"
+        WAL_SCHEME="$WAL_SCHEME_DARK"
         VSCODE_THEME="$VSCODE_DARK_THEME"
         GTK_COLOR_SCHEME="prefer-dark"
         GTK_PREFER_DARK=1
         UI_MODE="dark"
         ;;
     light)
-        WAL_SCHEME="$WAL_DIR/colorschemes/light/everforest_light.json"
+        WAL_SCHEME="$WAL_SCHEME_LIGHT"
         VSCODE_THEME="$VSCODE_LIGHT_THEME"
         GTK_COLOR_SCHEME="prefer-light"
         GTK_PREFER_DARK=0
