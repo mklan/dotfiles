@@ -1,6 +1,7 @@
 #!/bin/bash
 
-hyproled -s -a 0:0:2880:45
+# hyproled via the per-theme wrapper (~/.config/hypr/hyproled.conf)
+~/.config/hypr/scripts/hyproled.sh -s -a 0:0:2880:45
 
 STATE_FILE="/tmp/hyproled_shift.state"
 

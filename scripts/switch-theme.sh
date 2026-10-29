@@ -194,7 +194,12 @@ if command -v oomox-cli &>/dev/null && [ -f ~/.cache/wal/colors.oomox ]; then
     done
 fi
 
-# ── 8. VSCode / VSCodium ──────────────────────────────────────────────────────
+# ── 6c. hyproled (OLED burn-in shader) ─────────────────────────────────────────
+# Enabled/disabled per theme via ~/.config/hypr/hyproled.conf – the wrapper
+# turns the call into "hyproled off" when the active theme disables it.
+echo "$UI_MODE" > "$HOME/.cache/theme-mode"
+"$DOTFILES_DIR/config-wayland/.config/hypr/scripts/hyproled.sh" -s -a 0:0:2880:45 || true
+
 for SETTINGS_FILE in \
     "$HOME/.config/Code/User/settings.json" \
     "$HOME/.config/Code - OSS/User/settings.json" \
