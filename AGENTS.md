@@ -86,12 +86,16 @@
     └── reload_wal.sh              # regenerate pywal, deploy CSS, restart waybar+dunst
 ```
 
+```
+
 
 ## Development Conventions
 
-- **Never edit `~/.config/waybar/style.css` directly** — edit the pywal template at `~/.config/wal/templates/waybar-style.css.tpl` and run `reload_wal.sh`
-- **Never edit `~/.config/dunst/dunstrc` directly** — edit `~/.config/wal/templates/dunstrc` and run `reload_wal.sh`
 - Dialog/popup windows (rename dialogs, confirm popups, …) should float via the rules in `windowrules.lua` — see the "Dialogs & popups" section there for the detection strategy
+- Hyprland config is reloaded via `hyprctl reload`; it auto-reloads on file save
+- `~/.config/hypr/` and `config-wayland/.config/hypr/` are hardlinked — edit either, both stay in sync
+- **pywal must run with `-s` (skip terminal sequences)**: pywal's `sequences.send()` blindly writes escape codes to every `/dev/pts/[0-9]*` — a stale pty whose master is held but never read (leaked `adb shell` pty, closed VSCode terminal, …) has a full output queue and blocks `wal` forever (it hangs *before* exporting anything, so `~/.cache/wal` stays stale). Kitty recolors via `colors-kitty.conf` + SIGUSR1 instead. wpgtk (`setTheme` → `wpg -s`) has the same `pywal.sequences.send()` call — `~/.config/wpg/wpg.conf` needs `terminal = false`. To unblock a clogged pty: `python3 -c "import os,termios; fd=os.open('/dev/pts/N', os.O_WRONLY|os.O_NOCTTY); termios.tcflush(fd, termios.TCOFLUSH)"`
+- **Scripts in `scripts/` are symlinked into `~/.local/bin`** via `link-scripts.sh` (GNU stow) — re-run it after adding/removing a script; never copy scripts into `/usr/local/bin`
 - Hyprland config is reloaded via `hyprctl reload`; it auto-reloads on file save
 - `~/.config/hypr/` and `config-wayland/.config/hypr/` are hardlinked — edit either, both stay in sync
 - **Scripts in `scripts/` are symlinked into `~/.local/bin`** via `link-scripts.sh` (GNU stow) — re-run it after adding/removing a script; never copy scripts into `/usr/local/bin`

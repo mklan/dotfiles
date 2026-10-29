@@ -1,4 +1,6 @@
-wal -q -i ~/wallpaper/
+# -s: never write escape sequences to /dev/pts/* – a stale pty master with a
+# full output queue blocks wal forever (see switch-theme.sh)
+wal -q -s -i ~/wallpaper/
 
 source "$HOME/.cache/wal/colors.sh"
 

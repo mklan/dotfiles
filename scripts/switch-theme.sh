@@ -58,7 +58,6 @@ fi
 
 # ── 1. Regenerate all pywal templates ────────────────────────────────────────
 echo "Applying pywal scheme: $WAL_SCHEME"
-wal -l --theme "$WAL_SCHEME"
 
 # ── 2. Waybar ─────────────────────────────────────────────────────────────────
 touch ~/.config/waybar/style.css
@@ -67,6 +66,11 @@ if [ -f ~/.cache/wal/waybar-style.css.tpl ]; then
     cp ~/.cache/wal/waybar-style.css.tpl ~/.config/waybar/style.css
     pkill -SIGUSR2 waybar 2>/dev/null || true
 fi
+# -s = don't push escape sequences into /dev/pts/*: any stale pty whose master
+# isn't being read (leaked adb shell pty, closed VSCode terminal, …) has a
+# full output queue and makes wal block forever. Kitty recolors via
+# colors-kitty.conf + SIGUSR1 (step 5) instead.
+wal -l -s --theme "$WAL_SCHEME"
 
 # ── 3. Dunst ──────────────────────────────────────────────────────────────────
 pkill dunst 2>/dev/null
