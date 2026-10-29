@@ -17,4 +17,5 @@
 run every minute a battery check
 
 * * * * * ~/.cron/every1min.sh
+*/15 * * * * ~/.cron/every15min.sh
 0 * * * * ~/.cron/every60min.sh
