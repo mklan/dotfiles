@@ -47,7 +47,7 @@ PanelWindow {
         height: 0
         implicitHeight: column.implicitHeight + 24
         clip: true
-        color: "#0d0d0d"
+        color: Theme.background
         border.color: Theme.disabled
         border.width: 1
 
@@ -147,7 +147,8 @@ PanelWindow {
                         color: Theme.foreground
                         placeholderTextColor: Theme.disabled
                         background: Rectangle {
-                            color: "#1a1a1a"
+                            // subtle raised tint on any palette
+                            color: Qt.rgba(Theme.foreground.r, Theme.foreground.g, Theme.foreground.b, 0.12)
                             border.color: Theme.disabled
                             border.width: 1
                         }

@@ -15,6 +15,7 @@ ShellRoot {
 
             required property var modelData
 
+            DesktopBackground { screen: screenVariant.modelData }
             Bar { screen: screenVariant.modelData }
             MediaBar { screen: screenVariant.modelData }
         }

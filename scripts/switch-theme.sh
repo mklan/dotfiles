@@ -9,6 +9,7 @@
 # What gets updated:
 #   - pywal (regenerates all ~/.cache/wal/* templates)
 #   - waybar CSS
+#   - quickshell bar (restart → picks up ~/.cache/wal/colors.json via theme.qml)
 #   - dunst
 #   - kitty (SIGUSR1)
 #   - hyprland colors (via wal cache)
@@ -181,20 +182,14 @@ if [ -f "$HOME/.config/gtk-3.0/settings.ini" ]; then
            "$HOME/.config/gtk-3.0/settings.ini"
 fi
 
-# ── 7. oomox GTK theme rebuild (optional) ─────────────────────────────────────
-# Run only when oomox-cli is available and the wal colors file was generated.
-if command -v oomox-cli &>/dev/null && [ -f ~/.cache/wal/colors.oomox ]; then
-    echo "Rebuilding oomox GTK theme…"
-    oomox-cli -o "$OOMOX_OUT_THEME" ~/.cache/wal/colors.oomox && \
-    command -v gsettings &>/dev/null && \
-        gsettings set org.gnome.desktop.interface gtk-theme "$OOMOX_OUT_THEME" 2>/dev/null || true
-    # oomox-cli swaps dark/light variants — fix them so prefer-dark gets OLED black
-    for _ver in "$HOME/.themes/$OOMOX_OUT_THEME/gtk-3.0" \
-                "$HOME/.themes/$OOMOX_OUT_THEME/gtk-3.20"; do
-        [ -f "$_ver/dist/gtk.css" ] && cp "$_ver/dist/gtk.css" "$_ver/dist/gtk-dark.css"
-        # Import from file instead of gresource (which has the wrong variant)
-        echo '@import url("dist/gtk-dark.css");' > "$_ver/gtk-dark.css"
-    done
+# ── 6b. Quickshell bar ──────────────────────────────────────────────────────────
+# The bar recolors LIVE on theme switches: theme.qml watches
+# ~/.cache/wal/colors.json (FileView watchChanges + onFileChanged: reload())
+# and every module binds its colors to Theme.*, so the bar must NOT be
+# restarted – its disappearance made windows reflow around the vanished
+# exclusive zone (resize glitches). Only (re)start it when it is not running.
+if ! pgrep -x quickshell >/dev/null 2>&1; then
+    "$DOTFILES_DIR/scripts/restart_app" quickshell 2>/dev/null || true
 fi
 
 # ── 6c. hyproled (OLED burn-in shader) ─────────────────────────────────────────

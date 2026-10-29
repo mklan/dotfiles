@@ -35,7 +35,7 @@ PanelWindow {
         id: box
         implicitWidth:  label.implicitWidth + 18
         implicitHeight: label.implicitHeight + 10
-        color: "#0d0d0d"
+        color: Theme.background
         border.color: Theme.disabled
         border.width: 1
         radius: 3
