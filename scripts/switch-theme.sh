@@ -72,27 +72,19 @@ fi
 
 # ── 1. Regenerate all pywal templates ────────────────────────────────────────
 echo "Applying pywal scheme: $WAL_SCHEME"
-
-# ── 2. Waybar ─────────────────────────────────────────────────────────────────
-touch ~/.config/waybar/style.css
-if [ -f ~/.cache/wal/waybar-style.css.tpl ]; then
-    mkdir -p ~/.config/waybar
-    cp ~/.cache/wal/waybar-style.css.tpl ~/.config/waybar/style.css
-    pkill -SIGUSR2 waybar 2>/dev/null || true
-fi
 # -s = don't push escape sequences into /dev/pts/*: any stale pty whose master
 # isn't being read (leaked adb shell pty, closed VSCode terminal, …) has a
 # full output queue and makes wal block forever. Kitty recolors via
 # colors-kitty.conf + SIGUSR1 (step 5) instead.
 wal -l -s --theme "$WAL_SCHEME"
 
-# ── 3. Dunst ──────────────────────────────────────────────────────────────────
-pkill dunst 2>/dev/null
-dunst &>/dev/null & disown
+# ── 2. Hyprland colors ─────────────────────────────────────────────────────────
+# styling.lua reads ~/.cache/wal/colors-hyprland.conf at config load – reload
+# right after wal so window borders flip together with the bar (which
+# recolors the moment colors.json lands). Anything not in lock-step runs
+# after the gsettings flip – keep all visible triggers back-to-back.
+hyprctl reload >/dev/null 2>&1 || true
 
-# ── 4. Kitty ──────────────────────────────────────────────────────────────────
-# SIGUSR1 makes kitty reload its config (picks up updated ~/.cache/wal/colors-kitty.conf)
-pkill -SIGUSR1 kitty 2>/dev/null || true
 # ── 3. GTK3 theme (live-switchable) + GTK4 user CSS + GTK2 fallback ─────────
 # GTK3 never re-reads ~/.config/gtk-3.0/gtk.css in running apps – user CSS is
 # parsed once at startup and then frozen. The only live lever is a gtk-theme
@@ -191,6 +183,18 @@ if [ -f "$HOME/.config/gtk-3.0/settings.ini" ]; then
            "$HOME/.config/gtk-3.0/settings.ini"
 fi
 
+# ── 5. Kitty ──────────────────────────────────────────────────────────────────
+# SIGUSR1 makes kitty reload its config (picks up updated ~/.cache/wal/colors-kitty.conf)
+pkill -SIGUSR1 kitty 2>/dev/null || true
+
+# ── 6. Waybar ─────────────────────────────────────────────────────────────────
+touch ~/.config/waybar/style.css
+if [ -f ~/.cache/wal/waybar-style.css.tpl ]; then
+    mkdir -p ~/.config/waybar
+    cp ~/.cache/wal/waybar-style.css.tpl ~/.config/waybar/style.css
+    pkill -SIGUSR2 waybar 2>/dev/null || true
+fi
+
 # ── 6b. Quickshell bar ──────────────────────────────────────────────────────────
 # The bar recolors LIVE on theme switches: theme.qml watches
 # ~/.cache/wal/colors.json (FileView watchChanges + onFileChanged: reload())
@@ -207,6 +211,9 @@ fi
 echo "$UI_MODE" > "$HOME/.cache/theme-mode"
 "$DOTFILES_DIR/config-wayland/.config/hypr/scripts/hyproled.sh" -s -a 0:0:2880:45 || true
 
+# ── 6d. Dunst ──────────────────────────────────────────────────────────────────
+pkill dunst 2>/dev/null
+dunst &>/dev/null & disown
 
 # ── 7. VSCode / VSCodium ──────────────────────────────────────────────────────
 # Two themes are generated from the wal scheme files into a small managed
