@@ -9,8 +9,8 @@ function main {
 	  ./install-list.sh hyprland.packages.json
   fi
 
-  echo "copying helpful util scripts"
-  ./copy-scripts.sh
+  echo "linking helpful util scripts"
+  ../scripts/link-scripts.sh
 
   echo "creating symlinks"
   cd ..

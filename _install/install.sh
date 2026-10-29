@@ -13,7 +13,7 @@ function main {
   wpg-install.sh -g -i
   wpg -s ${1}
  
-  ./copy-scripts.sh
+  ../scripts/link-scripts.sh
 
 
   createSymlinks
