@@ -110,6 +110,6 @@ widget>* {
 
 tooltip {
   color: @color15;
-  background-color: #000000;
+  background-color: @background;
   border: 1px solid @color8;
 }
