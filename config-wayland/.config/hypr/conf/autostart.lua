@@ -22,7 +22,11 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("/usr/lib/at-spi-bus-launcher --exit-with-session")
     -- Run hypridle via its systemd unit (Restart=on-failure) — a bare exec
     -- dies silently when the user dbus is restarted (hypridle SIGABRTs).
-    hl.exec_cmd("systemctl --user start hypridle")
+    -- Chain after the env export: exec_cmds race each other, and hypridle
+    -- started with a missing/stale WAYLAND_DISPLAY fails to connect and (with
+    -- the stock rate limit) wedges the unit for the whole session. The
+    -- hypridle.service.d override keeps retries unlimited as a safety net.
+    hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP && systemctl --user start hypridle")
     hl.exec_cmd("pypr")
     hl.exec_cmd("nm-applet")
     -- voxtype push-to-talk daemon (SUPER+V); systemd keeps it alive
