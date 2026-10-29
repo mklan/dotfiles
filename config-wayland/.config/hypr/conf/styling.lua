@@ -13,7 +13,7 @@ local function wal_color(name)
 end
 
 local active_border   = wal_color("color5")
-local inactive_border = wal_color("color6")
+local inactive_border = wal_color("color4")  -- rofi's border blue
 
 hl.config({
     general = {
