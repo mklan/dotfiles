@@ -24,4 +24,15 @@ if pgrep -x "$APP" >/dev/null; then
     pkill -9 -x "$APP" 2>/dev/null || true
 fi
 
-nohup "$APP" &>/dev/null 9>&- &
+# Launch with the XWayland-HiDPI env stripped. QT_SCREEN_SCALE_FACTORS /
+# QT_AUTO_SCREEN_SCALE_FACTOR / GDK_SCALE exist for X11/XWayland apps
+# (Eden AppImage, Java, GTK X11) that must scale themselves against
+# xwayland.force_zero_scaling. Native-Wayland apps (quickshell) that pick
+# these up get scaled AGAIN by the compositor on top and render oversized.
+# QT_STYLE_OVERRIDE is a stale kvantum leftover (kvantum was removed).
+# setsid detaches the app from our session/process group: nohup alone does
+# not protect against a launcher whose whole process group gets killed
+# (aborted shell, killed tool runner) – that is how quickshell died once.
+nohup setsid env -u QT_SCREEN_SCALE_FACTORS -u QT_AUTO_SCREEN_SCALE_FACTOR \
+         -u GDK_SCALE -u QT_STYLE_OVERRIDE \
+         "$APP" &>/dev/null 9>&- &
