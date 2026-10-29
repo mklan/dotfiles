@@ -1,0 +1,164 @@
+/* GTK surface rules – deployed by scripts/switch-theme.sh as:
+ *   ~/.config/gtk-4.0/gtk.css                  (GTK4/libadwaita user CSS,
+ *                                              hot-reloaded on file change)
+ *   ~/.themes/wal-<mode>/gtk-3.0/gtk.css       (GTK3 theme, live-switched via
+ *                                              org.gnome.desktop.interface
+ *                                              gtk-theme – GTK3 never re-reads
+ *                                              user CSS in running apps)
+ * Colors come from the pywal-generated colors.css (@oled_* defines), so the
+ * surfaces follow the active wal theme: OLED black (#000000) in dark mode,
+ * warm cream (#fff2d9) in light mode.
+ *
+ * @define-color redefinitions alone do NOT restyle Adwaita – GTK resolves
+ * color names inside the theme's own provider. These explicit rules run at
+ * GTK_STYLE_PROVIDER_PRIORITY_USER and actually force the palette surfaces.
+ * Covers GTK3, GTK4 and libadwaita with one file.
+ */
+@import url("colors.css");
+
+/* ── surfaces ─────────────────────────────────────────────────────────── */
+window, .background, dialog,
+headerbar, .header-bar, .titlebar, .titlebar.default-decoration,
+menubar, .menubar, menubar > menuitem,
+toolbar, .toolbar, .search-bar, .bottom-bar, .top-bar,
+statusbar, .statusbar, .action-bar, .tab-bar {
+    background-color: @oled_bg;
+    background-image: none;
+    color: @oled_fg;
+}
+
+.view, iconview, treeview, textview, textview > text,
+entry, spinbutton, spinbutton > entry,
+.sidebar, .navigation-sidebar, .vertical .navigation-sidebar,
+list.navigation-sidebar, notebook > stack,
+.card, .boxed-list, .content-page {
+    background-color: @oled_bg;
+    color: @oled_fg;
+}
+
+notebook > header, notebook > header > tab,
+tabs > tab, tabbar > tabview > tab {
+    background-color: @oled_bg;
+}
+
+menu, .menu, popover, popover > contents,
+messagedialog, .dialog-vbox, tooltip, tooltip.background {
+    background-color: @oled_bg;
+    color: @oled_fg;
+}
+
+/* ── controls ─────────────────────────────────────────────────────────── */
+button, button.flat {
+    background-color: @oled_bg;
+    background-image: none;
+    border-color: alpha(@oled_fg, 0.2);
+    color: @oled_fg;
+    box-shadow: none;
+}
+button:hover {
+    background-color: alpha(@oled_fg, 0.08);
+    background-image: none;
+}
+button:active, button:checked {
+    background-color: alpha(@oled_fg, 0.14);
+    background-image: none;
+}
+
+/* treeview column headers – Adwaita's `treeview.view header button`
+ * (#2d2d2d, #303030 when unfocused) outranks the generic button rule,
+ * so it needs an equally specific override. */
+treeview.view header button, treeview.view header button:backdrop {
+    background-color: @oled_bg;
+    background-image: none;
+    color: @oled_fg;
+    border-color: alpha(@oled_fg, 0.12);
+}
+treeview.view header button:hover {
+    background-color: alpha(@oled_fg, 0.08);
+    color: @oled_fg;
+}
+treeview.view header button:active {
+    background-color: alpha(@oled_fg, 0.14);
+    color: @oled_fg;
+}
+
+scrollbar {
+    background-color: @oled_bg;
+}
+scrollbar slider {
+    background-color: @oled_dim;
+}
+
+frame > border, separator {
+    border-color: alpha(@oled_fg, 0.12);
+}
+
+/* ── unfocused (backdrop) windows ─────────────────────────────────────
+ * Adwaita dims unfocused windows (.background:backdrop → #353535,
+ * .view:backdrop → #303030, headerbar:backdrop → #353535, …). Mirror the
+ * surface and control rules with :backdrop so focused and unfocused
+ * windows are pixel-identical: always the palette surfaces.
+ * background-image: none is required – Adwaita paints several of these
+ * with gradients/image() which would sit on top of background-color. ── */
+window:backdrop, .background:backdrop, dialog:backdrop,
+headerbar:backdrop, .header-bar:backdrop, .titlebar:backdrop, .titlebar.default-decoration:backdrop,
+menubar:backdrop, .menubar:backdrop, menubar > menuitem:backdrop,
+toolbar:backdrop, .toolbar:backdrop, .search-bar:backdrop, .bottom-bar:backdrop, .top-bar:backdrop,
+statusbar:backdrop, .statusbar:backdrop, .action-bar:backdrop, .tab-bar:backdrop {
+    background-color: @oled_bg;
+    background-image: none;
+    color: @oled_fg;
+}
+
+.view:backdrop, iconview:backdrop, treeview:backdrop,
+textview:backdrop, textview > text:backdrop,
+entry:backdrop, spinbutton:backdrop, spinbutton > entry:backdrop,
+.sidebar:backdrop, .navigation-sidebar:backdrop, .vertical .navigation-sidebar:backdrop,
+list.navigation-sidebar:backdrop, notebook > stack:backdrop,
+.card:backdrop, .boxed-list:backdrop, .content-page:backdrop {
+    background-color: @oled_bg;
+    background-image: none;
+    color: @oled_fg;
+}
+
+notebook > header:backdrop, notebook > header > tab:backdrop,
+tabs > tab:backdrop, tabbar > tabview > tab:backdrop {
+    background-color: @oled_bg;
+    background-image: none;
+}
+
+menu:backdrop, .menu:backdrop, popover:backdrop, popover > contents:backdrop,
+messagedialog:backdrop, .dialog-vbox:backdrop, tooltip:backdrop, tooltip.background:backdrop {
+    background-color: @oled_bg;
+    color: @oled_fg;
+}
+
+button:backdrop, button.flat:backdrop {
+    background-color: @oled_bg;
+    background-image: none;
+    border-color: alpha(@oled_fg, 0.2);
+    color: @oled_fg;
+    box-shadow: none;
+}
+
+scrollbar:backdrop {
+    background-color: @oled_bg;
+}
+scrollbar slider:backdrop {
+    background-color: @oled_dim;
+}
+
+frame > border:backdrop, separator:backdrop {
+    border-color: alpha(@oled_fg, 0.12);
+}
+
+/* ── selection (must come last: the blanket rules above would otherwise
+ *    override :selected styling – GTK priority beats specificity).
+ *    Milky pink: color5 washed over the surface, text stays readable. ── */
+treeview:selected, iconview:selected, row:selected,
+.view:selected, treeview row:selected, .view row:selected,
+entry selection, textview selection, textview > text > selection,
+label:selected, menuitem:hover, menuitem:selected {
+    background-color: alpha(@oled_sel_bg, 0.4);
+    color: @oled_fg;
+}

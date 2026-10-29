@@ -37,6 +37,8 @@
 | `colors-hyprland.conf`  | `~/.cache/wal/colors-hyprland.conf`                        | wal generates                           |
 | `colors-kitty.conf`     | `~/.cache/wal/colors-kitty.conf`                           | wal generates                           |
 | `colors-rofi-dark.rasi` | `~/.cache/wal/colors-rofi-dark.rasi`                       | wal generates                           |
+| `colors-gtk.css`        | `~/.config/gtk-4.0/colors.css` + inlined into `~/.themes/wal-<mode>/gtk-3.0/gtk.css` | `switch-theme.sh` (palette defines) |
+| `gtk-surfaces.css` (static, `config/.config/gtk/`) | `~/.config/gtk-4.0/gtk.css` + inlined into `~/.themes/wal-<mode>/gtk-3.0/gtk.css` | `switch-theme.sh` (palette widget rules) |
 
 ## Bar
 
@@ -86,18 +88,17 @@
     └── reload_wal.sh              # regenerate pywal, deploy CSS, restart waybar+dunst
 ```
 
-```
-
-
 ## Development Conventions
 
+- **Never edit `~/.config/waybar/style.css` directly** — edit the pywal template at `~/.config/wal/templates/waybar-style.css.tpl` and run `reload_wal.sh`
+- **Never edit `~/.config/dunst/dunstrc` directly** — edit `~/.config/wal/templates/dunstrc` and run `reload_wal.sh`
+- **Window rules** use the Lua API (`hl.window_rule({ match = {…}, … })`) — the hyprlang `windowrulev2` syntax no longer exists in 0.56
 - Dialog/popup windows (rename dialogs, confirm popups, …) should float via the rules in `windowrules.lua` — see the "Dialogs & popups" section there for the detection strategy
 - Hyprland config is reloaded via `hyprctl reload`; it auto-reloads on file save
 - `~/.config/hypr/` and `config-wayland/.config/hypr/` are hardlinked — edit either, both stay in sync
 - **pywal must run with `-s` (skip terminal sequences)**: pywal's `sequences.send()` blindly writes escape codes to every `/dev/pts/[0-9]*` — a stale pty whose master is held but never read (leaked `adb shell` pty, closed VSCode terminal, …) has a full output queue and blocks `wal` forever (it hangs *before* exporting anything, so `~/.cache/wal` stays stale). Kitty recolors via `colors-kitty.conf` + SIGUSR1 instead. wpgtk (`setTheme` → `wpg -s`) has the same `pywal.sequences.send()` call — `~/.config/wpg/wpg.conf` needs `terminal = false`. To unblock a clogged pty: `python3 -c "import os,termios; fd=os.open('/dev/pts/N', os.O_WRONLY|os.O_NOCTTY); termios.tcflush(fd, termios.TCOFLUSH)"`
 - **Scripts in `scripts/` are symlinked into `~/.local/bin`** via `link-scripts.sh` (GNU stow) — re-run it after adding/removing a script; never copy scripts into `/usr/local/bin`
-- Hyprland config is reloaded via `hyprctl reload`; it auto-reloads on file save
-- `~/.config/hypr/` and `config-wayland/.config/hypr/` are hardlinked — edit either, both stay in sync
-- **Scripts in `scripts/` are symlinked into `~/.local/bin`** via `link-scripts.sh` (GNU stow) — re-run it after adding/removing a script; never copy scripts into `/usr/local/bin`
-- `~/.config/hypr/` and `config-wayland/.config/hypr/` are hardlinked — edit either, both stay in sync
-- **Scripts in `scripts/` are symlinked into `~/.local/bin`** via `link-scripts.sh` (GNU stow) — re-run it after adding/removing a script; never copy scripts into `/usr/local/bin`
+- **GTK theming is pywal-driven, no oomox/themix** (removed from system) and switches **live**: GTK3 apps never re-read `~/.config/gtk-3.0/gtk.css` in a running process (parsed once at startup, then frozen), so the palette is deployed as a real theme `~/.themes/wal-dark` / `~/.themes/wal-light` (Adwaita gresource base + `colors-gtk.css` defines + `gtk-surfaces.css` widget rules) and flipped via `org.gnome.desktop.interface gtk-theme` — running GTK3 apps restyle instantly (`switch-theme.sh` hops through `Adwaita` first when the theme name is unchanged, since GSettings emits no notification for same-value writes). GTK4/libadwaita instead hot-reloads user CSS, so it keeps `~/.config/gtk-4.0/{colors.css,gtk.css}`. Qt5/Qt6 follow the GTK palette via `QT_QPA_PLATFORMTHEME=gtk3` in `hypr/conf/envs.lua`. GTK2 uses `~/.gtkrc-2.0.mine`. Don't reintroduce oomox/themix, qt5ct/qt6ct or kvantum, and never write `~/.config/gtk-3.0/gtk.css` again — a frozen stale copy overrides the live theme in running GTK3 apps
+- **pywal templates are rendered with Python `str.format()`** — a bare literal `{`/`}` crashes `wal` with `KeyError`; either keep templates brace-free (defines only, static rules in `config/.config/gtk/gtk-surfaces.css`) or double every brace (`{{`/`}}`) as `waybar-style.css.tpl` and the `firefox-user*.css` templates do
+- `@define-color` redefinitions alone do NOT darken Adwaita (GTK resolves names inside the theme's provider) — the explicit widget rules in `gtk-surfaces.css` are what force `#000000`; verify with GTK3 `StyleContext.get_background_color` or a screenshot. The rules also mirror every surface/control selector with `:backdrop` (Adwaita grays unfocused windows via `.background:backdrop` → `#353535`, `treeview.view header button` → `#2d2d2d`, …) and reset `background-image` (Adwaita paints headerbars/buttons with gradients + `image()` that would sit on top of `background-color`) — keep focused and unfocused windows pixel-identical
+- GTK dark/light behavior was verified empirically (2026-10): GTK3 = live only on `gtk-theme` change, GTK4 = live on `gtk.css`/imports change (~2 s), Firefox = live on `color-scheme` change (resolves `light-dark()`), Firefox never reads GTK surface colors
