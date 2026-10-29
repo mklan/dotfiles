@@ -57,7 +57,7 @@ Row {
             opacity: detailHolder.width > 0
                 ? detailHolder.width / Math.max(implicitWidth, 1) : 0
             Behavior on opacity { NumberAnimation { duration: 120 } }
-            color: Qt.lighter(Theme.disabled, 1.25)
+            color: Theme.muted
             font.family: Theme.fontFamily
             font.pixelSize: Theme.fontSize
         }

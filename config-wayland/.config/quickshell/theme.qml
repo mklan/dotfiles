@@ -57,6 +57,13 @@ QtObject {
     readonly property color warningOrange: wal.colors.color11 || "#d9bb80" // amber/orange – cpu temp ≥ 55°C (everforest color11)
     readonly property color color8:     wal.colors.color8  || "#868d80"
 
+    // Muted secondary text (hover details, timestamps): blend the foreground
+    // over the background so it stays legible in BOTH themes. The old
+    // Qt.lighter(Theme.disabled, 1.25) washed light-theme text out to near-white.
+    readonly property color muted: Qt.tint(
+        background,
+        Qt.rgba(foreground.r, foreground.g, foreground.b, 0.65))
+
     // Desktop background – visible in the window gaps (deployed by
     // DesktopBackground.qml at the layer Background level). In the light
     // theme it sits a bit lighter than the bar/window background so the

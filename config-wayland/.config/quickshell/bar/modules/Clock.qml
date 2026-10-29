@@ -64,7 +64,7 @@ Item {
             opacity: leftHolder.width > 0
                 ? leftHolder.width / Math.max(implicitWidth, 1) : 0
             Behavior on opacity { NumberAnimation { duration: 120 } }
-            color: root.pinned ? Theme.foreground : Qt.lighter(Theme.disabled, 1.25)
+            color: root.pinned ? Theme.foreground : Theme.muted
             font.family: Theme.fontFamily
             font.pixelSize: Theme.fontSize
         }
@@ -89,7 +89,7 @@ Item {
             opacity: rightHolder.width > 0
                 ? rightHolder.width / Math.max(implicitWidth, 1) : 0
             Behavior on opacity { NumberAnimation { duration: 120 } }
-            color: root.pinned ? Theme.foreground : Qt.lighter(Theme.disabled, 1.25)
+            color: root.pinned ? Theme.foreground : Theme.muted
             font.family: Theme.fontFamily
             font.pixelSize: Theme.fontSize
         }
