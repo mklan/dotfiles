@@ -157,6 +157,22 @@ hl.window_rule({
     pin   = true,
 })
 
+-- ── Tiling: ignore maximize requests from apps ──
+--
+-- kitty (remember_window_size) restores its saved window state on startup and
+-- sends a maximize request; kitty re-saves that state on exit, so once
+-- "window-state: maximized" is in ~/.cache/kitty/main.json it sticks forever.
+-- Hyprland honors client maximize requests, so the window filled the whole
+-- work area instead of tiling and covered the other tiled windows.  Ignore
+-- maximize events from clients — compositor-initiated maximize and the
+-- fullscreen dispatcher (HYPER+space) are unaffected.
+
+hl.window_rule({
+    name           = "suppress-maximize-events",
+    match          = { class = ".*" },
+    suppress_event = "maximize",
+})
+
 -- ── Idle inhibit for fullscreen ──
 
 hl.window_rule({
