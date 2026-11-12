@@ -1,8 +1,10 @@
 import QtQuick
-import Quickshell.Io
+import Quickshell.Services.UPower
 import "../.."
 
-// Battery status – icon + % – charging uses green, warning pulses red.
+// Battery status – event-driven via UPower D-Bus, so plug/unplug and
+// percentage changes reflect instantly instead of waiting for the next
+// upower poll. Icon + % – charging uses green, warning pulses red.
 // Hover slides out the remaining time to the LEFT of the percentage:
 //   discharging → time to empty ("3:30h" / "43m")
 //   charging    → time to full
@@ -11,10 +13,19 @@ import "../.."
 Row {
     id: root
 
-    property int  _pct:      -1
-    property bool _charging: false
-    property bool _warning:  false   // < 20% and discharging
-    property string _timeLeft: ""    // "3:30h" – time to empty / to full
+    property var _dev: UPower.displayDevice
+    property bool _ready: _dev !== null && _dev.ready
+
+    property int _pct: _ready ? Math.round(_dev.percentage * 100) : -1
+    property bool _charging: _ready && _dev.state === UPowerDeviceState.Charging
+    property bool _warning: _ready && !_charging && _pct >= 0 && _pct < 20
+
+    property string _timeLeft: {
+        if (!_ready) return ""
+        if (_dev.state === UPowerDeviceState.Discharging) return root.formatSecs(_dev.timeToEmpty)
+        if (_dev.state === UPowerDeviceState.Charging) return root.formatSecs(_dev.timeToFull)
+        return ""
+    }
 
     readonly property var icons: [
         "󰂃","󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂁","󰂂","󰁹"
@@ -26,10 +37,11 @@ Row {
         return icons[i]
     }
 
-    // upower gives "time to empty: 42.6 minutes" (or "… hours" for long
-    // runtimes) – v is the value in the unit reported by upower
-    function formatTime(v, unit) {
-        const totalMin = Math.round(unit === "hours" ? v * 60 : v)
+    // UPower reports seconds – format like the old upower output did
+    function formatSecs(sec) {
+        if (sec === undefined || sec === null || isNaN(sec) || sec <= 0) return ""
+        const totalMin = Math.round(sec / 60)
+        if (totalMin <= 0) return ""
         const hh = Math.floor(totalMin / 60)
         const mm = totalMin % 60
         return hh > 0 ? (hh + ":" + String(mm).padStart(2, "0") + "h")
@@ -86,47 +98,4 @@ Row {
         NumberAnimation { from: 0.3; to: 1; duration: 2000; easing.type: Easing.InOutSine }
         onStopped: root.opacity = 1
     }
-
-    // Poll via upower
-    Process {
-        id: proc
-        command: ["sh", "-c",
-            "upower -i $(upower -e | grep -E 'BAT|battery' | head -1) 2>/dev/null | " +
-            "awk '/percentage/{p=$2} /state/{s=$2} " +
-            "/time to empty/{te=$4; ue=$5} /time to full/{tf=$4; uf=$5} " +
-            "END{printf \"%s|%s|%s|%s|%s|%s\", p, s, te, ue, tf, uf}'"]
-        running: false
-        stdout: SplitParser {
-            onRead: (line) => {
-                const parts = line.trim().split("|")
-                if (parts.length >= 2) {
-                    const pct = parseInt(parts[0])
-                    const state = parts[1]
-                    if (!isNaN(pct)) root._pct = pct
-                    root._charging = (state === "charging")
-                    root._warning  = (!root._charging && pct < 20)
-                    if (state === "discharging") {
-                        const v = parseFloat(parts[2])
-                        const unit = parts[3] || ""
-                        root._timeLeft = isNaN(v) ? "" : root.formatTime(v, unit)
-                    } else if (state === "charging") {
-                        const v = parseFloat(parts[4])
-                        const unit = parts[5] || ""
-                        root._timeLeft = isNaN(v) ? "" : root.formatTime(v, unit)
-                    } else {
-                        root._timeLeft = ""
-                    }
-                }
-            }
-        }
-    }
-
-    Timer {
-        interval: 10000
-        running: true
-        repeat: true
-        onTriggered: proc.running = true
-    }
-
-    Component.onCompleted: proc.running = true
 }

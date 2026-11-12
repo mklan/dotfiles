@@ -2,11 +2,10 @@ import QtQuick
 import Quickshell.Io
 import "../.."
 
-// CPU% + CPU°C + Memory — polled every 30s
-// Color coding:
-//   CPU    ≥ 80%   → red
-//   temp   ≥ 55°C  → orange, ≥ 60°C → red
-//   memory ≥ 80%   → red
+// CPU% + CPU°C + Memory — refreshed every 3s (was 30s, so the bar showed
+// ~half-minute-old numbers).
+// CPU% is computed from /proc/stat deltas: instant and cheap, unlike
+// `top -bn1` which itself takes ~a second to sample.
 Row {
     id: root
 
@@ -19,6 +18,10 @@ Row {
     property real tempWarn: 55   // orange from here
     property real tempCrit: 60   // red from here
     property real memWarn:  80
+
+    // Previous /proc/stat sample for delta computation
+    property double _prevTotal: -1
+    property double _prevIdle: -1
 
     height: Theme.barHeight
     leftPadding: Theme.padH
@@ -61,12 +64,23 @@ Row {
     Process {
         id: cpuProc
         command: ["sh", "-c",
-            "top -bn1 | awk '/^%Cpu/ {printf \"%.0f\", 100-$8}'"]
+            "awk '/^cpu /{print ($2+$3+$4+$5+$6+$7+$8)\" \"($5+$6)}' /proc/stat"]
         running: false
         stdout: SplitParser {
             onRead: (line) => {
-                const v = line.trim()
-                if (v !== "") root.cpuPct = parseFloat(v)
+                const parts = line.trim().split(/\s+/)
+                if (parts.length < 2) return
+                const total = parseFloat(parts[0])
+                const idle = parseFloat(parts[1])
+                if (isNaN(total) || isNaN(idle)) return
+                if (root._prevTotal >= 0) {
+                    const dt = total - root._prevTotal
+                    const di = idle - root._prevIdle
+                    if (dt > 0)
+                        root.cpuPct = Math.max(0, Math.min(100, 100 * (1 - di / dt)))
+                }
+                root._prevTotal = total
+                root._prevIdle = idle
             }
         }
     }
@@ -74,7 +88,7 @@ Row {
     Process {
         id: tempProc
         command: ["sh", "-c",
-            "cat /sys/class/thermal/thermal_zone*/temp 2>/dev/null | head -1 | awk '{printf \"%.0f\", $1/1000}'"]
+            "awk '{if($1>max)max=$1}END{if(max>0)printf \"%.0f\", max/1000}' /sys/class/thermal/thermal_zone*/temp"]
         running: false
         stdout: SplitParser {
             onRead: (line) => {
@@ -87,7 +101,7 @@ Row {
     Process {
         id: memProc
         command: ["sh", "-c",
-            "free -b | awk '/^Mem/ {printf \"%.1f %.0f\", $3/1073741824, $3*100/$2}'"]
+            "awk '/^MemTotal:/{t=$2}/^MemAvailable:/{a=$2}END{printf \"%.1f %.0f\", (t-a)/1048576, (t-a)*100/t}' /proc/meminfo"]
         running: false
         stdout: SplitParser {
             onRead: (line) => {
@@ -107,10 +121,19 @@ Row {
     }
 
     Timer {
-        interval: 30000
+        interval: 3000
         running: true
         repeat: true
         onTriggered: root.refresh()
+    }
+
+    // Second CPU sample shortly after startup so the first real % shows
+    // without waiting a full interval (deltas need two samples)
+    Timer {
+        interval: 700
+        running: true
+        repeat: false
+        onTriggered: cpuProc.running = true
     }
 
     Component.onCompleted: root.refresh()
